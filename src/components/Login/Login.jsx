@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { useAlert } from "react-alert";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./login.css";
 export default function Login(props) {
   const [account, set_user] = useState({
@@ -49,7 +49,7 @@ export default function Login(props) {
           <div className="header-left">
             <div className="logo">
               <img src="./img/logo.svg" alt="#" />
-              <span className="title-header">IPTC</span>
+              <span className="title-header">SCM</span>
             </div>
           </div>
           <div className="header-right"></div>
@@ -70,7 +70,7 @@ export default function Login(props) {
                   type="text"
                   placeholder="VD: abc@gmail.com"
                   className="form-control"
-                  //   onChange={handleChange}
+                  onChange={handleChange}
                 />
                 <span className="form-message" />
               </div>
@@ -84,13 +84,13 @@ export default function Login(props) {
                   type="password"
                   placeholder="Nhập mật khẩu"
                   className="form-control"
-                  // onChange={handleChange}
+                  onChange={handleChange}
                 />
                 <span className="form-message" />
               </div>
 
               <button
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 className="form-submit"
                 id="login-btn"
               >

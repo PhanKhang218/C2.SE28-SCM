@@ -1,0 +1,35 @@
+[
+  {
+    "UserName": "kimchi34@gmail.com",
+    "Role": "member",
+    "Names": "Le Thi Kim Chi",
+    "Gender": "Male",
+    "Phone": "0123456789",
+    "Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VybmFtZSI6ImtpbWNoaTM0QGlwdGMuZWR1LnZuIiwiTmFtZSI6IkxlIFRoaSBLaW0gQ2hpIiwiaW5pdGlhbCI6MTY3OTgzMjUyOSwiZXhwaXJlcyI6MTY3OTgzNjEyOX0.0Dcx5B5YIiMWtm9e3Kh6PGKBTNH_SIyMh2x7yDOjrpk",
+    "BirthDay": "07-06-1996",
+    "Age": "28",
+    "MoreInfo": [
+      {
+        "ClassID": 5,
+        "ClassName": "Tennis",
+        "Images": "https://scontent.xx.fbcdn.net/v/t1.15752-9/322409075_552145089911401_6612548246218808289_n.png?_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=_X7GBWNwxXYAX_MJM40&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdSN9vW7DVKfESgkT417mVrJfj5B2u6rc-PQFrD-V4iyZw&oe=63DBC52F",
+        "ClassAddress": "02 Nguyen Van Linh, Quan Thanh Khe, TP. Da Nang",
+        "DayOfWeek": "2-4-6",
+        "RegisterDate": "01-04-2023",
+        "EndDay": "31-05-2023",
+        "ExpireDate": "61"
+      }
+    ]
+  },
+  {
+    "ClassID": 4,
+    "ClassName": "Gym",
+    "Phone": "083942371",
+    "Price": "250.000VND",
+    "OpenTime": "5:00AM",
+    "CloseTime": "21:00PM",
+    "ClassAddress": "250 Nguyen Van Linh, Quan Thanh Khe, TP. Da Nang",
+    "DayOfWeek": "3-5-7",
+    "Description": "Đây là nơi mà các bạn có thể tập luyện và thực hành các bài tập thể dục để cải thiện sức khỏe, giảm cân, tăng cơ bắp và cải thiện ngoại hình. Ngoài ra, phòng gym cũng có nhân viên huấn luyện chuyên nghiệp, có thể hướng dẫn và cung cấp các lộ trình tập luyện cho người mới bắt đầu hoặc người muốn cải thiện hiệu quả tập luyện"
+  }
+]
