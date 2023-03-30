@@ -10,7 +10,7 @@ export default function Navbar() {
         </a>
         <ul className="navbar-ul">
           <li className="nav-item">
-            <a className="nav-link" href="/dashboard">
+            <a className="nav-link" href="/">
               Trang chủ
             </a>
           </li>
