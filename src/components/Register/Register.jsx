@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FacebookLogin from "react-facebook-login";
-import GoogleLogin from "react-google-login";
+// import FacebookLogin from "react-facebook-login";
+// import GoogleLogin from "react-google-login";
 import "./Register.css";
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
