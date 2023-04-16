@@ -10,19 +10,16 @@ const RegisterForm = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // Xử lý đăng ký tài khoản mới
     console.log(
       `Username: ${username}, Email: ${email}, Password: ${password}`
     );
   };
 
   const responseFacebook = (response) => {
-    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Facebook
     console.log(`Facebook response: ${response}`);
   };
 
   const responseGoogle = (response) => {
-    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Google
     console.log(`Google response: ${response}`);
   };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Club from "../Club/Club";
+import ClubSelection from "../ClubSelection/ClubSelection";
 import NavBar from "../NavBar/NavBar";
 
 // import Sidebar from "../Sidebar/Sidebar";
@@ -11,12 +11,12 @@ export default function Dashboard() {
       <div className="dashboard">
         <NavBar />
         <div className="container-main">
-          <p style={{ paddingTop: "20px", color: "#fff", fontSize: "16px" }}>
-            Đây là nơi mà các bạn có thể tập luyện và thực hành các bài tập thể
-            dục để cải thiện sức khỏe, giảm cân, tăng cơ bắp và cải thiện ngoại
-            hình. Ngoài ra, phòng gym cũng có nhân viên huấn luyện chuyên
-            nghiệp, có thể hướng dẫn và cung cấp các lộ trình tập luyện cho
-            người mới bắt đầu hoặc người muốn cải thiện hiệu quả tập luyện
+          <p className="dashboard-description">
+            Tập luyện thể dục giúp cải thiện sức khỏe, giảm cân, tăng cơ bắp và
+            cải thiện ngoại hình. Trang web của chúng tôi cung cấp các câu lạc
+            bộ và nhân viên huấn luyện chuyên nghiệp để hỗ trợ và cung cấp lộ
+            trình tập luyện phù hợp cho bạn. Hãy bắt đầu quá trình tập luyện của
+            bạn tại đây!
           </p>
         </div>
       </div>
@@ -55,6 +55,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <ClubSelection />
     </div>
   );
 }

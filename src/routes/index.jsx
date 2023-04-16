@@ -1,5 +1,4 @@
 import Dashboard from "../components/Dashboard/Dashboard";
-import GetStarted from "../components/GetStarted/GetStarted";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 const publicRoutes = [
@@ -9,7 +8,6 @@ const publicRoutes = [
   },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "get-started", component: GetStarted },
 ];
 
 const privateRoutes = [];
