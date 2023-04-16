@@ -1,0 +1,63 @@
+/* Dashboard styles */
+.dashboard {
+  background-image: url("path/to/background-image.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.service {
+  margin-top: 100px;
+}
+.service-title {
+  text-align: center;
+  font-size: 24px;
+  color: rgb(148, 147, 147);
+  font-weight: bold;
+}
+/* ClubSelection styles */
+.club-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.club-box {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 300px;
+  transition: all 0.3s ease-in-out;
+}
+
+.club-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.club-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.club-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.club-box button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.club-box button:hover {
+  background-color: #0069d9;
+}
