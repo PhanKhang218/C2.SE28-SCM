@@ -21,24 +21,22 @@ export default function Dashboard() {
         </div>
       </div>
       <ClubSelection />
-
+      <div className="subtitle">ád</div>
       <div
         className="container-second"
         style={{ paddingTop: "60px", paddingBottom: "60px", color: "#999" }}
       >
         {/* 1 */}
         <div className="container-second-1 col">
-          <a style={{ color: "#999" }}>1</a>
           <div className="caption">DIET</div>
           <div className="info">
             <div className="title">
-              16 Healthy Bulking Foods For Hard Gainers (With Meal sdsdsdsPlan)
+              16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
             </div>
           </div>
         </div>
         {/* 2 */}
         <div className="container-second-2 col">
-          <a></a>
           <div className="caption">DIET</div>
           <div className="info">
             <div className="title">
@@ -48,7 +46,6 @@ export default function Dashboard() {
         </div>
         {/* 3 */}
         <div className="container-second-3 col">
-          <a style={{ color: "#999" }}>3</a>
           <div className="caption">DIET</div>
           <div className="info">
             <div className="title">
