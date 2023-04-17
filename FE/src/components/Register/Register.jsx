@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import FacebookLogin from "react-facebook-login";
-// import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
+import GoogleLogin from "react-google-login";
 import "./Register.css";
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -27,7 +27,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#eaeaea" }}>
       <div className="container">
         <div className="header-login">
           <div className="header-left">
@@ -40,7 +40,7 @@ const RegisterForm = () => {
         </div>
         <div className="content-login">
           <div className="content-left-login">
-            <form onSubmit={handleRegister}>
+            <form onSubmit={handleRegister} className="form-register">
               <div className="register-title">
                 <p className="register-account">Đăng kí tài khoản</p>
                 <div className="members">
@@ -81,7 +81,7 @@ const RegisterForm = () => {
                 Register
               </button>
               <div className="register-fb">
-                {/* <FacebookLogin
+                <FacebookLogin
                   className="register-social"
                   appId="1088597931155576"
                   autoLoad={false}
@@ -90,8 +90,8 @@ const RegisterForm = () => {
                   cssClass="my-facebook-button-class"
                   icon="fa-facebook"
                   style={{ width: "100%" }}
-                /> */}
-                {/* 
+                />
+
                 <GoogleLogin
                   className="register-social"
                   clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -99,7 +99,7 @@ const RegisterForm = () => {
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
-                /> */}
+                />
               </div>
             </form>
           </div>

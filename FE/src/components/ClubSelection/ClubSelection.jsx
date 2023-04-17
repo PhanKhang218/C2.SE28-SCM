@@ -3,14 +3,27 @@ import "./ClubSelection.css";
 
 function ClubSelection() {
   const clubs = [
-    { name: "Gym", image: "gym.jpg", group: "Group classes" },
-    { name: "Tennis", image: "tennis.jpg", group: "Group classes" },
-    { name: "Boxing", image: "football.jpg", group: "Group classes" },
-    { name: "Boxing Kids", image: "football.jpg", group: "Kid classes" },
-    { name: "Badminton", image: "football.jpg", group: "Kid classes" },
-    { name: "Muay Thai Kids", image: "football.jpg", group: "Kid classes" },
-    { name: "Premium PT", image: "football.jpg", group: "Personal Training" },
-    { name: "Basic PT", image: "football.jpg", group: "Personal Training" },
+    { name: "Gym", image: "./img/gym.avif", group: "Group classes" },
+    // <img src="" alt="#" />
+    { name: "Tennis", image: "./img/tennis.avif", group: "Group classes" },
+    { name: "Boxing", image: "./img/boxing.avif", group: "Group classes" },
+    {
+      name: "Boxing Kids",
+      image: "./img/boxing-kids.avif",
+      group: "Kid classes",
+    },
+    { name: "Badminton", image: "./img/badminton.avif", group: "Kid classes" },
+    {
+      name: "Football Kids",
+      image: "./img/football-kids.avif",
+      group: "Kid classes",
+    },
+    { name: "Premium PT", image: "./img/PT.avif", group: "Personal Training" },
+    {
+      name: "Basic PT",
+      image: "./img/PT-premium.avif",
+      group: "Personal Training",
+    },
   ];
 
   const groupClasses = clubs.filter((club) => club.group === "Group classes");

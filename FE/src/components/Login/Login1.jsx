@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "./../../helpers/getUser";
 import axios from "axios";
 import "./login.css";
 export default function Login(props) {
@@ -23,35 +24,33 @@ export default function Login(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/");
-    alert.success("Đăng nhập thành công!");
-    // const result = await axios.post(
-    //   "http://127.0.0.1:8000/api/login",
-    //   account,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-    // const user = await result.data;
-    // const { statusCode, msg } = user;
-    // localStorage.setItem("account", JSON.stringify(user[0]));
-    // if (statusCode === 400) {
-    //   alert.error(msg);
-    // } else {
-    //   navigate("/");
-    //   alert.success("Đăng nhập thành công!");
-    // }
+    const result = await axios.post(
+      "http://127.0.0.1:8000/api/login",
+      account,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const user = await result.data;
+    const { statusCode, msg } = user;
+    localStorage.setItem("account", JSON.stringify(user[0]));
+    if (statusCode === 400) {
+      alert.error(msg);
+    } else {
+      navigate("/dashboard");
+      alert.success("Đăng nhập thành công!");
+    }
   };
   return (
-    <div style={{ backgroundColor: "#eaeaea" }}>
-      <div className="container">
+    <div className="container">
+      <div className="container-login">
         <div className="header-login">
           <div className="header-left">
             <div className="logo">
               <img src="./img/logo.svg" alt="#" />
-              <span className="title-header">SCM</span>
+              <span className="title-header">IPTC</span>
             </div>
           </div>
           <div className="header-right"></div>
@@ -121,7 +120,7 @@ export default function Login(props) {
             </form>
           </div>
           <div className="content-right-login">
-            <img src="./img/image-login2.avif" alt="#" />
+            <img src="./img/img-large.png" alt="#" />
           </div>
         </div>
         <div className="footer" />

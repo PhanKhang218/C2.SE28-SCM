@@ -20,6 +20,8 @@ export default function Dashboard() {
           </p>
         </div>
       </div>
+      <ClubSelection />
+
       <div
         className="container-second"
         style={{ paddingTop: "60px", paddingBottom: "60px", color: "#999" }}
@@ -55,7 +57,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <ClubSelection />
     </div>
   );
 }
