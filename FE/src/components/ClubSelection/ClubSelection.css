@@ -5,6 +5,8 @@
   background-position: center;
 }
 .service {
+  width: 80%;
+  margin: 0 auto;
   padding-top: 80px;
   background-image: url("../../../public/img/banner-container-second.png");
   padding-bottom: 50px;

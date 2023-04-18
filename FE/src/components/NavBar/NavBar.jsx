@@ -20,8 +20,8 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Khoá học
+            <a className="nav-link" href="/pricing">
+              Gói tập
             </a>
           </li>
           <li className="nav-item">

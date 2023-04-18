@@ -21,7 +21,17 @@ export default function Dashboard() {
         </div>
       </div>
       <ClubSelection />
-      <div className="subtitle">ád</div>
+      <div
+        className="subtitle"
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          fontWeight: "bold",
+          marginTop: "20px",
+        }}
+      >
+        BLOG
+      </div>
       <div
         className="container-second"
         style={{ paddingTop: "60px", paddingBottom: "60px", color: "#999" }}

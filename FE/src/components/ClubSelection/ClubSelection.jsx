@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import "./ClubSelection.css";
+import { useNavigate } from "react-router-dom";
 
 function ClubSelection() {
+  let navigate = useNavigate();
+
   const clubs = [
     { name: "Gym", image: "./img/gym.avif", group: "Group classes" },
     { name: "Tennis", image: "./img/tennis.avif", group: "Group classes" },
     { name: "Boxing", image: "./img/boxing.avif", group: "Group classes" },
+    { name: "Football", image: "./img/football.avif", group: "Group classes" },
+    {
+      name: "Volleyball",
+      image: "./img/volleyball.avif",
+      group: "Group classes",
+    },
     {
       name: "Boxing Kids",
       image: "./img/boxing-kids.avif",
@@ -42,6 +51,11 @@ function ClubSelection() {
     selectedClubs = personalTraining;
   }
 
+  const handleOnclickToRegister = async (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+
   return (
     <div className="service">
       <p className="service-title" style={{ textAlign: "center" }}>
@@ -63,7 +77,7 @@ function ClubSelection() {
           <div key={club.name} className="club-box">
             <img src={club.image} alt={club.name} />
             <h2>{club.name}</h2>
-            <button>Register</button>
+            <button onClick={handleOnclickToRegister}>Register</button>
           </div>
         ))}
       </div>
