@@ -9,9 +9,11 @@ export default function Pricing() {
         <div className="image-main">
           <img src="./img/pricing-menu.webp" />
         </div>
+        <div className="tickets-title">Our Pricing</div>
+
         <div className="tickets">
           {/* 1 */}
-          <div className="club-box ticket">
+          <div className="ticket">
             <img src="./img/ticket/class-pass.svg" />
             <div className="ticket-title">Class Pass</div>
             <p>
@@ -21,7 +23,7 @@ export default function Pricing() {
             <button>Book Trial</button>
           </div>
           {/* 2 */}
-          <div className="club-box ticket">
+          <div className="ticket">
             <img src="./img/ticket/day-pass.svg" />
             <div className="ticket-title">Day Pass</div>
             <p>
@@ -31,7 +33,7 @@ export default function Pricing() {
             <button>Book Trial</button>
           </div>
           {/* 3 */}
-          <div className="club-box ticket">
+          <div className="ticket">
             <img src="./img/ticket/premium.svg" />
             <div className="ticket-title">Premium</div>
             <p>
@@ -41,7 +43,7 @@ export default function Pricing() {
             <button>Book Trial</button>
           </div>
           {/* 4 */}
-          <div className="club-box ticket">
+          <div className="ticket">
             <img src="./img/ticket/class-pass.svg" />
             <div className="ticket-title">Class Pass</div>
             <p>
@@ -51,7 +53,7 @@ export default function Pricing() {
             <button>Book Trial</button>
           </div>
           {/* 5 */}
-          <div className="club-box ticket">
+          <div className="ticket">
             <img src="./img/ticket/class-pass.svg" />
             <div className="ticket-title">Class Pass</div>
             <p>

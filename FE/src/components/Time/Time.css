@@ -1,0 +1,14 @@
+.select-datetime {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.datetime {
+  display: flex;
+}
+
+.date {
+  width: 100px;
+}
