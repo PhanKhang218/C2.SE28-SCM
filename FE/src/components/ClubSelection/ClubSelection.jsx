@@ -53,7 +53,7 @@ function ClubSelection() {
 
   const handleOnclickToRegister = async (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/fb");
   };
 
   return (

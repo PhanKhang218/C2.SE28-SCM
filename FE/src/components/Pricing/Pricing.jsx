@@ -44,21 +44,24 @@ export default function Pricing() {
           </div>
           {/* 4 */}
           <div className="ticket">
-            <img src="./img/ticket/class-pass.svg" />
-            <div className="ticket-title">Class Pass</div>
-            <p>
-              A class pass offers one session to one class OR one time weight
-              room use
-            </p>
+            <img src="./img/ticket/basic.svg" />
+            <div className="ticket-title">Basic</div>
+            <p>2 sessions a week (8 sessions a month only) for one sport</p>
             <button>Book Trial</button>
           </div>
           {/* 5 */}
           <div className="ticket">
-            <img src="./img/ticket/class-pass.svg" />
-            <div className="ticket-title">Class Pass</div>
+            <img src="./img/ticket/Unlimited.svg" />
+            <div className="ticket-title">Unlimited</div>
             <p>
-              A class pass offers one session to one class OR one time weight
-              room use
+              <ul>
+                <li>
+                  Access to all sports <li>Unlimited sessions to classes </li>
+                  <li>Swimming pool access (Open 6AM-5PM)</li>
+                  <li>Free towel rental </li>
+                  <li>Complimentaryfitness assessment</li>
+                </li>
+              </ul>
             </p>
             <button>Book Trial</button>
           </div>

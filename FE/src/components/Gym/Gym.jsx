@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
-import "./Football.css";
-function Football() {
+import "./Gym.css";
+function Gym() {
   let navigate = useNavigate();
 
   const clubs = [
@@ -10,6 +10,7 @@ function Football() {
       name: "Sân bóng Đức Nam",
       image: "./img/football/san-duc-nam.webp",
       price: "Giá 200.000₫ - 350.000₫ / Trận",
+      address: "146 Duy Tân, Hòa Thuận Nam, Hải Châu, Đà Nẵng",
       star: 4,
       capacity: "5 người",
     },
@@ -17,6 +18,7 @@ function Football() {
       name: "Sân bóng trường ĐH TDTT Đà Nẵng",
       image: "./img/football/san-dh-the-thao.jpeg",
       price: "Giá 250.000₫ - 350.000₫ / Trận",
+      address: "Đường Dũng Sĩ Thanh Khê, Thanh Khê Tây, Liên Chiểu, Đà Nẵng",
       star: 3.5,
       capacity: "5 người",
     },
@@ -24,6 +26,7 @@ function Football() {
       name: "Sân Chuyên Việt",
       image: "./img/football/san-chuyen-viet.jpeg",
       price: "Giá 150.000₫ - 350.000₫ / Trận",
+      address: "98 Tiểu La, Hòa Thuận Đông, Hải Châu, Đà Nẵng",
       star: 5,
       capacity: "5 người",
     },
@@ -31,6 +34,7 @@ function Football() {
       name: "Sân Trưng Vương",
       image: "./img/football/san-trung-vuong.jpeg",
       price: "Giá 200.000₫ - 400.000₫ / Trận",
+      address: "403 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng",
       star: 3.5,
       capacity: "5 người",
     },
@@ -38,6 +42,7 @@ function Football() {
       name: "Sân bóng Trường Đại Học Duy Tân",
       image: "./img/football/san-duy-tan.jpeg",
       price: "Giá 200.000₫ - 350.000₫ / Trận",
+      address: "120 Hoàng Minh Thảo, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng",
       star: 4.5,
       capacity: "5 người",
     },
@@ -121,6 +126,9 @@ function Football() {
                   Số người: {club.capacity}
                 </p>
               </div>
+              <div className="address-fb">
+                <strong>Địa chỉ:</strong> {club.address}
+              </div>
               <button onClick={handleOnclickToRegister}>Register</button>
             </div>
           );
@@ -129,4 +137,4 @@ function Football() {
     </div>
   );
 }
-export default Football;
+export default Gym;
