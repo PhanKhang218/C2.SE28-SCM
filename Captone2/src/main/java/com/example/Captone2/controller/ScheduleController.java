@@ -44,6 +44,29 @@ public class ScheduleController {
         );
     }
 
+<<<<<<< Updated upstream
+=======
+
+    @PutMapping("put/{id}")
+    ResponseEntity<ResponseObject> updateSchedule(@RequestBody Schedule newSchedule, @PathVariable Long id) {
+        Schedule updateSchedule = scheduleRepository.findById(id)
+                .map(Schedule -> {
+
+            Schedule.setSchedule_ID(newSchedule.getSchedule_ID());
+            Schedule.setDateOfWeek(newSchedule.getDateOfWeek());
+            Schedule.setTime(newSchedule.getTime());
+
+            return scheduleRepository.save(Schedule);
+        }).orElseGet(() -> {
+            newSchedule.setSchedule_ID(id);
+            return scheduleRepository.save(newSchedule);
+        });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Schedule successfully", updateSchedule));
+    }
+
+
+>>>>>>> Stashed changes
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteSchedule(@PathVariable Long id) {
         boolean exists = scheduleRepository.existsById(id);

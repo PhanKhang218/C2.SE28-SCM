@@ -35,6 +35,11 @@ public class ClassController {
         );
     }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertContent (@RequestBody Class newC){
         // content.setId(locationRepositiry.findByLoctionId());
@@ -43,6 +48,35 @@ public class ClassController {
         );
     }
 
+<<<<<<< Updated upstream
+=======
+    @PutMapping("put/{id}")
+    ResponseEntity<ResponseObject> updateClas(@RequestBody Class newClass, @PathVariable Long id) {
+        Class updateClass = classRepository.findById(id)
+                .map(Class -> {
+
+                    Class.setClassAddress(newClass.getClassAddress());
+                    Class.setClassName(newClass.getClassName());
+                    Class.setClassId(newClass.getClassId());
+                    Class.setDescription(newClass.getDescription());
+                    Class.setDayOfWeek(newClass.getDayOfWeek());
+                    Class.setPhone(newClass.getPhone());
+                    Class.setCloseTime(newClass.getCloseTime());
+                    Class.setPrice(newClass.getPrice());
+                    Class.setOpenTime(newClass.getOpenTime());
+
+
+                    return classRepository.save(Class);
+                }).orElseGet(() -> {
+                    newClass.setClassId(id);
+                    return classRepository.save(newClass);
+                });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Class successfully", updateClass)
+        );
+    }
+
+>>>>>>> Stashed changes
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteMember(@PathVariable Long id) {
         boolean exists = classRepository.existsById(id);

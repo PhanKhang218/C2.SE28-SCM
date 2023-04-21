@@ -32,6 +32,31 @@ public class MemberController {
         );
     }
 
+<<<<<<< Updated upstream
+=======
+    @PutMapping("put/{id}")
+    ResponseEntity<ResponseObject> updateMember(@RequestBody Member newMember, @PathVariable Long id) {
+        Member updateMember = memberRepository.findById(id)
+                .map(Member -> {
+                    Member.setMemberId(newMember.getMemberId());
+                    Member.setAge(newMember.getAge());
+                    Member.setName(newMember.getName());
+                    Member.setGender(newMember.getGender());
+                    Member.setPhone(newMember.getPhone());
+                    Member.setDayOfBirth(newMember.getDayOfBirth());
+                    Member.setAccountId(newMember.getAccountId());
+
+                    return memberRepository.save(Member);
+                }).orElseGet(() -> {
+                    newMember.setMemberId(id);
+                    return memberRepository.save(newMember);
+                });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Member successfully", updateMember)
+        );
+    }
+
+>>>>>>> Stashed changes
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertMember (@RequestBody Member newC){
         // content.setId(locationRepositiry.findByLoctionId());

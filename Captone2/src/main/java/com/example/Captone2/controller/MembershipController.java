@@ -91,6 +91,32 @@ public class MembershipController {
                 new ResponseObject("Ok", "Insert Member successfully", membershipRepository.save(newC))
         );
     }
+<<<<<<< Updated upstream
+=======
+    @PutMapping("put/{id}")
+    ResponseEntity<ResponseObject> updateMember(@RequestBody Membership newMembership, @PathVariable Long id) {
+        Membership updateMembership = membershipRepository.findById(id)
+                .map(Membership -> {
+                    //    Member.setMemberId(newMember.getMemberId());
+                    Membership.setMembershipName(newMembership.getMembershipName());
+                    Membership.setClassAddress(newMembership.getClassAddress());
+                    Membership.setClassID(newMembership.getClassID());
+                    Membership.setDayOfWeek(newMembership.getDayOfWeek());
+                    Membership.setRegisterDate(newMembership.getRegisterDate());
+                    Membership.setEndDate(newMembership.getEndDate());
+                    Membership.setExpireDate(newMembership.getExpireDate());
+
+                    return membershipRepository.save(Membership);
+                }).orElseGet(() -> {
+                    newMembership.setMembershipID(id);
+                    return membershipRepository.save(newMembership);
+                });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Membership successfully", updateMembership)
+        );
+    }
+
+>>>>>>> Stashed changes
 
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteMembership(@PathVariable Long id) {
