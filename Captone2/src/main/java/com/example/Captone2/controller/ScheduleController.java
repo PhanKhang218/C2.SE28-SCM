@@ -44,8 +44,6 @@ public class ScheduleController {
         );
     }
 
-<<<<<<< Updated upstream
-=======
 
     @PutMapping("put/{id}")
     ResponseEntity<ResponseObject> updateSchedule(@RequestBody Schedule newSchedule, @PathVariable Long id) {
@@ -66,7 +64,6 @@ public class ScheduleController {
     }
 
 
->>>>>>> Stashed changes
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteSchedule(@PathVariable Long id) {
         boolean exists = scheduleRepository.existsById(id);

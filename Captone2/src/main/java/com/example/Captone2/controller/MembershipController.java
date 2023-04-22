@@ -91,8 +91,6 @@ public class MembershipController {
                 new ResponseObject("Ok", "Insert Member successfully", membershipRepository.save(newC))
         );
     }
-<<<<<<< Updated upstream
-=======
     @PutMapping("put/{id}")
     ResponseEntity<ResponseObject> updateMember(@RequestBody Membership newMembership, @PathVariable Long id) {
         Membership updateMembership = membershipRepository.findById(id)
@@ -116,7 +114,6 @@ public class MembershipController {
         );
     }
 
->>>>>>> Stashed changes
 
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteMembership(@PathVariable Long id) {

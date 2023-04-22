@@ -35,11 +35,8 @@ public class ClassController {
         );
     }
 
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertContent (@RequestBody Class newC){
         // content.setId(locationRepositiry.findByLoctionId());
@@ -48,8 +45,6 @@ public class ClassController {
         );
     }
 
-<<<<<<< Updated upstream
-=======
     @PutMapping("put/{id}")
     ResponseEntity<ResponseObject> updateClas(@RequestBody Class newClass, @PathVariable Long id) {
         Class updateClass = classRepository.findById(id)
@@ -76,7 +71,6 @@ public class ClassController {
         );
     }
 
->>>>>>> Stashed changes
     @DeleteMapping("delete/{id}")
     ResponseEntity deleteMember(@PathVariable Long id) {
         boolean exists = classRepository.existsById(id);

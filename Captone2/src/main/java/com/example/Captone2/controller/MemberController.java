@@ -32,8 +32,6 @@ public class MemberController {
         );
     }
 
-<<<<<<< Updated upstream
-=======
     @PutMapping("put/{id}")
     ResponseEntity<ResponseObject> updateMember(@RequestBody Member newMember, @PathVariable Long id) {
         Member updateMember = memberRepository.findById(id)
@@ -56,7 +54,6 @@ public class MemberController {
         );
     }
 
->>>>>>> Stashed changes
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertMember (@RequestBody Member newC){
         // content.setId(locationRepositiry.findByLoctionId());
