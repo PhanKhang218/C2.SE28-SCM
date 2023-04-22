@@ -3,8 +3,12 @@ package com.example.Captone2.controller;
 import com.example.Captone2.model.security.ResponseObject;
 import com.example.Captone2.model.security.model.Class;
 import com.example.Captone2.model.security.model.Member;
+import com.example.Captone2.model.security.models_view.CC;
+import com.example.Captone2.model.security.models_view.MembershipView;
 import com.example.Captone2.respositories.ClassRepository;
 import com.example.Captone2.respositories.MemberRepository;
+import com.example.Captone2.service.ClassAndClup;
+import com.example.Captone2.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +23,9 @@ public class ClassController {
     @Autowired
     private ClassRepository classRepository;
 
+    @Autowired
+    private ClassAndClup classAndClup;
+
     @GetMapping("")
     public ResponseEntity<List<Class>> getMember() {
 
@@ -32,6 +39,13 @@ public class ClassController {
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
                 classRepository.findById(id).get()
+        );
+    }
+
+    @GetMapping("classAndclub/{id}")
+    public ResponseEntity<CC> getClassAndClubView(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*").body(
+                classAndClup.getClassClub(id)
         );
     }
 

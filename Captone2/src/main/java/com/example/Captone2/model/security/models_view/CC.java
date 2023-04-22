@@ -1,14 +1,9 @@
-package com.example.Captone2.model.security.model;
+package com.example.Captone2.model.security.models_view;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
-@Entity
-public class Class {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CC {
+
     Long ClassId;
 
     Long ClupId;
@@ -29,24 +24,15 @@ public class Class {
     String Star;
     String Capacity;
 
+    List<String> ImageClass;
 
+    List<String> ImageClub;
 
-    public Class(){}
+    public CC(){}
 
-    public Class(Long clupId) {
-        ClupId = clupId;
-    }
-
-    public Long getClupId() {
-        return ClupId;
-    }
-
-    public void setClupId(Long clupId) {
-        ClupId = clupId;
-    }
-
-    public Class(Long classId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity) {
+    public CC(Long classId, Long clupId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity, List<String> imageClass, List<String> imageClub) {
         ClassId = classId;
+        ClupId = clupId;
         ClassName = className;
         ClubName = clubName;
         Phone = phone;
@@ -58,6 +44,8 @@ public class Class {
         Description = description;
         Star = star;
         Capacity = capacity;
+        ImageClass = imageClass;
+        ImageClub = imageClub;
     }
 
     public Long getClassId() {
@@ -66,6 +54,14 @@ public class Class {
 
     public void setClassId(Long classId) {
         ClassId = classId;
+    }
+
+    public Long getClupId() {
+        return ClupId;
+    }
+
+    public void setClupId(Long clupId) {
+        ClupId = clupId;
     }
 
     public String getClassName() {
@@ -156,23 +152,19 @@ public class Class {
         Capacity = capacity;
     }
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return "Class{" +
-                "ClassId= " + ClassId +
-                "ClupId= " + ClupId +
-                ",ClassName= " + ClassName +
-                ",ClupName=" + ClubName +
-                ",Phone= " + Phone +
-                ",Price=  " + Price +
-                ",OpenTime=  " + OpenTime +
-                ",CloseTime= " + CloseTime +
-                ",ClassAddress= " + ClassAddress +
-                ",DayOfWeek=  " + DayOfWeek +
-                ",Description=  " + Description +
-                ",Start=  " + Star +
-                ",Capacity=  " + Capacity +
-                "}";
+    public List<String> getImageClass() {
+        return ImageClass;
+    }
+
+    public void setImageClass(List<String> imageClass) {
+        ImageClass = imageClass;
+    }
+
+    public List<String> getImageClub() {
+        return ImageClub;
+    }
+
+    public void setImageClub(List<String> imageClub) {
+        ImageClub = imageClub;
     }
 }

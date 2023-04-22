@@ -15,10 +15,13 @@ public interface ImagesRepository extends JpaRepository<Images, Integer> {
    @Query("select m.image from Images m where m.MembershipID =:MembershipID")
     List<String> findByIdMembershipID(Long MembershipID);
 
-    //Images findByImages(Long idDetail);
+    @Query("select m.image from Images m where m.ClassID =:ClassID")
+    List<String> findByIdClassID(Long ClassID);
 
-    @Query("select m from Images m where m.MembershipID =:MembershipID")
-    List<Images> findByMembershipID(Long MembershipID);
+    @Query("select m.image from Images m where m.ClubId =:ClubId")
+    List<String> findByIdClubId(Long ClubId);
+
+
 
 //    @Modifying
 //    @Transactional

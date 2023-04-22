@@ -13,7 +13,39 @@ public class Images {
     @Column(name = "MembershipID")
     Long MembershipID;
 
+    @Column(name = "ClassID")
+    Long ClassID;
+
+    @Column(name = "ClubId")
+    Long ClubId;
+
+
+
+
+
+
     public Images(){}
+
+    public Images(Long classID, Long clubId) {
+        ClassID = classID;
+        ClubId = clubId;
+    }
+
+    public Long getClassID() {
+        return ClassID;
+    }
+
+    public void setClassID(Long classID) {
+        ClassID = classID;
+    }
+
+    public Long getClubId() {
+        return ClubId;
+    }
+
+    public void setClubId(Long clubId) {
+        ClubId = clubId;
+    }
 
     public Images(Integer id, String image, Long membershipID) {
         this.id = id;
