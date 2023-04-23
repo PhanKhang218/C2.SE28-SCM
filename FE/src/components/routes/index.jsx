@@ -15,9 +15,16 @@ const publicRoutes = [
   { path: "/register", component: Register },
   { path: "/pricing", component: Pricing },
   { path: "/time", component: Time },
-  { path: "/fb", component: Football },
+  { path: "/football", component: Football },
   { path: "/payment", component: Payment },
   { path: "/gym", component: Gym },
+  { path: "/volleyball", component: Gym },
+  { path: "/tennis", component: Gym },
+  { path: "/boxing", component: Gym },
+  { path: "/boxing-kid", component: Gym },
+  { path: "/badminton", component: Gym },
+  { path: "/football-kids", component: Gym },
+  { path: "/boxing-kids", component: Gym },
 ];
 
 const privateRoutes = [];

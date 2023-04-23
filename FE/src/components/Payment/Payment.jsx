@@ -18,7 +18,7 @@ function Payment() {
     <div className="abc">
       <Navbar />
       <div className="modal">
-        <form className="form">
+        <form className="form-payment">
           <div className="payment--options">
             <button name="paypal" type="button">
               <svg

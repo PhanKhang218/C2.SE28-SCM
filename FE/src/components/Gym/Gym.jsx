@@ -7,43 +7,28 @@ function Gym() {
 
   const clubs = [
     {
-      name: "Sân bóng Đức Nam",
-      image: "./img/football/san-duc-nam.webp",
-      price: "Giá 200.000₫ - 350.000₫ / Trận",
-      address: "146 Duy Tân, Hòa Thuận Nam, Hải Châu, Đà Nẵng",
+      name: "California Fitness & Yoga Đà Nẵng",
+      image: "./img/gym/cali.jpeg",
+      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
+      address: "271 Nguyễn Văn Linh, P. Vĩnh Trung, Q. Thanh Khê, TP. Đà Nẵng",
       star: 4,
-      capacity: "5 người",
+      capacity: "1000m2",
     },
     {
-      name: "Sân bóng trường ĐH TDTT Đà Nẵng",
-      image: "./img/football/san-dh-the-thao.jpeg",
-      price: "Giá 250.000₫ - 350.000₫ / Trận",
-      address: "Đường Dũng Sĩ Thanh Khê, Thanh Khê Tây, Liên Chiểu, Đà Nẵng",
+      name: "Elite Fitness And Yoga",
+      image: "./img/gym/elite.jpeg",
+      price: "Giá 400.000₫ - 800.000₫ / Tháng",
+      address:
+        "Tầng 7, 255 - 257 Hùng Vương, phường Vĩnh Trung, quận Thanh Khê, Đà Nẵng",
       star: 3.5,
-      capacity: "5 người",
+      capacity: "3000m2",
     },
     {
-      name: "Sân Chuyên Việt",
-      image: "./img/football/san-chuyen-viet.jpeg",
-      price: "Giá 150.000₫ - 350.000₫ / Trận",
-      address: "98 Tiểu La, Hòa Thuận Đông, Hải Châu, Đà Nẵng",
+      name: "The City gym Đà Nẵng",
+      image: "./img/gym/city-gym.webp",
+      price: "Giá 500.000 / Tháng",
+      address: "512 - 514 Nguyễn Tri Phương, Đà Nẵng",
       star: 5,
-      capacity: "5 người",
-    },
-    {
-      name: "Sân Trưng Vương",
-      image: "./img/football/san-trung-vuong.jpeg",
-      price: "Giá 200.000₫ - 400.000₫ / Trận",
-      address: "403 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng",
-      star: 3.5,
-      capacity: "5 người",
-    },
-    {
-      name: "Sân bóng Trường Đại Học Duy Tân",
-      image: "./img/football/san-duy-tan.jpeg",
-      price: "Giá 200.000₫ - 350.000₫ / Trận",
-      address: "120 Hoàng Minh Thảo, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng",
-      star: 4.5,
       capacity: "5 người",
     },
   ];
@@ -129,7 +114,7 @@ function Gym() {
               <div className="address-fb">
                 <strong>Địa chỉ:</strong> {club.address}
               </div>
-              <button onClick={handleOnclickToRegister}>Register</button>
+              <button onClick={handleOnclickToRegister}>Đặt lịch</button>
             </div>
           );
         })}

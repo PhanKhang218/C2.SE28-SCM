@@ -1,17 +1,26 @@
-import React from "react";
 import Navbar from "../NavBar/NavBar";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Football.css";
+
 function Football() {
   let navigate = useNavigate();
 
-  const clubs = [
+  const [clubs, setClubs] = useState([
     {
       name: "Sân bóng Đức Nam",
       image: "./img/football/san-duc-nam.webp",
       price: "Giá 200.000₫ - 350.000₫ / Trận",
       star: 4,
       capacity: "5 người",
+      openTime: "6:00",
+      closeTime: "23:00",
+      facilities: [
+        "Phòng thay đồ",
+        "Máy lạnh",
+        "Wifi miễn phí",
+        "Khu vực giải trí",
+      ],
     },
     {
       name: "Sân bóng trường ĐH TDTT Đà Nẵng",
@@ -19,6 +28,14 @@ function Football() {
       price: "Giá 250.000₫ - 350.000₫ / Trận",
       star: 3.5,
       capacity: "5 người",
+      openTime: "7:00",
+      closeTime: "22:00",
+      facilities: [
+        "Phòng thay đồ",
+        "Máy lạnh",
+        "Wifi miễn phí",
+        "Khu vực giải trí",
+      ],
     },
     {
       name: "Sân Chuyên Việt",
@@ -26,6 +43,9 @@ function Football() {
       price: "Giá 150.000₫ - 350.000₫ / Trận",
       star: 5,
       capacity: "5 người",
+      openTime: "8:00",
+      closeTime: "21:00",
+      facilities: ["Phòng thay đồ", "Khu vực giải trí"],
     },
     {
       name: "Sân Trưng Vương",
@@ -33,6 +53,15 @@ function Football() {
       price: "Giá 200.000₫ - 400.000₫ / Trận",
       star: 3.5,
       capacity: "5 người",
+      openTime: "7:00",
+      closeTime: "22:00",
+      facilities: [
+        "Phòng thay đồ",
+        "Máy lạnh",
+        "Wifi miễn phí",
+        "Khu vực giải trí",
+        "Nhà hàng",
+      ],
     },
     {
       name: "Sân bóng Trường Đại Học Duy Tân",
@@ -40,43 +69,32 @@ function Football() {
       price: "Giá 200.000₫ - 350.000₫ / Trận",
       star: 4.5,
       capacity: "5 người",
+      openTime: "7:00",
+      closeTime: "22:00",
+      facilities: [
+        "Phòng thay đồ",
+        "Máy lạnh",
+        "Wifi miễn phí",
+        "Khu vực giải trí",
+        "Quầy bar",
+      ],
     },
-  ];
+  ]);
 
-  const handleOnclickToRegister = async (e) => {
+  const handleOnClickToRegister = (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/register");
   };
 
-  const renderStars = (star) => {
-    const fullStars = Math.floor(star);
-    const halfStars = star % 1 !== 0;
-    const emptyStars = 5 - fullStars - halfStars;
-    const stars = [];
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<i key={i} className="fas fa-star star-yellow"></i>);
-    }
-
-    if (halfStars) {
-      stars.push(
-        <i key="half" className="fas fa-star-half-alt star-yellow"></i>
-      );
-    }
-
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(
-        <i key={i + fullStars + halfStars} className="far fa-star"></i>
-      );
-    }
-
-    return stars;
+  const handleOnClickToClub = (e, clubName) => {
+    e.preventDefault();
+    navigate(`/club/${encodeURIComponent(clubName)}`);
   };
 
   return (
     <div className="container-foolball">
       <Navbar />
-      <div className=" football-box">
+      <div className="football-box">
         {clubs.map((club) => {
           return (
             <div key={club.name} className="club-box">
@@ -84,7 +102,9 @@ function Football() {
               <h2
                 style={{
                   fontSize: "16px",
+                  cursor: "pointer",
                 }}
+                onClick={(e) => handleOnClickToClub(e, club.name)}
               >
                 {club.name}
               </h2>
@@ -111,7 +131,7 @@ function Football() {
                     fontSize: "13px",
                   }}
                 >
-                  {renderStars(club.star)}
+                  {clubs.star}
                 </div>
                 <p
                   style={{
@@ -121,7 +141,7 @@ function Football() {
                   Số người: {club.capacity}
                 </p>
               </div>
-              <button onClick={handleOnclickToRegister}>Register</button>
+              <button onClick={handleOnClickToRegister}>Đặt sân</button>
             </div>
           );
         })}

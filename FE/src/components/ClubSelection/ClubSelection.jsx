@@ -42,6 +42,12 @@ function ClubSelection() {
     (club) => club.group === "Personal Training"
   );
 
+  const handleOnClickToRegister = (clubName) => {
+    navigate(
+      "/" + encodeURIComponent(clubName.replace(/-/g, "_")).toLowerCase()
+    );
+  };
+
   let selectedClubs = [];
   if (selectedGroup === "Group classes") {
     selectedClubs = groupClasses;
@@ -50,11 +56,6 @@ function ClubSelection() {
   } else if (selectedGroup === "Personal Training") {
     selectedClubs = personalTraining;
   }
-
-  const handleOnclickToRegister = async (e) => {
-    e.preventDefault();
-    navigate("/fb");
-  };
 
   return (
     <div className="service">
@@ -77,7 +78,9 @@ function ClubSelection() {
           <div key={club.name} className="club-box">
             <img src={club.image} alt={club.name} />
             <h2>{club.name}</h2>
-            <button onClick={handleOnclickToRegister}>Register</button>
+            <button onClick={() => handleOnClickToRegister(club.name)}>
+              Register
+            </button>
           </div>
         ))}
       </div>
