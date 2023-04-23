@@ -1,34 +1,49 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWifi } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../NavBar/NavBar";
+import { useAlert } from "react-alert";
+
 import "./Time.css";
-export default function Time() {
-  const [startDate, setStartDate] = useState(new Date());
+library.add(faWifi);
+
+function Booking() {
+  const alert = useAlert();
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const navigate = useNavigate();
+
+  const handleOnClickToPayment = (e) => {
+    e.preventDefault();
+    if (selectedDateTime) {
+      alert.success("Chọn lịch thành công");
+
+      navigate("/payment", { state: { selectedDateTime } });
+    } else {
+      alert.error("Vui lòng chọn lịch");
+    }
+  };
+
   return (
-    <div className="time">
+    <>
       <Navbar />
-      <div className="container">
-        <div className="select-datetime">Select a Date and Time</div>
-        <div className="datetime">
-          <DatePicker
-            className="date"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            inline
-          />
-          <DatePicker
-            className="time"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
-          />
-        </div>
+      <div className="time-container">
+        <h2>Chọn lịch:</h2>
+        <DatePicker
+          selected={selectedDateTime}
+          onChange={(date) => setSelectedDateTime(date)}
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          dateFormat="MMMM d, yyyy h:mm aa"
+        />
+        <button onClick={handleOnClickToPayment}>Đặt</button>
       </div>
-    </div>
+    </>
   );
 }
+
+export default Booking;

@@ -44,7 +44,7 @@ function ClubSelection() {
 
   const handleOnClickToRegister = (clubName) => {
     navigate(
-      "/" + encodeURIComponent(clubName.replace(/-/g, "_")).toLowerCase()
+      "/" + encodeURIComponent(clubName.replace(/\s+/g, "-")).toLowerCase()
     );
   };
 

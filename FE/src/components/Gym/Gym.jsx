@@ -35,7 +35,7 @@ function Gym() {
 
   const handleOnclickToRegister = async (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/time");
   };
 
   const renderStars = (star) => {

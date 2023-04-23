@@ -24,7 +24,8 @@ const publicRoutes = [
   { path: "/boxing-kid", component: Gym },
   { path: "/badminton", component: Gym },
   { path: "/football-kids", component: Gym },
-  { path: "/boxing-kids", component: Gym },
+  { path: "/premium-pt", component: Gym },
+  // { path: "/club/sân-bóng-Đức-nam", component: Gym },
 ];
 
 const privateRoutes = [];
