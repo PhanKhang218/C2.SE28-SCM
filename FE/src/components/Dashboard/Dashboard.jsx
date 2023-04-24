@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ClubSelection from "../ClubSelection/ClubSelection";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-
+import { Link } from "react-router-dom";
 // import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 
@@ -41,9 +41,11 @@ export default function Dashboard() {
         <div className="container-second-1 col">
           <div className="caption">DIET</div>
           <div className="info">
-            <div className="title">
-              16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
-            </div>
+            <a href="/blog" style={{ color: "#999" }}>
+              <div className="title">
+                16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
+              </div>
+            </a>
           </div>
         </div>
         {/* 2 */}

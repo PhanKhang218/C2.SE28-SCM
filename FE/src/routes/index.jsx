@@ -1,3 +1,4 @@
+import Blog from "../components/Blog/Blog";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Football from "../components/Football/Football";
 import Footer from "../components/Footer/Footer";
@@ -14,10 +15,12 @@ const publicRoutes = [
   },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
+  { path: "/footer", component: Footer },
   { path: "/pricing", component: Pricing },
   { path: "/time", component: Time },
   { path: "/football", component: Football },
   { path: "/payment", component: Payment },
+  //
   { path: "/gym", component: Gym },
   { path: "/volleyball", component: Gym },
   { path: "/tennis", component: Gym },
@@ -26,8 +29,7 @@ const publicRoutes = [
   { path: "/badminton", component: Gym },
   { path: "/football-kids", component: Gym },
   { path: "/premium-pt", component: Gym },
-  // { path: "/club/sân-bóng-Đức-nam", component: Gym },
-  { path: "/footer", component: Footer },
+  { path: "/blog", component: Blog },
 ];
 
 const privateRoutes = [];
