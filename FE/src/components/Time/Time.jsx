@@ -5,10 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWifi } from "@fortawesome/free-solid-svg-icons";
+
 import Navbar from "../NavBar/NavBar";
 import { useAlert } from "react-alert";
 
 import "./Time.css";
+import Footer from "../Footer/Footer";
+
 library.add(faWifi);
 
 function Booking() {
@@ -42,6 +45,7 @@ function Booking() {
         />
         <button onClick={handleOnClickToPayment}>Đặt</button>
       </div>
+      <Footer />
     </>
   );
 }

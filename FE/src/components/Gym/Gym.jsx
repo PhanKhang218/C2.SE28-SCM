@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import "./Gym.css";
+import Footer from "../Footer/Footer";
 function Gym() {
   let navigate = useNavigate();
 
@@ -30,6 +31,30 @@ function Gym() {
       address: "512 - 514 Nguyễn Tri Phương, Đà Nẵng",
       star: 5,
       capacity: "5 người",
+    },
+    {
+      name: "HD Fitness Center",
+      image: "./img/gym/hd-fitness-center.jpeg",
+      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
+      address: "996 Ngô Quyền, quận Sơn Trà, Đà Nẵng",
+      star: 4.5,
+      capacity: "1000m2",
+    },
+    {
+      name: "Galaxy Fitness & Yoga Center",
+      image: "./img/gym/galaxy.jpeg",
+      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
+      address: "06 Phan Đăng Lưu, quận Hải Châu, Đà Nẵng",
+      star: 3.5,
+      capacity: "1000m2",
+    },
+    {
+      name: "VPT Fitness 2",
+      image: "./img/gym/vpt.jpeg",
+      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
+      address: "437 Ông Ích Khiêm, phường Nam Dương, quận Hải Châu, Đà Nẵng",
+      star: 4,
+      capacity: "1000m2",
     },
   ];
 
@@ -119,6 +144,7 @@ function Gym() {
           );
         })}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Dashboard from "../components/Dashboard/Dashboard";
 import Football from "../components/Football/Football";
+import Footer from "../components/Footer/Footer";
 import Gym from "../components/Gym/Gym";
 import Login from "../components/Login/Login";
 import Payment from "../components/Payment/Payment";
@@ -26,6 +27,7 @@ const publicRoutes = [
   { path: "/football-kids", component: Gym },
   { path: "/premium-pt", component: Gym },
   // { path: "/club/sân-bóng-Đức-nam", component: Gym },
+  { path: "/footer", component: Footer },
 ];
 
 const privateRoutes = [];

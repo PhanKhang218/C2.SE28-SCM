@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ClubSelection from "../ClubSelection/ClubSelection";
 import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 
 // import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
@@ -64,6 +65,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

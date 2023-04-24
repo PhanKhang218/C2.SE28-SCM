@@ -10,6 +10,7 @@ import {
   faRestroom,
   faSquareParking,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../Footer/Footer";
 
 library.add(faWifi, faRestroom, faSquareParking);
 function Football() {
@@ -240,6 +241,7 @@ function Football() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
