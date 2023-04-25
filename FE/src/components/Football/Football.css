@@ -8,6 +8,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 .star-yellow {
   color: #ff9727;
@@ -70,7 +72,7 @@
 }
 
 .club-service {
-  width: 60%;
+  width: 65%;
   font-size: 20px;
 }
 .club-service li {

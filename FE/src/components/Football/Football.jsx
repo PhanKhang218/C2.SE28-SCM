@@ -2,17 +2,17 @@ import Navbar from "../NavBar/NavBar";
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Football.css";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWifi,
   faRestroom,
   faSquareParking,
+  faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Footer/Footer";
 
-library.add(faWifi, faRestroom, faSquareParking);
+library.add(faWifi, faRestroom, faSquareParking, faGamepad);
 function Football() {
   let navigate = useNavigate();
 
@@ -225,8 +225,8 @@ function Football() {
                         (facility === "Máy lạnh" && (
                           <FontAwesomeIcon icon={faRestroom} />
                         )) ||
-                        (facility === "Phòng thay đồ" && (
-                          <FontAwesomeIcon icon={faRestroom} />
+                        (facility === "Khu vực giải trí" && (
+                          <FontAwesomeIcon icon={faGamepad} />
                         ))}
                       <span>{facility}</span>
                     </div>

@@ -18,7 +18,7 @@ function Footer() {
         </p>
       </div>
       <div className="footer-left-2 ">
-        <h4 className="footer-center-title">Quick Links</h4>
+        <h4 className="footer-center-title">QUICK LINKS</h4>
 
         <p className="footer-links">
           <a href="#" className="link-1">
@@ -36,32 +36,44 @@ function Footer() {
         </p>
       </div>
       <div className="footer-center">
-        <div className="footer-center-title">Contact</div>
-        <div>
-          <i className="fa fa-map-marker"></i>
-          <p>
-            <span>254 Nguyễn Văn Linh, </span>
-            <span>Quận Thanh Khê, TP. Đà Nẵng.</span>
-          </p>
-        </div>
+        <div className="footer-center-title">CONTACT</div>
+        <div className="footer-center-desc">
+          <div>
+            <i className="fa fa-map-marker"></i>
+            <p style={{ color: "#b9b6b6" }}>
+              <span>254 Nguyễn Văn Linh, </span>
+              <span>Quận Thanh Khê, TP. Đà Nẵng.</span>
+            </p>
+          </div>
 
-        <div>
-          <i className="fa fa-phone"></i>
-          <p>0923.557.355</p>
-        </div>
+          <div>
+            <i className="fa fa-phone"></i>
+            <p style={{ color: "#b9b6b6" }}>0923.557.355</p>
+          </div>
 
-        <div>
-          <i className="fa fa-envelope"></i>
-          <p>
-            <a href="mailto:support@company.com">namkhangphan218@gmail.com</a>
-          </p>
+          <div>
+            <i className="fa fa-envelope"></i>
+            <p>
+              <a style={{ color: "#b9b6b6" }} href="mailto:support@company.com">
+                namkhangphan218@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="footer-right">
         <p className="footer-company-about">
-          <span>About the project</span>
-          <p style={{ marginTop: "50px" }}>
+          <span style={{ fontSize: "20px" }}>ABOUT THE PROJECT</span>
+          <p
+            style={{
+              marginTop: "50px",
+              textAlign: "justify",
+              lineHeight: "1.8",
+              fontSize: "16px",
+              color: "#b9b6b6",
+            }}
+          >
             Dự án của chúng tôi cung cấp giải pháp về đặt câu lạc bộ thể thao
             trực tuyến. Thanh toán an toàn, hỗ trợ 24/24 và các dịch vụ khác.
           </p>
