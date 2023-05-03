@@ -29,6 +29,10 @@ public class EventUser {
         Decription = decription;
     }
 
+    public EventUser() {
+        
+    }
+
     public Long getEvenMembertld() {
         return EvenMembertld;
     }

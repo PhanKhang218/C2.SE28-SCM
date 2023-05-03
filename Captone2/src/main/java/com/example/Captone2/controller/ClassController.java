@@ -64,15 +64,20 @@ public class ClassController {
         Class updateClass = classRepository.findById(id)
                 .map(Class -> {
 
-                    Class.setClassAddress(newClass.getClassAddress());
                     Class.setClassName(newClass.getClassName());
-                    Class.setClassId(newClass.getClassId());
+                    Class.setClupId(newClass.getClupId());
+                    Class.setClassAddress(newClass.getClassAddress());
+
+
                     Class.setDescription(newClass.getDescription());
                     Class.setDayOfWeek(newClass.getDayOfWeek());
                     Class.setPhone(newClass.getPhone());
                     Class.setCloseTime(newClass.getCloseTime());
                     Class.setPrice(newClass.getPrice());
                     Class.setOpenTime(newClass.getOpenTime());
+                    Class.setCapacity(newClass.getCapacity());
+                    Class.setStar(newClass.getStar());
+                    Class.setClubName(newClass.getClubName());
 
 
                     return classRepository.save(Class);
