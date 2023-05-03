@@ -37,7 +37,7 @@ public class EmployeeController {
     ResponseEntity<ResponseObject> updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
         Employee updateEployee = employeeRepository.findById(id)
                 .map(Employee -> {
-                    Employee.setEmployeeId(newEmployee.getEmployeeId());
+                   // Employee.setEmployeeId(newEmployee.getEmployeeId());
                     Employee.setAge(newEmployee.getAge());
                     Employee.setName(newEmployee.getName());
                     Employee.setGender(newEmployee.getGender());

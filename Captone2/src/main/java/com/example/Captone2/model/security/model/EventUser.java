@@ -30,7 +30,7 @@ public class EventUser {
     }
 
     public EventUser() {
-        
+
     }
 
     public Long getEvenMembertld() {
