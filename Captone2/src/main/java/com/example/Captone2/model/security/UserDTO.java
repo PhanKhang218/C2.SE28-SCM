@@ -1,9 +1,14 @@
 package com.example.Captone2.model.security;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 public class UserDTO {
+
+
 	private String username;
 	private String password;
 	private String role;
@@ -13,6 +18,7 @@ public class UserDTO {
 	private String confirmPassword;
 
 	private String phone;
+
 
 	public String getEmail() {
 		return email;
@@ -61,5 +67,7 @@ public class UserDTO {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+
 
 }

@@ -11,7 +11,7 @@ public class DAOUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column
+
 	private String username;
 	@Column
 	@JsonIgnore
@@ -26,9 +26,21 @@ public class DAOUser {
 
 	private String phone;
 
+	public DAOUser(){}
+	public DAOUser(long id, String username, String password, String role, String email, String confirmPassword, String phone) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.email = email;
+		this.confirmPassword = confirmPassword;
+		this.phone = phone;
+	}
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -75,5 +87,19 @@ public class DAOUser {
 		this.role = role;
 	}
 
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Infor{" +
+				"id= " + id +
+				"username= " + username +
+				",password= " + password +
+				",role=" + role +
+				",email= " + email +
+				",confirmPassword=  " + confirmPassword +
+				",phone=  " + phone +
+				"}";
+	}
 
 }

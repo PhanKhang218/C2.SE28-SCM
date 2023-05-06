@@ -66,8 +66,10 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
+    // Return token
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Access-Control-Allow-Origin","*")
+                .body(new JwtResponse(token));
 
-        return ResponseEntity.ok(new JwtResponse(token)); // Return token
 /*
         if(exists) {
             memberRepository.deleteById(id);

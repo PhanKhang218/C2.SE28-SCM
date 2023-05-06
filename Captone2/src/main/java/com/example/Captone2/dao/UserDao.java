@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserDao extends CrudRepository<DAOUser, Integer> {
+public interface UserDao extends CrudRepository<DAOUser, Long> {
 	
 	DAOUser findByUsername(String username);
 	

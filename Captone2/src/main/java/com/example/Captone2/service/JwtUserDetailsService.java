@@ -29,7 +29,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		DAOUser user = userDao.findByUsername(username) ;
 		if (user != null) {
-			System.out.println("O day khong the Null");
+			//System.out.println("O day khong the Null");
 			List<GrantedAuthority> role = new ArrayList<>();
 
 			return new User(user.getUsername(),user.getPassword(),role);
