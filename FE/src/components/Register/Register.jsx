@@ -1,30 +1,59 @@
 import React, { useState } from "react";
-import FacebookLogin from "react-facebook-login";
-import GoogleLogin from "react-google-login";
+// import FacebookLogin from "react-facebook-login";
+// import GoogleLogin from "react-google-login";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "./Register.css";
-const RegisterForm = () => {
+const Register = () => {
+  const navigate = useNavigate();
+  const alert = useAlert();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleRegister = (e) => {
+  const ROLES = {
+    ADMIN: "ROLE_Admin",
+    CUSTOMER: "ROLE_Customer",
+    EMPLOYEE: "ROLE_Employee",
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Xử lý đăng ký tài khoản mới
-    console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}`
-    );
+    try {
+      const registerData = {
+        username: username,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        role: ROLES.CUSTOMER,
+        phone: phone,
+      };
+      const registerResponse = await axios.post(
+        "http://localhost:9000/register",
+        registerData
+      );
+      console.log(registerResponse.data);
+      alert.success("Đăng ký thành công");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const responseFacebook = (response) => {
-    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Facebook
-    console.log(`Facebook response: ${response}`);
-  };
+  // const responseFacebook = (response) => {
+  //   // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Facebook
+  //   console.log(`Facebook response: ${response}`);
+  // };
 
-  const responseGoogle = (response) => {
-    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Google
-    console.log(`Google response: ${response}`);
-  };
+  // const responseGoogle = (response) => {
+  //   // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Google
+  //   console.log(`Google response: ${response}`);
+  // };
 
   return (
     <div style={{ backgroundColor: "#eaeaea" }}>
@@ -65,6 +94,12 @@ const RegisterForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
+                type="text"
+                placeholder="Phone Number "
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <input
                 type="password"
                 placeholder="Password"
                 value={password}
@@ -73,14 +108,15 @@ const RegisterForm = () => {
               <input
                 type="password"
                 id="confirm-password"
-                placeholder="confirm-password"
+                placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+
               <button className="button-submit" type="submit">
                 Register
               </button>
-              <div className="register-fb">
+              {/* <div className="register-fb">
                 <FacebookLogin
                   className="register-social"
                   appId="1088597931155576"
@@ -100,7 +136,7 @@ const RegisterForm = () => {
                   onFailure={responseGoogle}
                   cookiePolicy={"single_host_origin"}
                 />
-              </div>
+              </div> */}
             </form>
           </div>
           <div className="content-right-login">
@@ -113,4 +149,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default Register;

@@ -1,49 +1,44 @@
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./login.css";
-export default function Login(props) {
-  const [account, set_user] = useState({
-    PassWord: "",
-    UserName: "",
+import axios from "axios";
+
+export default function Login() {
+  const [account, setAccount] = useState({
+    userName: "",
+    password: "",
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const alert = useAlert();
+
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    set_user((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
+    const { name, value } = e.target;
+    setAccount((prevState) => ({ ...prevState, [name]: value }));
   };
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate("/");
-    alert.success("Đăng nhập thành công!");
-    // const result = await axios.post(
-    //   "http://127.0.0.1:8000/api/login",
-    //   account,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-    // const user = await result.data;
-    // const { statusCode, msg } = user;
-    // localStorage.setItem("account", JSON.stringify(user[0]));
-    // if (statusCode === 400) {
-    //   alert.error(msg);
-    // } else {
-    //   navigate("/");
-    //   alert.success("Đăng nhập thành công!");
-    // }
+    try {
+      const loginResponse = await axios.post(
+        "http://localhost:9000/authenticate",
+        account
+      );
+
+      if (loginResponse.data.token) {
+        const token = loginResponse.data.token;
+        console.log(token);
+        localStorage.setItem("token", token);
+        navigate("/");
+        alert.success("Đăng nhập thành công!");
+      } else {
+        alert.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <div style={{ backgroundColor: "#eaeaea" }}>
       <div className="container">
@@ -68,7 +63,7 @@ export default function Login(props) {
                 </label>
                 <input
                   id="UserName"
-                  name="UserName"
+                  name="userName"
                   type="text"
                   placeholder="VD: abc@gmail.com"
                   className="form-control"
@@ -82,7 +77,7 @@ export default function Login(props) {
                 </label>
                 <input
                   id="password"
-                  name="PassWord"
+                  name="password"
                   type="password"
                   placeholder="Nhập mật khẩu"
                   className="form-control"
@@ -112,7 +107,7 @@ export default function Login(props) {
               </div>
 
               <button
-                onClick={handleSubmit}
+                onClick={handleLogin}
                 className="form-submit"
                 id="login-btn"
               >
@@ -124,6 +119,7 @@ export default function Login(props) {
             <img src="./img/image-login2.avif" alt="#" />
           </div>
         </div>
+
         <div className="footer" />
       </div>
     </div>
