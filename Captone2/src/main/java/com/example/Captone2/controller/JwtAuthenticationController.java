@@ -38,13 +38,13 @@ public class JwtAuthenticationController {
 
     @GetMapping("/view/account")
     public ResponseEntity<List<DAOUser>> getList() {
-
+       List user = userRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
-                userRepository.findAll()
+                user
         );
     }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
 
@@ -67,7 +67,7 @@ public class JwtAuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
 
     // Return token
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Access-Control-Allow-Origin","*")
+        return ResponseEntity.ok().header("Access-Control-Allow-Origin","*")
                 .body(new JwtResponse(token));
 
 /*

@@ -10,6 +10,7 @@ public class DAOUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private long id;
 
 	private String username;
@@ -22,6 +23,8 @@ public class DAOUser {
 
 	private String email;
 
+	@Column
+	@JsonIgnore
 	private String confirmPassword;
 
 	private String phone;
@@ -36,11 +39,18 @@ public class DAOUser {
 		this.confirmPassword = confirmPassword;
 		this.phone = phone;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
