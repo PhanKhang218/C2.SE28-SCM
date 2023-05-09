@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Login() {
   const [account, setAccount] = useState({
-    userName: "",
+    username: "",
     password: "",
   });
 
@@ -32,9 +32,10 @@ export default function Login() {
         navigate("/");
         alert.success("Đăng nhập thành công!");
       } else {
-        alert.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
+        console.error(error);
       }
     } catch (error) {
+      alert.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
       console.error(error);
     }
   };
@@ -62,8 +63,8 @@ export default function Login() {
                   Email
                 </label>
                 <input
-                  id="UserName"
-                  name="userName"
+                  id="username"
+                  name="username"
                   type="text"
                   placeholder="VD: abc@gmail.com"
                   className="form-control"
@@ -119,7 +120,6 @@ export default function Login() {
             <img src="./img/image-login2.avif" alt="#" />
           </div>
         </div>
-
         <div className="footer" />
       </div>
     </div>
