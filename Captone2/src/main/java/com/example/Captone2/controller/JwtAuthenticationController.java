@@ -43,7 +43,6 @@ public class JwtAuthenticationController {
                 user
         );
     }
-
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
@@ -66,10 +65,11 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-    // Return token
-        return ResponseEntity.ok().header("Access-Control-Allow-Origin","*")
+        // Return token
+        return ResponseEntity.ok().header("Access-Control-Allow-Origin", "*")
                 .body(new JwtResponse(token));
 
+/*
 /*
         if(exists) {
             memberRepository.deleteById(id);
