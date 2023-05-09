@@ -4,6 +4,7 @@ package com.example.Captone2.controller;
 import com.example.Captone2.config.JwtTokenUtil;
 import com.example.Captone2.model.security.*;
 import com.example.Captone2.model.security.model.Class;
+import com.example.Captone2.model.security.model.Member;
 import com.example.Captone2.respositories.UserRepository;
 import com.example.Captone2.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,14 @@ public class JwtAuthenticationController {
        List user = userRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
                 user
+        );
+    }
+
+    @GetMapping("/view/account/{id}")
+    public ResponseEntity<DAOUser> get(@PathVariable Long id) {
+
+        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
+                userRepository.findById(id).get()
         );
     }
     @PostMapping("/authenticate")
