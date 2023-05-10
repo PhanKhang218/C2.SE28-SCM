@@ -22,7 +22,13 @@ export default function Login() {
     try {
       const loginResponse = await axios.post(
         "http://localhost:9000/authenticate",
-        account
+        account,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "http://127.0.0.1:5173",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+          },
+        }
       );
 
       if (loginResponse.data.token) {

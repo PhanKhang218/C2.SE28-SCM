@@ -1,62 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import "./Gym.css";
 import Footer from "../Footer/Footer";
+import { getClassList } from "../../api/apiClient";
+
 function Gym() {
   let navigate = useNavigate();
+  const [classes, setClasses] = useState([]);
 
-  const clubs = [
-    {
-      name: "California Fitness & Yoga Đà Nẵng",
-      image: "./img/gym/cali.jpeg",
-      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
-      address: "271 Nguyễn Văn Linh, P. Vĩnh Trung, Q. Thanh Khê, TP. Đà Nẵng",
-      star: 4,
-      capacity: "1000m2",
-    },
-    {
-      name: "Elite Fitness And Yoga",
-      image: "./img/gym/elite.jpeg",
-      price: "Giá 400.000₫ - 800.000₫ / Tháng",
-      address:
-        "Tầng 7, 255 - 257 Hùng Vương, phường Vĩnh Trung, quận Thanh Khê, Đà Nẵng",
-      star: 3.5,
-      capacity: "3000m2",
-    },
-    {
-      name: "The City gym Đà Nẵng",
-      image: "./img/gym/city-gym.webp",
-      price: "Giá 500.000 / Tháng",
-      address: "512 - 514 Nguyễn Tri Phương, Đà Nẵng",
-      star: 5,
-      capacity: "5 người",
-    },
-    {
-      name: "HD Fitness Center",
-      image: "./img/gym/hd-fitness-center.jpeg",
-      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
-      address: "996 Ngô Quyền, quận Sơn Trà, Đà Nẵng",
-      star: 4.5,
-      capacity: "1000m2",
-    },
-    {
-      name: "Galaxy Fitness & Yoga Center",
-      image: "./img/gym/galaxy.jpeg",
-      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
-      address: "06 Phan Đăng Lưu, quận Hải Châu, Đà Nẵng",
-      star: 3.5,
-      capacity: "1000m2",
-    },
-    {
-      name: "VPT Fitness 2",
-      image: "./img/gym/vpt.jpeg",
-      price: "Giá 500.000₫ - 1.500.000₫ / Tháng",
-      address: "437 Ông Ích Khiêm, phường Nam Dương, quận Hải Châu, Đà Nẵng",
-      star: 4,
-      capacity: "1000m2",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getClassList();
+        setClasses(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleOnclickToRegister = async (e) => {
     e.preventDefault();
@@ -92,16 +55,16 @@ function Gym() {
     <div className="container-foolball">
       <Navbar />
       <div className=" football-box">
-        {clubs.map((club) => {
+        {classes.map((classItem) => {
           return (
-            <div key={club.name} className="club-box">
-              <img src={club.image} alt={club.name} />
+            <div key={classItem.classId} className="club-box">
+              <img src={classItem.image} alt={classItem.className} />
               <h2
                 style={{
                   fontSize: "16px",
                 }}
               >
-                {club.name}
+                {classItem.clubName}
               </h2>
               <p
                 style={{
@@ -110,7 +73,7 @@ function Gym() {
                   fontSize: "13px",
                 }}
               >
-                {club.price}
+                {classItem.price}
               </p>
               <div
                 className="abc"
@@ -126,18 +89,18 @@ function Gym() {
                     fontSize: "13px",
                   }}
                 >
-                  {renderStars(club.star)}
+                  {renderStars(classItem.star)}
                 </div>
                 <p
                   style={{
                     fontSize: "13px",
                   }}
                 >
-                  Số người: {club.capacity}
+                  Số người: {classItem.capacity}
                 </p>
               </div>
               <div className="address-fb">
-                <strong>Địa chỉ:</strong> {club.address}
+                <strong>Địa chỉ:</strong> {classItem.classAddress}
               </div>
               <button onClick={handleOnclickToRegister}>Đặt lịch</button>
             </div>

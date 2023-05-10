@@ -45,15 +45,15 @@ const Register = () => {
     }
   };
 
-  // const responseFacebook = (response) => {
-  //   // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Facebook
-  //   console.log(`Facebook response: ${response}`);
-  // };
+  const responseFacebook = (response) => {
+    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Facebook
+    console.log(`Facebook response: ${response}`);
+  };
 
-  // const responseGoogle = (response) => {
-  //   // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Google
-  //   console.log(`Google response: ${response}`);
-  // };
+  const responseGoogle = (response) => {
+    // Xử lý đăng nhập hoặc tạo tài khoản từ phản hồi đăng nhập Google
+    console.log(`Google response: ${response}`);
+  };
 
   return (
     <div style={{ backgroundColor: "#eaeaea" }}>

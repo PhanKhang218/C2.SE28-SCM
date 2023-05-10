@@ -9,6 +9,8 @@ import Pricing from "../components/Pricing/Pricing";
 import Register from "../components/Register/Register";
 import Time from "../components/Time/Time";
 const publicRoutes = [
+  // admin
+
   {
     path: "/",
     component: Dashboard,
