@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,9 +20,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Configuration
@@ -29,7 +37,9 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 @org.springframework.beans.factory.annotation.Qualifier("authenticationManager")
-public class WebSecurityConfig  {
+@EnableWebMvc
+public class WebSecurityConfig
+{
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -69,7 +79,8 @@ public class WebSecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // We don't need CSRF for this example
-        http.cors().and().csrf().disable()
+       http.cors();
+        http.csrf().disable()
                 // dont authenticate this particular request
                 // không xác thực yêu cầu cụ thể này
                 .authorizeRequests()
@@ -95,17 +106,26 @@ public class WebSecurityConfig  {
         // Add a filter to validate the tokens with every request
         //Thêm bộ lọc để xác thực mã thông báo với mọi yêu cầu
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+        http.headers().defaultsDisabled().contentTypeOptions();
+        http.headers().defaultsDisabled().xssProtection();
         return http.build();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("POST","GET","PUT","OPTION"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",corsConfiguration);
-        return source;
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        //config.setAllowCredentials(true);
+
+        List<String> allowedOrigin = new ArrayList<String>();
+        allowedOrigin.add("http://localhost:5173");
+
+        config.setAllowedOrigins(allowedOrigin);
+        config.setAllowedHeaders(Collections.singletonList("*"));
+        config.setAllowedMethods(Arrays.stream(HttpMethod.values()).map(HttpMethod::name).collect(Collectors.toList()));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
+
+
 }

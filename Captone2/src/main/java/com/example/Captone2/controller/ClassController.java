@@ -30,13 +30,12 @@ public class ClassController {
     @GetMapping("")
     public ResponseEntity<List<Class>> getMember() {
 
-        return ResponseEntity.status(HttpStatus.OK).body(
+        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
                 classRepository.findAll()
         );
     }
 
     @GetMapping("/{id}")
-    @RolesAllowed("ADMIN")
     public ResponseEntity<Class> get(@PathVariable Long id) {
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(

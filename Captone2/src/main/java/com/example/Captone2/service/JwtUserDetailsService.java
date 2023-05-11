@@ -33,7 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 			//System.out.println("O day khong the Null");
 			List<GrantedAuthority> role = new ArrayList<>();
 			//set them role
-			
+
 			return new User(user.getUsername(),user.getPassword(),role);
 		}
 		throw  new UsernameNotFoundException("User not found with username: " + username);
