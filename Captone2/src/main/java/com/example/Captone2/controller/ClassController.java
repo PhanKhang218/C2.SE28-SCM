@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,13 @@ public class ClassController {
     @GetMapping("")
     public ResponseEntity<List<Class>> getMember() {
 
-        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
+        return ResponseEntity.status(HttpStatus.OK).body(
                 classRepository.findAll()
         );
     }
 
     @GetMapping("/{id}")
+    @RolesAllowed("ADMIN")
     public ResponseEntity<Class> get(@PathVariable Long id) {
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
@@ -65,7 +67,7 @@ public class ClassController {
                 .map(Class -> {
 
                     Class.setClassName(newClass.getClassName());
-                    Class.setClupId(newClass.getClupId());
+                    Class.setClubId(newClass.getClubId());
                     Class.setClassAddress(newClass.getClassAddress());
 
 

@@ -5,6 +5,7 @@ import com.example.Captone2.dao.UserDao;
 import com.example.Captone2.model.security.DAOUser;
 import com.example.Captone2.model.security.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +32,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (user != null) {
 			//System.out.println("O day khong the Null");
 			List<GrantedAuthority> role = new ArrayList<>();
-
+			//set them role
+			
 			return new User(user.getUsername(),user.getPassword(),role);
 		}
 		throw  new UsernameNotFoundException("User not found with username: " + username);

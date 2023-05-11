@@ -6,7 +6,7 @@ public class CC {
 
     Long ClassId;
 
-    Long ClupId;
+    Long ClubId;
 
     String ClassName;
 
@@ -30,9 +30,9 @@ public class CC {
 
     public CC(){}
 
-    public CC(Long classId, Long clupId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity, List<String> imageClass, List<String> imageClub) {
+    public CC(Long classId, Long ClubId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity, List<String> imageClass, List<String> imageClub) {
         ClassId = classId;
-        ClupId = clupId;
+        ClubId = ClubId;
         ClassName = className;
         ClubName = clubName;
         Phone = phone;
@@ -56,12 +56,12 @@ public class CC {
         ClassId = classId;
     }
 
-    public Long getClupId() {
-        return ClupId;
+    public Long getClubId() {
+        return ClubId;
     }
 
-    public void setClupId(Long clupId) {
-        ClupId = clupId;
+    public void setClubId(Long ClubId) {
+        ClubId = ClubId;
     }
 
     public String getClassName() {

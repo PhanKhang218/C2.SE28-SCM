@@ -45,7 +45,7 @@ public class ClassAndClup {
         rs.setDescription(m.getDescription());
         rs.setStar(m.getStar());
         rs.setCapacity(m.getCapacity());
-        rs.setClupId(m.getClupId());
+        rs.setClubId(m.getClubId());
         rs.setClassId(m.getClassId());
 
         return rs;

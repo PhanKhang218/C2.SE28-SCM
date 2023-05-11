@@ -11,12 +11,11 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ClassId;
 
-    Long ClupId;
+    Long ClubId;
 
     String ClassName;
 
     String ClubName;
-
 
     String Phone;
     String Price;
@@ -33,20 +32,12 @@ public class Class {
 
     public Class(){}
 
-    public Class(Long clupId) {
-        ClupId = clupId;
-    }
 
-    public Long getClupId() {
-        return ClupId;
-    }
 
-    public void setClupId(Long clupId) {
-        ClupId = clupId;
-    }
 
-    public Class(Long classId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity) {
+    public Class(Long classId, Long clubId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity) {
         ClassId = classId;
+        ClubId = clubId;
         ClassName = className;
         ClubName = clubName;
         Phone = phone;
@@ -58,6 +49,14 @@ public class Class {
         Description = description;
         Star = star;
         Capacity = capacity;
+    }
+
+    public Long getClubId() {
+        return ClubId;
+    }
+
+    public void setClubId(Long clubId) {
+        ClubId = clubId;
     }
 
     public Long getClassId() {
@@ -161,7 +160,7 @@ public class Class {
         // TODO Auto-generated method stub
         return "Class{" +
                 "ClassId= " + ClassId +
-                "ClupId= " + ClupId +
+                "ClubId= " + ClubId +
                 ",ClassName= " + ClassName +
                 ",ClupName=" + ClubName +
                 ",Phone= " + Phone +

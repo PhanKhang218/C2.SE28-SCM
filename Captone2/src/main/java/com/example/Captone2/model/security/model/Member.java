@@ -18,20 +18,30 @@ public class Member {
     String Phone;
     String DayOfBirth;
 
-    public Member(){}
+    String Image;
 
     Long AccountId;
 
-    public Member(Long MemberId, String name, String gender, String age, String phone, String dayOfBirth, Long accountId) {
-        this.MemberId = MemberId;
+    public Member(){}
+
+    public Member(Long memberId, String name, String gender, String age, String phone, String dayOfBirth, String image, Long accountId) {
+        MemberId = memberId;
         Name = name;
         Gender = gender;
         Age = age;
         Phone = phone;
         DayOfBirth = dayOfBirth;
+        Image = image;
         AccountId = accountId;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
 
     public Long getMemberId() {
         return MemberId;

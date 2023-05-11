@@ -21,12 +21,12 @@ public class Review {
 
     Long Rate;
     String Comment;
-    Date Time;
+    String Time;
 
 
     public Review(){}
 
-    public Review(Long idReview, Long rate, String comment, Date time) {
+    public Review(Long idReview, Long rate, String comment, String time) {
         IdReview = idReview;
         Rate = rate;
         Comment = comment;

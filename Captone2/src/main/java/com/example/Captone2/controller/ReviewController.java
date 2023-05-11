@@ -70,7 +70,7 @@ public class ReviewController {
                         Review.setRate(newReview.getRate());
                         Review.setComment(newReview.getComment());
                     //    Review.setTime(new Date());
-                        //Review.setTime(String.valueOf(Instant.now()));
+                        Review.setTime(newReview.getTime());
 
                         return reviewRepository.save(Review);
                     }).orElseGet(() -> {

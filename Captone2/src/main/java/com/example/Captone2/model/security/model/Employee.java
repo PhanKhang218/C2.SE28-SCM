@@ -21,10 +21,12 @@ public class Employee {
     String Experience;
 
     Long AccountId;
+
+    String Image;
     public Employee() {
     }
 
-    public Employee(long employeeId, String name, String gender, String age, String phone, String dayOfBirth, String email, String degree, String experience, Long accountId) {
+    public Employee(long employeeId, String name, String gender, String age, String phone, String dayOfBirth, String email, String degree, String experience, Long accountId, String image) {
         EmployeeId = employeeId;
         Name = name;
         Gender = gender;
@@ -35,6 +37,15 @@ public class Employee {
         Degree = degree;
         Experience = experience;
         AccountId = accountId;
+        Image = image;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 
     public long getEmployeeId() {
@@ -125,6 +136,7 @@ public class Employee {
                 ", Email='" + Email +
                 ", Degree='" + Degree +
                 ", Experience='" + Experience +
+                ", Image='" + Image +
                 '}';
     }
 }
