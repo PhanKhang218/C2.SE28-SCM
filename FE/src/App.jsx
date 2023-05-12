@@ -7,8 +7,9 @@ import authProvider from "./authProvider";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Gym from "./components/Gym/Gym";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 // import MemberList from "../src/MemberList";
-
+import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import Pricing from "./components/Pricing/Pricing";
 import MemberList from "../src/components/Admin/Member/MemberList";
 const dataProvider = jsonServerProvider("http://localhost:9000");
@@ -19,10 +20,13 @@ const App = () => (
     <Route path="/" element={<Dashboard />} />
     <Route path="/gym" element={<Gym />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
     <Route path="/pricing" element={<Pricing />} />
-    <Route path="/member" element={<MemberList />} />
 
     {/* admin */}
+    <Route path="/member" element={<MemberList />} />
+    <Route path="/admin" element={<AdminPage />} />
+
     {/* <Route path="/admin/*" element={<AdminLayout />} />
     <Route path="/member/*" element={<AdminLayout />} /> */}
   </Routes>
