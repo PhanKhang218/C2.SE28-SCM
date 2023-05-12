@@ -118,7 +118,7 @@ public class WebSecurityConfig
         //config.setAllowCredentials(true);
 
         List<String> allowedOrigin = new ArrayList<String>();
-        allowedOrigin.add("http://localhost:5173");
+        allowedOrigin.add("http://127.0.0.1:5173/");
 
         config.setAllowedOrigins(allowedOrigin);
         config.setAllowedHeaders(Collections.singletonList("*"));
