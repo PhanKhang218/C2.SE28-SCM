@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ClubSelection from "../ClubSelection/ClubSelection";
+import ClubSelection from "../Customer/ClubSelection/ClubSelection";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-import { Link } from "react-router-dom";
 // import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 

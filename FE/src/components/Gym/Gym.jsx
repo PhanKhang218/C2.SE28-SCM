@@ -12,14 +12,32 @@ function Gym() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getClassList();
+        const token = localStorage.getItem("token");
+        console.log(token);
+        const data = await getClassList(token);
         setClasses(data);
+        console.log(data);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
   }, []);
+
+  const getClassList = async (token) => {
+    const response = await fetch("http://localhost:9000/class", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch class list");
+    }
+  };
 
   const handleOnclickToRegister = async (e) => {
     e.preventDefault();

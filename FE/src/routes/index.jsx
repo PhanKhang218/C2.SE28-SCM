@@ -1,4 +1,6 @@
+import AdminPanel from "../Admin";
 import Blog from "../components/Blog/Blog";
+import ClubSelection from "../components/Customer/ClubSelection/ClubSelection";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Football from "../components/Football/Football";
 import Footer from "../components/Footer/Footer";
@@ -10,7 +12,12 @@ import Register from "../components/Register/Register";
 import Time from "../components/Time/Time";
 const publicRoutes = [
   // admin
-
+  { path: "/posts", component: AdminPanel },
+  // customer
+  {
+    path: "/customer/club",
+    component: ClubSelection,
+  },
   {
     path: "/",
     component: Dashboard,
