@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -66,7 +65,7 @@ public class ClassController {
                 .map(Class -> {
 
                     Class.setClassName(newClass.getClassName());
-                    Class.setClubId(newClass.getClubId());
+                    Class.setClupId(newClass.getClupId());
                     Class.setClassAddress(newClass.getClassAddress());
 
 
@@ -79,7 +78,8 @@ public class ClassController {
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
                     Class.setClubName(newClass.getClubName());
-
+                    Class.setStar(newClass.getImage());
+                    Class.setClubName(newClass.getTeam());
 
                     return classRepository.save(Class);
                 }).orElseGet(() -> {

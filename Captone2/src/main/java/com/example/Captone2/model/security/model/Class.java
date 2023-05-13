@@ -11,11 +11,15 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ClassId;
 
-    Long ClubId;
+    Long ClupId;
 
     String ClassName;
 
     String ClubName;
+
+    String Image;
+
+    String Team;
 
     String Phone;
     String Price;
@@ -24,20 +28,27 @@ public class Class {
     String ClassAddress;
     String DayOfWeek;
     String Description;
-
     String Star;
-    String Capacity;
 
+    String Capacity;
 
 
     public Class(){}
 
+    public Class(Long clupId) {
+        ClupId = clupId;
+    }
 
+    public Long getClupId() {
+        return ClupId;
+    }
 
+    public void setClupId(Long clupId) {
+        ClupId = clupId;
+    }
 
-    public Class(Long classId, Long clubId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity) {
+    public Class(Long classId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity, String image,String team ) {
         ClassId = classId;
-        ClubId = clubId;
         ClassName = className;
         ClubName = clubName;
         Phone = phone;
@@ -49,15 +60,10 @@ public class Class {
         Description = description;
         Star = star;
         Capacity = capacity;
+        Image=image;
+        Team=team;
     }
 
-    public Long getClubId() {
-        return ClubId;
-    }
-
-    public void setClubId(Long clubId) {
-        ClubId = clubId;
-    }
 
     public Long getClassId() {
         return ClassId;
@@ -155,23 +161,40 @@ public class Class {
         Capacity = capacity;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getTeam() {
+        return Team;
+    }
+
+    public void setTeam(String team) {
+        Team = team;
+    }
+
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return "Class{" +
-                "ClassId= " + ClassId +
-                "ClubId= " + ClubId +
-                ",ClassName= " + ClassName +
-                ",ClupName=" + ClubName +
-                ",Phone= " + Phone +
-                ",Price=  " + Price +
-                ",OpenTime=  " + OpenTime +
-                ",CloseTime= " + CloseTime +
-                ",ClassAddress= " + ClassAddress +
-                ",DayOfWeek=  " + DayOfWeek +
-                ",Description=  " + Description +
-                ",Start=  " + Star +
-                ",Capacity=  " + Capacity +
-                "}";
+                "ClassId=" + ClassId +
+                ", ClupId=" + ClupId +
+                ", ClassName='" + ClassName + '\'' +
+                ", ClubName='" + ClubName + '\'' +
+                ", Image='" + Image + '\'' +
+                ", Team='" + Team + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Price='" + Price + '\'' +
+                ", OpenTime='" + OpenTime + '\'' +
+                ", CloseTime='" + CloseTime + '\'' +
+                ", ClassAddress='" + ClassAddress + '\'' +
+                ", DayOfWeek='" + DayOfWeek + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Star='" + Star + '\'' +
+                ", Capacity='" + Capacity + '\'' +
+                '}';
     }
 }
