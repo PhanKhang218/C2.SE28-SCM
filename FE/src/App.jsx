@@ -13,6 +13,7 @@ import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import Pricing from "./components/Pricing/Pricing";
 import MemberList from "../src/components/Admin/Member/MemberList";
 import EmployeeList from "../src/components/Admin/Employee/EmployeeList";
+import Sidebar from "./components/Sidebar/Sidebar";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/pricing" element={<Pricing />} />
+    <Route path="/sidebar" element={<Sidebar />} />
 
     {/* admin */}
     <Route path="/member" element={<MemberList />} />

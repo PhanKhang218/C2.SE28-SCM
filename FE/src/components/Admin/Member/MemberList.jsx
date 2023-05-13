@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./MemberList.css";
 import AdminPage from "../AdminPage/AdminPage";
 import { useAlert } from "react-alert";
+import Sidebar from "../../Sidebar/Sidebar";
 
 function MemberList() {
   const alert = useAlert();
@@ -185,184 +186,189 @@ function MemberList() {
   return (
     <>
       <AdminPage />
-      <div className="table-container">
-        <table className="table table-bordered table-member">
-          <thead>
-            <tr>
-              {members.length > 0 &&
-                Object.keys(members[0]).map((key) => <th key={key}>{key}</th>)}
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {members.map((row, index) => (
-              <tr key={index}>
-                {Object.entries(row).map(([key, value], index) => (
-                  <td key={index}>
-                    {key === "image" ? (
-                      <img
-                        src={value}
-                        className="image-member"
-                        alt="Hình ảnh"
-                      />
-                    ) : (
-                      value
-                    )}
-                  </td>
-                ))}
-                <td>
-                  <button onClick={() => updateMember(row.memberId)}>
-                    Update
-                  </button>
-                  <button onClick={() => deleteMember(row.memberId)}>
-                    Delete
-                  </button>
-                  <button onClick={() => getMemberById(row.memberId)}>
-                    View
-                  </button>
-                </td>
+      <div className="member-container">
+        <Sidebar />
+        <div className="table-container">
+          <table className="table table-bordered table-member">
+            <thead>
+              <tr>
+                {members.length > 0 &&
+                  Object.keys(members[0]).map((key) => (
+                    <th key={key}>{key}</th>
+                  ))}
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        {/* modal for update member */}
-        <Modal
-          className="custom-modal"
-          isOpen={createModalIsOpen}
-          onRequestClose={setCreateModalIsOpen}
-          contentLabel="Update Member"
-        >
-          <h2>Update Member</h2>
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={selectedMemberData.name}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="dayOfBirth"
-              placeholder="Day of Birth"
-              value={selectedMemberData.dayOfBirth}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="accountId"
-              placeholder="Account ID"
-              value={selectedMemberData.accountId}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="memberId"
-              placeholder="Member ID"
-              value={selectedMemberData.memberId}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={selectedMemberData.image}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={selectedMemberData.phone}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="age"
-              placeholder="Age"
-              value={selectedMemberData.age}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="gender"
-              placeholder="Gender"
-              value={selectedMemberData.gender}
-              onChange={handleInputChange}
-            />
-            <button onClick={handleUpdateMember}>Update</button>
-            <button onClick={closeModal}>Cancel</button>
-          </div>
-        </Modal>
+            </thead>
+            <tbody>
+              {members.map((row, index) => (
+                <tr key={index}>
+                  {Object.entries(row).map(([key, value], index) => (
+                    <td key={index}>
+                      {key === "image" ? (
+                        <img
+                          src={value}
+                          className="image-member"
+                          alt="Hình ảnh"
+                        />
+                      ) : (
+                        value
+                      )}
+                    </td>
+                  ))}
+                  <td>
+                    <button onClick={() => updateMember(row.memberId)}>
+                      Update
+                    </button>
+                    <button onClick={() => deleteMember(row.memberId)}>
+                      Delete
+                    </button>
+                    <button onClick={() => getMemberById(row.memberId)}>
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/* modal for update member */}
+          <Modal
+            className="custom-modal"
+            isOpen={createModalIsOpen}
+            onRequestClose={setCreateModalIsOpen}
+            contentLabel="Update Member"
+          >
+            <h2>Update Member</h2>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={selectedMemberData.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="dayOfBirth"
+                placeholder="Day of Birth"
+                value={selectedMemberData.dayOfBirth}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="accountId"
+                placeholder="Account ID"
+                value={selectedMemberData.accountId}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="memberId"
+                placeholder="Member ID"
+                value={selectedMemberData.memberId}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={selectedMemberData.image}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone"
+                value={selectedMemberData.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Age"
+                value={selectedMemberData.age}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="gender"
+                placeholder="Gender"
+                value={selectedMemberData.gender}
+                onChange={handleInputChange}
+              />
+              <button onClick={handleUpdateMember}>Update</button>
+              <button onClick={closeModal}>Cancel</button>
+            </div>
+          </Modal>
 
-        <div className="button-container">
-          <button className="button-add-member" onClick={openModal}>
-            Add Member
-          </button>
+          <div className="button-container">
+            <button className="button-add-member" onClick={openModal}>
+              Add Member
+            </button>
+          </div>
+
+          {/* Modal for create member*/}
+          <Modal
+            className="custom-modal"
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Create Member"
+          >
+            <h2>Create Member</h2>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={newMember.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="gender"
+                placeholder="Gender"
+                value={newMember.gender}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Age"
+                value={newMember.age}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone"
+                value={newMember.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="dayOfBirth"
+                placeholder="Day of Birth"
+                value={newMember.dayOfBirth}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="accountId"
+                placeholder="Account ID"
+                value={newMember.accountId}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={newMember.image}
+                onChange={handleInputChange}
+              />
+              <button onClick={createMember}>Create</button>
+              <button onClick={closeModal}>Cancel</button>
+            </div>
+          </Modal>
         </div>
-
-        {/* Modal for create member*/}
-        <Modal
-          className="custom-modal"
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Create Member"
-        >
-          <h2>Create Member</h2>
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={newMember.name}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="gender"
-              placeholder="Gender"
-              value={newMember.gender}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="age"
-              placeholder="Age"
-              value={newMember.age}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={newMember.phone}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="dayOfBirth"
-              placeholder="Day of Birth"
-              value={newMember.dayOfBirth}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="accountId"
-              placeholder="Account ID"
-              value={newMember.accountId}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={newMember.image}
-              onChange={handleInputChange}
-            />
-            <button onClick={createMember}>Create</button>
-            <button onClick={closeModal}>Cancel</button>
-          </div>
-        </Modal>
       </div>
     </>
   );

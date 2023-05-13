@@ -4,6 +4,7 @@ import axios from "axios";
 import "./EmployeeList.css";
 import AdminPage from "../AdminPage/AdminPage";
 import { useAlert } from "react-alert";
+import Sidebar from "../../Sidebar/Sidebar";
 
 function EmployeeList() {
   const alert = useAlert();
@@ -190,178 +191,183 @@ function EmployeeList() {
   return (
     <>
       <AdminPage />
-      <div className="table-container">
-        <table className="table table-bordered table-member">
-          <thead>
-            <tr>
-              {employees.length > 0 &&
-                Object.keys(employees[0]).map((key) => (
-                  <th key={key}>{key}</th>
-                ))}
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((employee, index) => (
-              <tr key={index}>
-                {Object.entries(employee).map(([key, value], index) => (
-                  <td key={index}>
-                    {key === "image" ? (
-                      <img
-                        src={value}
-                        className="image-member"
-                        // alt="Hình ảnh"
-                      />
-                    ) : (
-                      value
-                    )}
-                  </td>
-                ))}
-                <td>
-                  <button onClick={() => updateEmployee(employee.employeeId)}>
-                    Update
-                  </button>
-                  <button onClick={() => deleteEmployee(employee.employeeId)}>
-                    Delete
-                  </button>
-                  <button onClick={() => getEmployeeById(employee.employeeId)}>
-                    View
-                  </button>
-                </td>
+      <div className="member-container">
+        <Sidebar />
+        <div className="table-container">
+          <table className="table table-bordered table-member">
+            <thead>
+              <tr>
+                {employees.length > 0 &&
+                  Object.keys(employees[0]).map((key) => (
+                    <th key={key}>{key}</th>
+                  ))}
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="button-container">
-          <button className="button-add-employee" onClick={openModal}>
-            Add Employee
-          </button>
-        </div>
-        {/* Modal for create employee */}
-        <Modal
-          className="custom-modal"
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Create Employee"
-        >
-          <h2>Create Employee</h2>
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={newEmployee.name}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="gender"
-              placeholder="Gender"
-              value={newEmployee.gender}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="age"
-              placeholder="Age"
-              value={newEmployee.age}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={newEmployee.phone}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="dayOfBirth"
-              placeholder="Day of Birth"
-              value={newEmployee.dayOfBirth}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="accountId"
-              placeholder="Account ID"
-              value={newEmployee.accountId}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={newEmployee.image}
-              onChange={handleInputChange}
-            />
-            <button onClick={createEmployee}>Create</button>
-            <button onClick={closeModal}>Cancel</button>
+            </thead>
+            <tbody>
+              {employees.map((employee, index) => (
+                <tr key={index}>
+                  {Object.entries(employee).map(([key, value], index) => (
+                    <td key={index}>
+                      {key === "image" ? (
+                        <img
+                          src={value}
+                          className="image-member"
+                          // alt="Hình ảnh"
+                        />
+                      ) : (
+                        value
+                      )}
+                    </td>
+                  ))}
+                  <td>
+                    <button onClick={() => updateEmployee(employee.employeeId)}>
+                      Update
+                    </button>
+                    <button onClick={() => deleteEmployee(employee.employeeId)}>
+                      Delete
+                    </button>
+                    <button
+                      onClick={() => getEmployeeById(employee.employeeId)}
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="button-container">
+            <button className="button-add-employee" onClick={openModal}>
+              Add Employee
+            </button>
           </div>
-        </Modal>
-      </div>
-      {/* Modal for update employee */}
-      <Modal
-        className="custom-modal"
-        isOpen={createModalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Update Employee"
-      >
-        <h2>Update Employee</h2>
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={selectedEmployeeData.name}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="gender"
-            placeholder="Gender"
-            value={selectedEmployeeData.gender}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="age"
-            placeholder="Age"
-            value={selectedEmployeeData.age}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone"
-            value={selectedEmployeeData.phone}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="dayOfBirth"
-            placeholder="Day of Birth"
-            value={selectedEmployeeData.dayOfBirth}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="accountId"
-            placeholder="Account ID"
-            value={selectedEmployeeData.accountId}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="image"
-            placeholder="Image URL"
-            value={selectedEmployeeData.image}
-            onChange={handleInputChange}
-          />
-          <button onClick={handleUpdateEmployee}>Update</button>
-          <button onClick={closeModal}>Cancel</button>
+          {/* Modal for create employee */}
+          <Modal
+            className="custom-modal"
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Create Employee"
+          >
+            <h2>Create Employee</h2>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={newEmployee.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="gender"
+                placeholder="Gender"
+                value={newEmployee.gender}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Age"
+                value={newEmployee.age}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone"
+                value={newEmployee.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="dayOfBirth"
+                placeholder="Day of Birth"
+                value={newEmployee.dayOfBirth}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="accountId"
+                placeholder="Account ID"
+                value={newEmployee.accountId}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={newEmployee.image}
+                onChange={handleInputChange}
+              />
+              <button onClick={createEmployee}>Create</button>
+              <button onClick={closeModal}>Cancel</button>
+            </div>
+          </Modal>
+          {/* Modal for update employee */}
+          <Modal
+            className="custom-modal"
+            isOpen={createModalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Update Employee"
+          >
+            <h2>Update Employee</h2>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={selectedEmployeeData.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="gender"
+                placeholder="Gender"
+                value={selectedEmployeeData.gender}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Age"
+                value={selectedEmployeeData.age}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone"
+                value={selectedEmployeeData.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="dayOfBirth"
+                placeholder="Day of Birth"
+                value={selectedEmployeeData.dayOfBirth}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="accountId"
+                placeholder="Account ID"
+                value={selectedEmployeeData.accountId}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={selectedEmployeeData.image}
+                onChange={handleInputChange}
+              />
+              <button onClick={handleUpdateEmployee}>Update</button>
+              <button onClick={closeModal}>Cancel</button>
+            </div>
+          </Modal>
         </div>
-      </Modal>
+      </div>
     </>
   );
 }

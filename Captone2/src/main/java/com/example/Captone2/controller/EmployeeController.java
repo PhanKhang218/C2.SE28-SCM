@@ -47,7 +47,7 @@ public class EmployeeController {
                     Employee.setEmail(newEmployee.getEmail());
                     Employee.setExperience(newEmployee.getExperience());
                     Employee.setAccountId(newEmployee.getAccountId());
-
+                    Employee.setImage(newEmployee.getImage());
                     return employeeRepository.save(Employee);
                 }).orElseGet(() -> {
                     newEmployee.setEmployeeId(id);
