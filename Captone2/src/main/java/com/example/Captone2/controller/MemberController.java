@@ -43,7 +43,7 @@ public class MemberController {
                     Member.setPhone(newMember.getPhone());
                     Member.setDayOfBirth(newMember.getDayOfBirth());
                     Member.setAccountId(newMember.getAccountId());
-
+                    Member.setImage(newMember.getImage());
                     return memberRepository.save(Member);
                 }).orElseGet(() -> {
                     newMember.setMemberId(id);

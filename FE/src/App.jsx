@@ -12,6 +12,7 @@ import Register from "./components/Register/Register";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import Pricing from "./components/Pricing/Pricing";
 import MemberList from "../src/components/Admin/Member/MemberList";
+import EmployeeList from "../src/components/Admin/Employee/EmployeeList";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
     {/* admin */}
     <Route path="/member" element={<MemberList />} />
     <Route path="/admin" element={<AdminPage />} />
+    <Route path="/employee" element={<EmployeeList />} />
 
     {/* <Route path="/admin/*" element={<AdminLayout />} />
     <Route path="/member/*" element={<AdminLayout />} /> */}

@@ -15,8 +15,8 @@ export default function AdminPage() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#about-us">
-              Class Management
+            <a className="nav-link" href="/employee">
+              Employee Management
             </a>
           </li>
           <li className="nav-item">
