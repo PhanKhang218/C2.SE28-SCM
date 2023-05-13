@@ -78,8 +78,8 @@ public class ClassController {
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
                     Class.setClubName(newClass.getClubName());
-                    Class.setStar(newClass.getImage());
-                    Class.setClubName(newClass.getTeam());
+                    Class.setImage(newClass.getImage());
+                    Class.setTeam(newClass.getTeam());
 
                     return classRepository.save(Class);
                 }).orElseGet(() -> {

@@ -53,7 +53,7 @@ public class ScheduleController {
             Schedule.setSchedule_ID(newSchedule.getSchedule_ID());
             Schedule.setDateOfWeek(newSchedule.getDateOfWeek());
             Schedule.setTime(newSchedule.getTime());
-
+            Schedule.setEmployeeId(newSchedule.getEmployeeId());
             return scheduleRepository.save(Schedule);
         }).orElseGet(() -> {
             newSchedule.setSchedule_ID(id);
