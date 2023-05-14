@@ -10,17 +10,16 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Schedule_ID;
-    private long EmployeeId;
+
     private String DateOfWeek;
     private String Time;
 
     public Schedule(){}
 
-    public Schedule(long schedule_ID, String dateOfWeek, String time ,long employeeId) {
+    public Schedule(long schedule_ID, String dateOfWeek, String time) {
         Schedule_ID = schedule_ID;
         DateOfWeek = dateOfWeek;
         Time = time;
-        EmployeeId=employeeId;
     }
 
     public long getSchedule_ID() {
@@ -47,21 +46,13 @@ public class Schedule {
         Time = time;
     }
 
-    public long getEmployeeId() {
-        return EmployeeId;
-    }
-
-    public void setEmployeeId(long employeeId) {
-        EmployeeId = employeeId;
-    }
-
     @Override
     public String toString() {
+        // TODO Auto-generated method stub
         return "Schedule{" +
-                "Schedule_ID=" + Schedule_ID +
-                ", EmployeeId=" + EmployeeId +
-                ", DateOfWeek='" + DateOfWeek + '\'' +
-                ", Time='" + Time + '\'' +
-                '}';
+                "Schedule_ID= " + Schedule_ID +
+                ",DateOfWeek= " + DateOfWeek +
+                ",Time= " + Time +
+                "}";
     }
 }

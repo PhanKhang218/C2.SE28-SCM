@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -67,11 +68,7 @@ public class ClassController {
                 .map(Class -> {
 
                     Class.setClassName(newClass.getClassName());
-<<<<<<< Updated upstream
-                    Class.setClupId(newClass.getClupId());
-=======
 
->>>>>>> Stashed changes
                     Class.setClassAddress(newClass.getClassAddress());
 
 
@@ -83,14 +80,8 @@ public class ClassController {
                     Class.setOpenTime(newClass.getOpenTime());
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
-<<<<<<< Updated upstream
-                    Class.setClubName(newClass.getClubName());
-                    Class.setImage(newClass.getImage());
-                    Class.setTeam(newClass.getTeam());
-=======
                     Class.setClassImage(newClass.getClassImage());
 
->>>>>>> Stashed changes
 
                     return classRepository.save(Class);
                 }).orElseGet(() -> {

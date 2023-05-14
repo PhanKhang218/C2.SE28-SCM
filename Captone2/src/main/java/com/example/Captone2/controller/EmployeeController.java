@@ -48,10 +48,7 @@ public class EmployeeController {
                     Employee.setExperience(newEmployee.getExperience());
                     Employee.setAccountId(newEmployee.getAccountId());
                     Employee.setImage(newEmployee.getImage());
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
                     return employeeRepository.save(Employee);
                 }).orElseGet(() -> {
                     newEmployee.setEmployeeId(id);

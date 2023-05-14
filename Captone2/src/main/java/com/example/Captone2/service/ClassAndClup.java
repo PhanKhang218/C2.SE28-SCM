@@ -45,11 +45,7 @@ public class ClassAndClup {
         rs.setDescription(m.getDescription());
         rs.setStar(m.getStar());
         rs.setCapacity(m.getCapacity());
-<<<<<<< Updated upstream
-        rs.setClubId(m.getClupId());
-=======
        // rs.setClubId(m.getClubId());
->>>>>>> Stashed changes
         rs.setClassId(m.getClassId());
 
         return rs;
