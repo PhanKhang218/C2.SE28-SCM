@@ -33,7 +33,7 @@ public class ClassAndClup {
         CC rs = new CC();
 
         rs.setClassName(m.getClassName());
-        rs.setClubName(m.getClubName());
+       // rs.setClubName(m.getClubName());
         rs.setPhone(m.getPhone());
         rs.setPrice(m.getPrice());
         rs.setImageClass(imagesClass);
@@ -45,7 +45,11 @@ public class ClassAndClup {
         rs.setDescription(m.getDescription());
         rs.setStar(m.getStar());
         rs.setCapacity(m.getCapacity());
+<<<<<<< Updated upstream
         rs.setClubId(m.getClupId());
+=======
+       // rs.setClubId(m.getClubId());
+>>>>>>> Stashed changes
         rs.setClassId(m.getClassId());
 
         return rs;

@@ -118,8 +118,13 @@ public class WebSecurityConfig
         //config.setAllowCredentials(true);
 
         List<String> allowedOrigin = new ArrayList<String>();
+<<<<<<< Updated upstream
         allowedOrigin.add("*");
 
+=======
+        //allowedOrigin.add("http://localhost:5173");
+        allowedOrigin.add("*");
+>>>>>>> Stashed changes
         config.setAllowedOrigins(allowedOrigin);
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setAllowedMethods(Arrays.stream(HttpMethod.values()).map(HttpMethod::name).collect(Collectors.toList()));

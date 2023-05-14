@@ -4,10 +4,12 @@ import com.example.Captone2.model.security.ResponseObject;
 import com.example.Captone2.model.security.model.Class;
 import com.example.Captone2.model.security.model.Member;
 import com.example.Captone2.model.security.models_view.CC;
+import com.example.Captone2.model.security.models_view.ClassAll;
 import com.example.Captone2.model.security.models_view.MembershipView;
 import com.example.Captone2.respositories.ClassRepository;
 import com.example.Captone2.respositories.MemberRepository;
 import com.example.Captone2.service.ClassAndClup;
+import com.example.Captone2.service.ClassDetail;
 import com.example.Captone2.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +26,7 @@ public class ClassController {
     private ClassRepository classRepository;
 
     @Autowired
-    private ClassAndClup classAndClup;
+    private ClassDetail classDetail;
 
     @GetMapping("")
     public ResponseEntity<List<Class>> getMember() {
@@ -41,11 +43,11 @@ public class ClassController {
                 classRepository.findById(id).get()
         );
     }
-
-    @GetMapping("classAndclub/{id}")
-    public ResponseEntity<CC> getClassAndClubView(@PathVariable Long id) {
+//
+    @GetMapping("classDetail/{id}")
+    public ResponseEntity<ClassAll> getClassAndClubView(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*").body(
-                classAndClup.getClassClub(id)
+                classDetail.getDetailClass(id)
         );
     }
 
@@ -65,7 +67,11 @@ public class ClassController {
                 .map(Class -> {
 
                     Class.setClassName(newClass.getClassName());
+<<<<<<< Updated upstream
                     Class.setClupId(newClass.getClupId());
+=======
+
+>>>>>>> Stashed changes
                     Class.setClassAddress(newClass.getClassAddress());
 
 
@@ -77,9 +83,14 @@ public class ClassController {
                     Class.setOpenTime(newClass.getOpenTime());
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
+<<<<<<< Updated upstream
                     Class.setClubName(newClass.getClubName());
                     Class.setImage(newClass.getImage());
                     Class.setTeam(newClass.getTeam());
+=======
+                    Class.setClassImage(newClass.getClassImage());
+
+>>>>>>> Stashed changes
 
                     return classRepository.save(Class);
                 }).orElseGet(() -> {

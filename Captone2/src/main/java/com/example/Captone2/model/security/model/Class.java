@@ -1,9 +1,17 @@
 package com.example.Captone2.model.security.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
+
+@Getter
+@Setter
 
 @Entity
 public class Class {
@@ -11,6 +19,7 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ClassId;
 
+<<<<<<< Updated upstream
     Long ClupId;
 
     String ClassName;
@@ -31,10 +40,29 @@ public class Class {
     String Star;
 
     String Capacity;
+=======
+    String ClassName;
+    String DayOfWeek;
+    String Phone;
+    String Price;
+
+    String Star;
+
+    String Description;
+
+    String ClassAddress;
+    String OpenTime;
+    String CloseTime;
+    String Capacity;
+
+    String ClassImage;
+
+>>>>>>> Stashed changes
 
 
     public Class(){}
 
+<<<<<<< Updated upstream
     public Class(Long clupId) {
         ClupId = clupId;
     }
@@ -48,13 +76,20 @@ public class Class {
     }
 
     public Class(Long classId, String className, String clubName, String phone, String price, String openTime, String closeTime, String classAddress, String dayOfWeek, String description, String star, String capacity, String image,String team ) {
+=======
+    public Class(Long classId, String className, String dayOfWeek, String phone, String price, String star, String description, String classAddress, String openTime, String closeTime, String capacity, String classImage) {
+>>>>>>> Stashed changes
         ClassId = classId;
         ClassName = className;
-        ClubName = clubName;
+        DayOfWeek = dayOfWeek;
         Phone = phone;
         Price = price;
+        Star = star;
+        Description = description;
+        ClassAddress = classAddress;
         OpenTime = openTime;
         CloseTime = closeTime;
+<<<<<<< Updated upstream
         ClassAddress = classAddress;
         DayOfWeek = dayOfWeek;
         Description = description;
@@ -158,7 +193,10 @@ public class Class {
     }
 
     public void setCapacity(String capacity) {
+=======
+>>>>>>> Stashed changes
         Capacity = capacity;
+        ClassImage = classImage;
     }
 
     public String getImage() {
@@ -180,6 +218,7 @@ public class Class {
     @Override
     public String toString() {
         return "Class{" +
+<<<<<<< Updated upstream
                 "ClassId=" + ClassId +
                 ", ClupId=" + ClupId +
                 ", ClassName='" + ClassName + '\'' +
@@ -196,5 +235,20 @@ public class Class {
                 ", Star='" + Star + '\'' +
                 ", Capacity='" + Capacity + '\'' +
                 '}';
+=======
+                "ClassId= " + ClassId +
+                ",ClassName= " + ClassName +
+                ",Phone= " + Phone +
+                ",Price=  " + Price +
+                ",OpenTime=  " + OpenTime +
+                ",CloseTime= " + CloseTime +
+                ",ClassAddress= " + ClassAddress +
+                ",DayOfWeek=  " + DayOfWeek +
+                ",Description=  " + Description +
+                ",Start=  " + Star +
+                ",Capacity=  " + Capacity +
+                ",ClassImage=  " + ClassImage +
+                "}";
+>>>>>>> Stashed changes
     }
 }
