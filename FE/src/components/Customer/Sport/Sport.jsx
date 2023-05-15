@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./ClubSelection.css";
+import { useNavigate } from "react-router-dom";
+import ClassList from "../ClassDetail/ClassDetail";
 
-function ClubSelection() {
+import "./Sport.css";
+
+function Sport() {
+  const navigate = useNavigate();
+
   const [clubs, setClubs] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("Group classes");
 
   useEffect(() => {
-    const fetchData = async (token) => {
+    const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log(token);
         const response = await axios.get("http://localhost:9000/sport", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,6 +46,10 @@ function ClubSelection() {
     selectedClubs = personalTraining;
   }
 
+  const handleToRegister = (sportName) => {
+    navigate(`/${sportName}`);
+  };
+
   return (
     <div className="service">
       <p className="service-title" style={{ textAlign: "center" }}>
@@ -63,7 +71,9 @@ function ClubSelection() {
           <div key={club.sportId} className="club-box">
             <img src={club.sportImage} alt={club.sportName} />
             <h2>{club.sportName}</h2>
-            <button>Register</button>
+            <button onClick={() => handleToRegister(club.sportName)}>
+              Register
+            </button>
           </div>
         ))}
       </div>
@@ -71,4 +81,4 @@ function ClubSelection() {
   );
 }
 
-export default ClubSelection;
+export default Sport;

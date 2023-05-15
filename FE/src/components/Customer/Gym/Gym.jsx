@@ -6,40 +6,28 @@ import Footer from "../../Footer/Footer";
 import { getClassList } from "../../../api/apiClient";
 
 function Gym() {
-  let navigate = useNavigate();
-  const [classes, setClasses] = useState([]);
+  const navigate = useNavigate();
+  const [filteredClasses, setFilteredClasses] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchClassList = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log(token);
-        const data = await getClassList(token);
-        setClasses(data);
-        console.log(data);
+        const classList = await getClassList(token);
+        const filteredClasses = classList.filter(
+          (classItem) => classItem.sportName === "Gym"
+        );
+        console.log(filteredClasses);
+        setFilteredClasses(filteredClasses);
       } catch (error) {
         console.log(error.message);
       }
     };
-    fetchData();
+
+    fetchClassList();
   }, []);
 
-  const getClassList = async (token) => {
-    const response = await fetch("http://localhost:9000/class", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      throw new Error("Failed to fetch class list");
-    }
-  };
-
-  const handleOnclickToRegister = async (e) => {
+  const handleOnclickToRegister = (e) => {
     e.preventDefault();
     navigate("/time");
   };
@@ -72,61 +60,61 @@ function Gym() {
   return (
     <div className="container-foolball">
       <Navbar />
-      <div className=" football-box">
-        {classes.map((classItem) => {
-          return (
-            <div key={classItem.classId} className="club-box">
-              <img src={classItem.image} alt={classItem.className} />
-              <h2
+      <div className="football-box">
+        {filteredClasses.map((classItem) => (
+          <div key={classItem.classId} className="club-box">
+            <img src={classItem.classImage} alt={classItem.className} />
+            <h2
+              style={{
+                fontSize: "16px",
+                fontWeight: "bold",
+              }}
+            >
+              {classItem.className}
+            </h2>
+            <p
+              style={{
+                color: "#ff6700",
+                fontWeight: "bold",
+                fontSize: "13px",
+              }}
+            >
+              {classItem.price}
+            </p>
+            <div
+              className="abc"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: "15px",
+                paddingBottom: "10px",
+              }}
+            >
+              <div
                 style={{
-                  fontSize: "16px",
-                }}
-              >
-                {classItem.clubName}
-              </h2>
-              <p
-                style={{
-                  color: "#ff6700",
-                  fontWeight: "bold",
                   fontSize: "13px",
                 }}
               >
-                {classItem.price}
-              </p>
-              <div
-                className="abc"
+                {renderStars(classItem.star)}
+              </div>
+              <p
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingTop: "15px",
-                  paddingBottom: "10px",
+                  fontSize: "13px",
                 }}
               >
-                <div
-                  style={{
-                    fontSize: "13px",
-                  }}
-                >
-                  {renderStars(classItem.star)}
-                </div>
-                <p
-                  style={{
-                    fontSize: "13px",
-                  }}
-                >
-                  Số người: {classItem.capacity}
-                </p>
-              </div>
-              <div className="address-fb">
-                <strong>Địa chỉ:</strong> {classItem.classAddress}
-              </div>
-              <button onClick={handleOnclickToRegister}>Đặt lịch</button>
+                Số người: {classItem.capacity}
+              </p>
             </div>
-          );
-        })}
+            <div className="address-fb">
+              <strong>Địa chỉ:</strong> {classItem.classAddress}
+            </div>
+            <button onClick={handleOnclickToRegister}>Đặt lịch</button>
+          </div>
+        ))}
       </div>
       <Footer />
     </div>
   );
 }
+
 export default Gym;

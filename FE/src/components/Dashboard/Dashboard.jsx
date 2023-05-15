@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ClubSelection from "../Customer/ClubSelection/ClubSelection";
+import Sport from "../Customer/Sport/Sport";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 // import Sidebar from "../Sidebar/Sidebar";
@@ -20,7 +20,7 @@ export default function Dashboard() {
           </p>
         </div>
       </div>
-      <ClubSelection />
+      <Sport />
       <div
         className="subtitle"
         style={{

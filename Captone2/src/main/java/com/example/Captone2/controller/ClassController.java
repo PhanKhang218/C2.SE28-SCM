@@ -77,6 +77,7 @@ public class ClassController {
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
                     Class.setClassImage(newClass.getClassImage());
+                    Class.setSportName(newClass.getSportName());
                     return classRepository.save(Class);
                 }).orElseGet(() -> {
                     newClass.setClassId(id);

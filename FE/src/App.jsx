@@ -18,7 +18,9 @@ import Blog from "./components/Blog/Blog";
 import Football from "./components/Football/Football";
 import Time from "./components/Time/Time";
 import Payment from "./components/Payment/Payment";
-import ClubSelection from "./components/Customer/ClubSelection/ClubSelection";
+import Sport from "./components/Customer/Sport/Sport";
+import ClassDetail from "./components/Customer/ClassDetail/ClassDetail";
+import ClassList from "./components/Customer/ClassDetail/ClassDetail";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 
 const App = () => (
@@ -32,8 +34,10 @@ const App = () => (
     <Route path="/sidebar" element={<Sidebar />} />
     <Route path="/blog" element={<Blog />} />
     <Route path="/payment" element={<Payment />} />
-    <Route path="/club" element={<ClubSelection />} />
-
+    {/*  */}
+    <Route path="/sport" element={<Sport />} />
+    <Route path="/club" element={<ClassList />} />
+    <Route path="/class/:sportName" component={ClassDetail} />
     {/* admin */}
     <Route path="/member" element={<MemberList />} />
     <Route path="/admin" element={<AdminPage />} />

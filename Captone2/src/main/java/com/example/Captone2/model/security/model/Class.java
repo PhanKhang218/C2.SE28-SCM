@@ -35,11 +35,13 @@ public class Class {
 
     String ClassImage;
 
+    String SportName;
+
 
 
     public Class(){}
 
-    public Class(Long classId, String className, String dayOfWeek, String phone, String price, String star, String description, String classAddress, String openTime, String closeTime, String capacity, String classImage) {
+    public Class(Long classId, String className, String dayOfWeek, String phone, String price, String star, String description, String classAddress, String openTime, String closeTime, String capacity, String classImage, String sportName) {
         ClassId = classId;
         ClassName = className;
         DayOfWeek = dayOfWeek;
@@ -52,6 +54,7 @@ public class Class {
         CloseTime = closeTime;
         Capacity = capacity;
         ClassImage = classImage;
+        SportName = sportName;
     }
 
     @Override
@@ -60,6 +63,7 @@ public class Class {
         return "Class{" +
                 "ClassId= " + ClassId +
                 ",ClassName= " + ClassName +
+                ",SportName= " + SportName +
                 ",Phone= " + Phone +
                 ",Price=  " + Price +
                 ",OpenTime=  " + OpenTime +
