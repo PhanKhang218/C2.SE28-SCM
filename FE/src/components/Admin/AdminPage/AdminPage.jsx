@@ -1,4 +1,5 @@
 import React from "react";
+import Sidebar from "../.././Sidebar/Sidebar";
 import "./AdminPage.css";
 export default function AdminPage() {
   return (
@@ -31,6 +32,7 @@ export default function AdminPage() {
           </li>
         </ul>
       </div>
+      <Sidebar />
     </div>
   );
 }

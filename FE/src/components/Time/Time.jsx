@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWifi } from "@fortawesome/free-solid-svg-icons";
-
 import Navbar from "../NavBar/NavBar";
 import { useAlert } from "react-alert";
 

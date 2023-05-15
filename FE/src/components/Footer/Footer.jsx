@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./Footer.css";
 
 function Footer() {
@@ -25,13 +24,9 @@ function Footer() {
             Home
           </a>
           <a href="#">Blog</a>
-
           <a href="#">Pricing</a>
-
           <a href="#">About</a>
-
           <a href="#">Faq</a>
-
           <a href="#">Contact</a>
         </p>
       </div>
@@ -45,25 +40,20 @@ function Footer() {
               <span>Quận Thanh Khê, TP. Đà Nẵng.</span>
             </p>
           </div>
-
           <div>
             <i className="fa fa-phone"></i>
             <p style={{ color: "#b9b6b6" }}>0923.557.355</p>
           </div>
-
           <div>
             <i className="fa fa-envelope"></i>
-            <p>
-              <a style={{ color: "#b9b6b6" }} href="mailto:support@company.com">
-                namkhangphan218@gmail.com
-              </a>
+            <p style={{ color: "#b9b6b6" }}>
+              <a href="mailto:support@company.com">namkhangphan218@gmail.com</a>
             </p>
           </div>
         </div>
       </div>
-
       <div className="footer-right">
-        <p className="footer-company-about">
+        <div className="footer-company-about">
           <span style={{ fontSize: "20px" }}>ABOUT THE PROJECT</span>
           <p
             style={{
@@ -77,7 +67,7 @@ function Footer() {
             Dự án của chúng tôi cung cấp giải pháp về đặt câu lạc bộ thể thao
             trực tuyến. Thanh toán an toàn, hỗ trợ 24/24 và các dịch vụ khác.
           </p>
-        </p>
+        </div>
 
         <div className="footer-icons">
           <a href="#">
@@ -97,7 +87,5 @@ function Footer() {
     </footer>
   );
 }
+
 export default Footer;
-<>
-  {/* Remove the container if you want to extend the Footer to full width. */}
-</>;

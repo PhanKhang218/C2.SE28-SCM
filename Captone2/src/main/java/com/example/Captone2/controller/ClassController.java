@@ -66,12 +66,8 @@ public class ClassController {
     ResponseEntity<ResponseObject> updateClas(@RequestBody Class newClass, @PathVariable Long id) {
         Class updateClass = classRepository.findById(id)
                 .map(Class -> {
-
                     Class.setClassName(newClass.getClassName());
-
                     Class.setClassAddress(newClass.getClassAddress());
-
-
                     Class.setDescription(newClass.getDescription());
                     Class.setDayOfWeek(newClass.getDayOfWeek());
                     Class.setPhone(newClass.getPhone());
@@ -81,8 +77,6 @@ public class ClassController {
                     Class.setCapacity(newClass.getCapacity());
                     Class.setStar(newClass.getStar());
                     Class.setClassImage(newClass.getClassImage());
-
-
                     return classRepository.save(Class);
                 }).orElseGet(() -> {
                     newClass.setClassId(id);

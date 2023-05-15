@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../NavBar/NavBar";
+import Navbar from "../../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import "./Gym.css";
-import Footer from "../Footer/Footer";
-import { getClassList } from "../../api/apiClient";
+import Footer from "../../Footer/Footer";
+import { getClassList } from "../../../api/apiClient";
 
 function Gym() {
   let navigate = useNavigate();
