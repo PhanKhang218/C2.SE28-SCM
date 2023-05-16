@@ -1,35 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./NavBar.css";
 
-export default function Navbar() {
+export default function Navbar({ username }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    // Kiểm tra trạng thái đăng nhập khi component được tạo
-    checkLoggedInStatus();
-  }, []);
-
-  const checkLoggedInStatus = async () => {
-    const token = localStorage.getItem("token");
-    fetch("http://localhost:9000/view/account/", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Kiểm tra thông tin trả về từ API và cập nhật trạng thái đăng nhập và tên người dùng
-        console.log(data);
-        if (data.username) {
-          setIsLoggedIn(true);
-          setUsername(data.username);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    setIsLoggedIn(username !== "");
+    console.log("Username:", username);
+  }, [username]);
 
   return (
     <div className="navbar">
@@ -56,12 +34,47 @@ export default function Navbar() {
           </li>
           <li className="nav-item">
             {isLoggedIn ? (
-              <span>Xin chào {username}</span>
+              <span>Xin chào {username}!</span>
             ) : (
               <a className="nav-link" href="/login">
                 Đăng nhập
               </a>
             )}
+          </li>
+          <li></li>
+          <li className="dropdown">
+            <a
+              href="#"
+              className="dropdown-toggle"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                src="./img/football/san-trung-vuong.jpeg"
+                className="img-navbar"
+              />{" "}
+              <span className="caret"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <li>
+                {isLoggedIn ? (
+                  <a>Xin chào {username}!</a>
+                ) : (
+                  <a href="/login">Đăng nhập</a>
+                )}
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

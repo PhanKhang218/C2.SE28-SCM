@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 
-export default function Login() {
+export default function Login({ setUsername }) {
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -22,13 +22,7 @@ export default function Login() {
     try {
       const loginResponse = await axios.post(
         "http://localhost:9000/authenticate",
-        account,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "http://127.0.0.1:5173",
-            "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-          },
-        }
+        account
       );
 
       if (loginResponse.data.token) {
@@ -37,8 +31,10 @@ export default function Login() {
         localStorage.setItem("token", token);
         navigate("/");
         alert.success("Đăng nhập thành công!");
+        setUsername(account.username);
+        console.log("Username:", account.username); // Log giá trị account.username sau khi setUsername
       } else {
-        console.error(error);
+        console.error("Đăng nhập thất bại!");
       }
     } catch (error) {
       alert.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
