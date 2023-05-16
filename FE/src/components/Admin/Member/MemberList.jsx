@@ -183,6 +183,21 @@ function MemberList() {
     setSelectedMemberData({ ...selectedMemberData, [name]: value }); // Thay đổi thành setSelectedMemberData
   };
 
+  const renderNameCol = (name) => {
+    let result = name;
+    switch (name) {
+      case "name":
+        result = "Tên";
+        break;
+      case "phone":
+        result = "Số điện thoại";
+        break;
+      default:
+        break;
+    }
+    return result;
+  };
+
   return (
     <>
       <AdminPage />
@@ -194,7 +209,7 @@ function MemberList() {
               <tr>
                 {members.length > 0 &&
                   Object.keys(members[0]).map((key) => (
-                    <th key={key}>{key}</th>
+                    <th key={key}>{renderNameCol(key)}</th>
                   ))}
                 <th>Actions</th>
               </tr>
@@ -296,7 +311,9 @@ function MemberList() {
                 onChange={handleInputChange}
               />
               <button onClick={handleUpdateMember}>Update</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button className="btn-cancel" onClick={closeModal}>
+                Cancel
+              </button>
             </div>
           </Modal>
 
@@ -365,7 +382,9 @@ function MemberList() {
                 onChange={handleInputChange}
               />
               <button onClick={createMember}>Create</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button className="btn-cancel" onClick={closeModal}>
+                Cancel
+              </button>
             </div>
           </Modal>
         </div>

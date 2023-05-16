@@ -238,7 +238,7 @@ function EmployeeList() {
             </tbody>
           </table>
           <div className="button-container">
-            <button className="button-add-employee" onClick={openModal}>
+            <button className="button-add-member" onClick={openModal}>
               Add Employee
             </button>
           </div>
@@ -301,7 +301,9 @@ function EmployeeList() {
                 onChange={handleInputChange}
               />
               <button onClick={createEmployee}>Create</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button className="btn-cancel" onClick={closeModal}>
+                Cancel
+              </button>
             </div>
           </Modal>
           {/* Modal for update employee */}
@@ -363,7 +365,9 @@ function EmployeeList() {
                 onChange={handleInputChange}
               />
               <button onClick={handleUpdateEmployee}>Update</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button className="btn-cancel" onClick={closeModal}>
+                Cancel
+              </button>
             </div>
           </Modal>
         </div>
