@@ -32,17 +32,16 @@ export default function Navbar({ username }) {
               Gói tập
             </a>
           </li>
-          <li className="nav-item">
-            {isLoggedIn ? (
-              <span>Xin chào {username}!</span>
-            ) : (
-              <a className="nav-link" href="/login">
-                Đăng nhập
-              </a>
-            )}
+          <li className={`nav-item ${isLoggedIn ? "hidden" : ""}`}>
+            <a className="nav-link" href="/login">
+              Đăng nhập
+            </a>
           </li>
-          <li></li>
-          <li className="dropdown">
+
+          <li
+            style={{ listStyleType: "none", paddingLeft: "10px" }}
+            className={`dropdown ${isLoggedIn ? "" : "hidden"}`}
+          >
             <a
               href="#"
               className="dropdown-toggle"
@@ -58,22 +57,22 @@ export default function Navbar({ username }) {
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
-              <li>
-                {isLoggedIn ? (
-                  <a>Xin chào {username}!</a>
-                ) : (
-                  <a href="/login">Đăng nhập</a>
-                )}
-              </li>
-              <li>
-                <a href="#">Another action</a>
-              </li>
-              <li>
-                <a href="#">Something else here</a>
-              </li>
-              <li>
-                <a href="#">Separated link</a>
-              </li>
+              {isLoggedIn && (
+                <>
+                  <li>
+                    <a>Xin chào {username}!</a>
+                  </li>
+                  <li>
+                    <a href="#">Another action</a>
+                  </li>
+                  <li>
+                    <a href="#">Something else here</a>
+                  </li>
+                  <li>
+                    <a href="#">Separated link</a>
+                  </li>
+                </>
+              )}
             </ul>
           </li>
         </ul>
