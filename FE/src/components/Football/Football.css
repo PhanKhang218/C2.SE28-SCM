@@ -1,14 +1,16 @@
 * {
   font-family: akkurat, sans-serif;
 }
+
 .football-box {
+  background-image: url("../../../public/img/banner-container-second.png");
   background-color: #eaeaea;
   width: 80%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 150px;
   padding-top: 50px;
 }
 .star-yellow {

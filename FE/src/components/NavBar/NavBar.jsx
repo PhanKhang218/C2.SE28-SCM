@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./NavBar.css";
-
+import { useNavigate } from "react-router-dom";
 export default function Navbar({ username }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(username !== "");
     console.log("Username:", username);
   }, [username]);
 
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất?");
+    if (confirmLogout) {
+      localStorage.removeItem("token");
+      setIsLoggedIn(false);
+
+      navigate("/login");
+    }
+  };
   return (
     <div className="navbar">
       <div className="navbar-container">
@@ -51,7 +60,7 @@ export default function Navbar({ username }) {
               aria-expanded="false"
             >
               <img
-                src="./img/football/san-trung-vuong.jpeg"
+                src="https://cdn-icons-png.flaticon.com/512/147/147144.png?w=360"
                 className="img-navbar"
               />{" "}
               <span className="caret"></span>
@@ -69,7 +78,9 @@ export default function Navbar({ username }) {
                     <a href="#">Something else here</a>
                   </li>
                   <li>
-                    <a href="#">Separated link</a>
+                    <a href="/login" onClick={handleLogout}>
+                      Đăng xuất
+                    </a>
                   </li>
                 </>
               )}

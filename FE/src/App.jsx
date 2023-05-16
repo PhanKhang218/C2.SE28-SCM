@@ -19,9 +19,8 @@ import Football from "./components/Football/Football";
 import Time from "./components/Time/Time";
 import Payment from "./components/Payment/Payment";
 import Sport from "./components/Customer/Sport/Sport";
-import ClassDetail from "./components/Customer/ClassDetail/ClassDetail";
-import ClassList from "./components/Customer/ClassDetail/ClassDetail";
 import Navbar from "./components/NavBar/NavBar";
+import SchedulePage from "./components/Customer/SchedulePage/SchedulePage";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 export default function App() {
   const [username, setUsername] = useState("");
@@ -33,7 +32,6 @@ export default function App() {
       <Route path="/login" element={<Login setUsername={setUsername} />} />
       <Route path="/" element={<Dashboard username={username} />} />
       <Route path="/gym" element={<Gym />} />
-
       <Route path="/register" element={<Register />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/sidebar" element={<Sidebar />} />
@@ -41,8 +39,7 @@ export default function App() {
       <Route path="/payment" element={<Payment />} />
       {/*  */}
       <Route path="/sport" element={<Sport />} />
-      <Route path="/club" element={<ClassList />} />
-      <Route path="/class/:sportName" component={ClassDetail} />
+      <Route path="/schedule" element={<SchedulePage />} />
       {/* admin */}
       <Route path="/member" element={<MemberList />} />
       <Route path="/admin" element={<AdminPage />} />
