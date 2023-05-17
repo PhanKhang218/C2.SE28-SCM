@@ -78,19 +78,6 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok().header("Access-Control-Allow-Origin", "*")
                 .body(new JwtResponse(token));
 
-/*
-/*
-        if(exists) {
-            memberRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
-                    new ResponseObject("ok", "Delete member successfully", "")
-            );
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Access-Control-Allow-Origin","*").body(
-                new ResponseObject("failed", "Cannot find member to delete", "")
-        );
- */
-
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {

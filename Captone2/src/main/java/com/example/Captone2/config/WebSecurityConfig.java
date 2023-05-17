@@ -1,5 +1,6 @@
 package com.example.Captone2.config;
 
+import com.example.Captone2.common.enums.RoleName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -85,7 +86,8 @@ public class WebSecurityConfig
                 // không xác thực yêu cầu cụ thể này
                 .authorizeRequests()
                 .antMatchers("/authenticate", "/register").permitAll()
-                .antMatchers("/locations/**").hasAnyRole("ADMIN")
+               // .antMatchers("/employee/**").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
+                .antMatchers("/class/**").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
 
                 // all other requests need to be authenticated
                 //tất cả các yêu cầu khác cần phải được xác thực

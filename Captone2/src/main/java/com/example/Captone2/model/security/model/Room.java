@@ -19,19 +19,9 @@ public class Room {
 
     public Room(){}
 
-    public Room(Long classID) {
-        ClassID = classID;
-    }
-
-    public Long getClassID() {
-        return ClassID;
-    }
-
-    public void seClassID(Long classID) {
-        ClassID = classID;
-    }
-    public Room(Long roomId,String roomName,String roomType,Boolean isBooking,String price){
+    public Room(Long roomId, Long classID, String roomName, String roomType, Boolean isBooking, String price) {
         RoomId = roomId;
+        ClassID = classID;
         RoomName = roomName;
         RoomType = roomType;
         IsBooking = isBooking;
@@ -44,6 +34,14 @@ public class Room {
 
     public void setRoomId(Long roomId) {
         RoomId = roomId;
+    }
+
+    public Long getClassID() {
+        return ClassID;
+    }
+
+    public void setClassID(Long classID) {
+        ClassID = classID;
     }
 
     public String getRoomName() {

@@ -1,9 +1,19 @@
 package com.example.Captone2.model.security;
 
+import com.example.Captone2.entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Getter
+@Setter
+@Data
 @Entity
 @Table(name = "user")
 public class DAOUser {
@@ -13,103 +23,33 @@ public class DAOUser {
 	@Column
 	private long id;
 
+	@NotNull
+	@Column(name = "username", length = 200, unique = true)
 	private String username;
-	@Column
+	@NotNull
+	@Column(name = "password", length = 200, unique = true)
 	@JsonIgnore
 	private String password;
-
-
-	private String role;
-
+	@NotNull
+	@Column(name = "email", length = 200, unique = true)
 	private String email;
 
-	@Column
+	@NotNull
+	@Column(name = "confirmPassword", length = 200, unique = true)
 	@JsonIgnore
 	private String confirmPassword;
 
+	@Column(name = "phone", length = 15)
 	private String phone;
 
 	public DAOUser(){}
-	public DAOUser(long id, String username, String password, String role, String email, String confirmPassword, String phone) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.role = role;
-		this.email = email;
-		this.confirmPassword = confirmPassword;
-		this.phone = phone;
-	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Infor{" +
-				"id= " + id +
-				"username= " + username +
-				",password= " + password +
-				",role=" + role +
-				",email= " + email +
-				",confirmPassword=  " + confirmPassword +
-				",phone=  " + phone +
-				"}";
-	}
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "users_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles = new HashSet<>();
 
 }

@@ -43,7 +43,7 @@ public class UserFullService {
 
 
         api.setUsername(ac.getUsername());
-        api.setRole(ac.getRole());
+        //api.setRole(ac.getRole());
 
         api.setUserId(id);
         api.setMemberId(mb.getMemberId());
