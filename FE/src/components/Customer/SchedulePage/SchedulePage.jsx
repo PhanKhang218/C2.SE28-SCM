@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../../NavBar/NavBar";
+import DatePicker from "react-datepicker";
+import { useEffect } from "react";
+import Modal from "react-modal";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./SchedulePage.css";
 
 function SchedulePage() {
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedColumn, setSelectedColumn] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -36,16 +43,16 @@ function SchedulePage() {
     setSelectedTime(time);
     setSelectedRow(row);
     setSelectedColumn(column);
+    setModalIsOpen(true);
   };
 
   const isTimeBooked = (row, column) => {
-    const time = `${column + 1}h30 - ${column + 2}h30`; // Tính giờ dựa trên cột
+    const time = `${column + 1}h30 - ${column + 2}h30`;
     return bookings.some((booking) => {
-      // Kiểm tra xem có booking nào trùng thời gian được chọn không
       return (
-        booking.dayOfWeek === row + 1 && // Kiểm tra ngày trong tuần
-        time >= booking.dateFrom && // Kiểm tra thời gian bắt đầu
-        time <= booking.dateTo // Kiểm tra thời gian kết thúc
+        booking.dayOfWeek === row + 1 &&
+        time >= booking.dateFrom &&
+        time <= booking.dateTo
       );
     });
   };
@@ -54,6 +61,14 @@ function SchedulePage() {
     <div>
       <Navbar />
       <h2 className="schedule-title">Chọn giờ tập</h2>
+      <div className="datepicker-container">
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd/MM/yyyy"
+          placeholderText="Chọn ngày"
+        />
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -76,54 +91,86 @@ function SchedulePage() {
               className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 1, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 2, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 3, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 4, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 5, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("5h30 - 6h30", 6, 0)}
-              className={isTimeBooked(0, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
           </tr>
           {/* 20h30 - 21h30 */}
           <tr>
             <td>20h30 - 21h30</td>
+
             <td
               onClick={() => handleTimeSelection("20h30 - 21h30", 0, 6)}
               className={isTimeBooked(0, 6) ? "booked" : ""}
             ></td>
             <td
-              onClick={() => handleTimeSelection("20h30 - 21h30", 1, 6)}
-              className={isTimeBooked(1, 6) ? "booked" : ""}
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
+            ></td>
+            <td
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
+            ></td>
+            <td
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
+            ></td>
+            <td
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
+            ></td>
+            <td
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
+            ></td>
+            <td
+              onClick={() => handleTimeSelection("5h30 - 6h30", 0, 0)}
+              className={isTimeBooked(0, 0) ? "booked" : ""}
             ></td>
           </tr>
         </tbody>
       </table>
       {selectedTime && (
-        <div style={{ textAlign: "center", fontSize: "20px" }}>
-          <p style={{ fontWeight: "bold" }}>Bạn đã chọn:</p>
+        <Modal
+          className="modal-schedule"
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+        >
+          <h2>Bạn đã chọn:</h2>
           <p>
-            <span style={{ fontWeight: "bold" }}>Ngày: </span>
+            <span>Ngày: </span>
             {selectedRow === 6 ? "Chủ Nhật" : `Thứ ${selectedRow + 2}`},{" "}
-            <span style={{ fontWeight: "bold" }}>Giờ: </span>
+            <span>Giờ: </span>
             {selectedTime}
           </p>
-        </div>
+          <button className="schedule-btn-confirm">Xác nhận</button>
+          <button
+            className="schedule-btn-cancel"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Đóng
+          </button>
+        </Modal>
       )}
     </div>
   );

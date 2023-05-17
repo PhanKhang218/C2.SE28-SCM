@@ -147,9 +147,8 @@ function EmployeeList() {
     if (response.ok) {
       const data = await response.json();
       setEmployees([...employees, data]);
-      alert.success("Insert Employee successfully!");
       window.location.reload();
-      console.log("Insert Employee successfully!");
+      alert.success("Insert Employee successfully!");
     } else {
       console.log("Failed to create Employee");
     }
@@ -186,7 +185,10 @@ function EmployeeList() {
     const { name, value } = event.target;
     setSelectedEmployeeData({ ...selectedEmployeeData, [name]: value }); // Thay đổi thành setSelectedMemberData
   };
-
+  const handleNewEmployeeInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewEmployee({ ...newEmployee, [name]: value });
+  };
   // Render
   return (
     <>
@@ -255,50 +257,50 @@ function EmployeeList() {
                 type="text"
                 name="name"
                 placeholder="Name"
-                value={newEmployee.name}
-                onChange={handleInputChange}
+                value={newEmployee?.name}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="gender"
                 placeholder="Gender"
-                value={newEmployee.gender}
-                onChange={handleInputChange}
+                value={newEmployee?.gender}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="age"
                 placeholder="Age"
-                value={newEmployee.age}
-                onChange={handleInputChange}
+                value={newEmployee?.age}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="phone"
                 placeholder="Phone"
-                value={newEmployee.phone}
-                onChange={handleInputChange}
+                value={newEmployee?.phone}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="dayOfBirth"
                 placeholder="Day of Birth"
-                value={newEmployee.dayOfBirth}
-                onChange={handleInputChange}
+                value={newEmployee?.dayOfBirth}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="accountId"
                 placeholder="Account ID"
-                value={newEmployee.accountId}
-                onChange={handleInputChange}
+                value={newEmployee?.accountId}
+                onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="image"
                 placeholder="Image URL"
-                value={newEmployee.image}
-                onChange={handleInputChange}
+                value={newEmployee?.image}
+                onChange={handleNewEmployeeInputChange}
               />
               <button onClick={createEmployee}>Create</button>
               <button className="btn-cancel" onClick={closeModal}>
@@ -319,49 +321,49 @@ function EmployeeList() {
                 type="text"
                 name="name"
                 placeholder="Name"
-                value={selectedEmployeeData.name}
+                value={selectedEmployeeData?.name}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="gender"
                 placeholder="Gender"
-                value={selectedEmployeeData.gender}
+                value={selectedEmployeeData?.gender}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="age"
                 placeholder="Age"
-                value={selectedEmployeeData.age}
+                value={selectedEmployeeData?.age}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="phone"
                 placeholder="Phone"
-                value={selectedEmployeeData.phone}
+                value={selectedEmployeeData?.phone}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="dayOfBirth"
                 placeholder="Day of Birth"
-                value={selectedEmployeeData.dayOfBirth}
+                value={selectedEmployeeData?.dayOfBirth}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="accountId"
                 placeholder="Account ID"
-                value={selectedEmployeeData.accountId}
+                value={selectedEmployeeData?.accountId}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="image"
                 placeholder="Image URL"
-                value={selectedEmployeeData.image}
+                value={selectedEmployeeData?.image}
                 onChange={handleInputChange}
               />
               <button onClick={handleUpdateEmployee}>Update</button>

@@ -29,7 +29,7 @@ function Gym() {
 
   const handleOnclickToRegister = (e) => {
     e.preventDefault();
-    navigate("/time");
+    navigate("/schedule");
   };
 
   const renderStars = (star) => {

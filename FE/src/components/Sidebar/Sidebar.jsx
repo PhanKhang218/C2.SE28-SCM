@@ -45,7 +45,7 @@ export default function Sidebar() {
               </span>
               <div className="text logo-text">
                 <span className="name">C2SE.28</span>
-                <span className="profession">Khang Đtrai </span>
+                <span className="profession">Booking Sports</span>
               </div>
             </div>
             <i className="bx bx-chevron-right toggle" onClick={handleToggle} />

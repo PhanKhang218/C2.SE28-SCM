@@ -40,3 +40,49 @@
   background-color: #ccc;
   /* Các thuộc tính khác tùy ý */
 }
+
+.modal-schedule {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-schedule h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-schedule p {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.modal-schedule button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.schedule-btn-confirm {
+  background-color: #4caf50;
+}
+.schedule-btn-confirm:hover {
+  background-color: #45a049;
+}
+
+.schedule-btn-cancel:hover {
+  background-color: #ddd;
+}
+
+.schedule-btn-cancel {
+  background-color: #f1f1f1;
+}

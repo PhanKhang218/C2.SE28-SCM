@@ -138,7 +138,6 @@ function MemberList() {
       );
 
       if (response.status === 200) {
-        // Xóa thành viên khỏi danh sách
         setMembers(members.filter((member) => member.memberId !== memberId));
         alert.success("Delete member successfully!");
       } else {
@@ -171,18 +170,22 @@ function MemberList() {
     if (response.ok) {
       const data = await response.json();
       setMembers([...members, data]);
-      alert("Insert member successfully!");
       window.location.reload();
+      alert.success("Insert member successfully!");
     } else {
       console.log("Failed to create member");
     }
+    alert.success("Insert member successfully!");
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setSelectedMemberData({ ...selectedMemberData, [name]: value }); // Thay đổi thành setSelectedMemberData
   };
-
+  const handleInputCreateMember = (event) => {
+    const { name, value } = event.target;
+    setNewMember({ ...newMember, [name]: value });
+  };
   const renderNameCol = (name) => {
     let result = name;
     switch (name) {
@@ -337,49 +340,49 @@ function MemberList() {
                 name="name"
                 placeholder="Name"
                 value={newMember.name}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="gender"
                 placeholder="Gender"
                 value={newMember.gender}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="age"
                 placeholder="Age"
                 value={newMember.age}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="phone"
                 placeholder="Phone"
                 value={newMember.phone}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="dayOfBirth"
                 placeholder="Day of Birth"
                 value={newMember.dayOfBirth}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="accountId"
                 placeholder="Account ID"
                 value={newMember.accountId}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <input
                 type="text"
                 name="image"
                 placeholder="Image URL"
                 value={newMember.image}
-                onChange={handleInputChange}
+                onChange={handleInputCreateMember}
               />
               <button onClick={createMember}>Create</button>
               <button className="btn-cancel" onClick={closeModal}>
