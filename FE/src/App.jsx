@@ -21,16 +21,22 @@ import Payment from "./components/Payment/Payment";
 import Sport from "./components/Customer/Sport/Sport";
 import Navbar from "./components/NavBar/NavBar";
 import SchedulePage from "./components/Customer/SchedulePage/SchedulePage";
+import Personal from "./components/Personal/Personal";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 export default function App() {
-  const [username, setUsername] = useState("");
-
+  const [userData, setUserData] = useState(null);
   return (
     <Routes>
-      {/* customer */}
-      <Route path="/nav" element={<Navbar username={username} />} />
-      <Route path="/login" element={<Login setUsername={setUsername} />} />
-      <Route path="/" element={<Dashboard username={username} />} />
+      <Route
+        path="/nav"
+        element={
+          <Navbar userData={JSON.parse(localStorage.getItem("userData"))} />
+        }
+      />
+      <Route path="/login" element={<Login setUserData={setUserData} />} />
+      <Route path="/personal" element={<Personal />} />
+
+      <Route path="/" element={<Dashboard />} />
       <Route path="/gym" element={<Gym />} />
       <Route path="/register" element={<Register />} />
       <Route path="/pricing" element={<Pricing />} />

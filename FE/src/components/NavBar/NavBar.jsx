@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
-export default function Navbar({ username }) {
+export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [account, setAccount] = useState("");
+
   useEffect(() => {
-    setIsLoggedIn(username !== "");
-    console.log("Username:", username);
-  }, [username]);
+    setIsLoggedIn(account !== null);
+  }, [account]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userData"));
+    console.log(user);
+    setAccount({ ...user });
+    if (account) {
+      setUserData(account);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleLogout = () => {
     const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất?");
     if (confirmLogout) {
       localStorage.removeItem("token");
+      localStorage.removeItem("userData");
       setIsLoggedIn(false);
-
       navigate("/login");
     }
   };
@@ -69,10 +80,10 @@ export default function Navbar({ username }) {
               {isLoggedIn && (
                 <>
                   <li>
-                    <a>Xin chào {username}!</a>
+                    <a>Xin chào {account.username}!</a>
                   </li>
                   <li>
-                    <a href="#">Another action</a>
+                    <a href="/personal">Thông tin cá nhân</a>
                   </li>
                   <li>
                     <a href="#">Something else here</a>

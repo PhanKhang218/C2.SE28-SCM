@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 
-export default function Login({ setUsername }) {
+export default function Login({ setUserData }) {
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -17,6 +17,7 @@ export default function Login({ setUsername }) {
     const { name, value } = e.target;
     setAccount((prevState) => ({ ...prevState, [name]: value }));
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -27,12 +28,26 @@ export default function Login({ setUsername }) {
 
       if (loginResponse.data.token) {
         const token = loginResponse.data.token;
-        console.log(token);
         localStorage.setItem("token", token);
+
+        // Get user data
+        const userDataResponse = await axios.get(
+          `http://localhost:9000/api/${account.username}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (userDataResponse.data) {
+          const userData = userDataResponse.data;
+          localStorage.setItem("userData", JSON.stringify(userData));
+          setUserData(userData);
+        }
+
         navigate("/");
         alert.success("Đăng nhập thành công!");
-        setUsername(account.username);
-        console.log("Username:", account.username); // Log giá trị account.username sau khi setUsername
       } else {
         console.error("Đăng nhập thất bại!");
       }

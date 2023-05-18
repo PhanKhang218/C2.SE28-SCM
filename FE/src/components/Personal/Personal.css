@@ -1,0 +1,82 @@
+.Personnal {
+  max-width: 900px;
+  position: relative;
+  width: 100%;
+  margin-left: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  min-height: 200px;
+  margin-top: 85px;
+  background-color: #fff;
+  border-left: #a8a8a8 solid 1px;
+}
+.func-title-user span {
+  border-bottom: #a8a8a8 solid 1px;
+}
+.func-title-user {
+  height: 31px;
+  text-align: center;
+  line-height: 31px;
+  font-size: 30px;
+  color: #d82c2c;
+  font-weight: 700;
+  background: #fff;
+  margin-top: 20px;
+  padding: 20px;
+  text-transform: uppercase;
+}
+.info-basic {
+  background-color: #fff;
+  padding-top: 50px;
+}
+.info-basic .info {
+  font-size: 15px;
+  float: left;
+  width: 510px;
+  padding: 5px 0;
+}
+.info-basic {
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.txtcel1 {
+  text-align: right;
+}
+
+.txtcel2 {
+  text-align: left;
+  margin-left: 10px; /* Điều chỉnh khoảng cách giữa txtcel1 và txtcel2 */
+}
+
+/* .txtcel1 {
+  display: block;
+  float: left;
+  height: 25px;
+  line-height: 25px;
+  width: 170px;
+  text-align: right;
+  color: #464646;
+  font-weight: 700;
+  padding-right: 10px;
+}
+.txtcel2 {
+  display: block;
+  height: 25px;
+  line-height: 25px;
+  color: #464646;
+} */
+
+.form-update {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
