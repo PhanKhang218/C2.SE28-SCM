@@ -44,7 +44,7 @@ public class PaymentController {
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_Returnurl",Config.vnp_Returnurl);
+        //vnp_Params.put("vnp_Returnurl",Config.vnp_Returnurl);
 
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));

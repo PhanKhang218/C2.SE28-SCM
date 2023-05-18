@@ -85,7 +85,7 @@ public class WebSecurityConfig
                 // dont authenticate this particular request
                 // không xác thực yêu cầu cụ thể này
                 .authorizeRequests()
-                .antMatchers("/authenticate", "/register").permitAll()
+                .antMatchers("/authenticate", "/register","/basic/register").permitAll()
                // .antMatchers("/employee/**").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
                 .antMatchers("/class/**").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
 

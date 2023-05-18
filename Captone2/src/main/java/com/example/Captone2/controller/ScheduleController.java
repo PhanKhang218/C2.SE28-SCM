@@ -2,9 +2,7 @@ package com.example.Captone2.controller;
 
 
 import com.example.Captone2.model.security.ResponseObject;
-import com.example.Captone2.model.security.model.Class;
 import com.example.Captone2.model.security.model.Schedule;
-import com.example.Captone2.respositories.ClassRepository;
 import com.example.Captone2.respositories.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

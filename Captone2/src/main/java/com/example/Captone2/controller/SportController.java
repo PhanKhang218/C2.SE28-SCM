@@ -2,10 +2,7 @@ package com.example.Captone2.controller;
 
 
 import com.example.Captone2.model.security.ResponseObject;
-import com.example.Captone2.model.security.model.Booking;
-import com.example.Captone2.model.security.model.EventUser;
 import com.example.Captone2.model.security.model.Sport;
-import com.example.Captone2.respositories.BookingRepository;
 import com.example.Captone2.respositories.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

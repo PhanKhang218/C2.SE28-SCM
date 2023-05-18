@@ -1,15 +1,12 @@
 package com.example.Captone2.service;
 
-import com.example.Captone2.model.security.model.Class;
 import com.example.Captone2.model.security.model.Review;
-import com.example.Captone2.model.security.models_view.CC;
 import com.example.Captone2.model.security.models_view.review_detail;
 import com.example.Captone2.respositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.Date;
-import java.util.List;
+
 @Service
 public class review_detail_Service {
 

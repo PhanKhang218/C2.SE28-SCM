@@ -55,6 +55,8 @@ public class JwtTokenUtil  implements Serializable {
     //Tạo mã thông báo cho người dùng
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("user",userDetails.getUsername());
+        claims.put("role", userDetails.getAuthorities());
         return doGenerateToken(claims, userDetails.getUsername());
     }
 

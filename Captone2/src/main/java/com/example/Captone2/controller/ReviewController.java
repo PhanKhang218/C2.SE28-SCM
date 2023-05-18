@@ -1,9 +1,7 @@
 package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
-import com.example.Captone2.model.security.model.EventUser;
 import com.example.Captone2.model.security.model.Review;
-import com.example.Captone2.model.security.models_view.CC;
 import com.example.Captone2.model.security.models_view.review_detail;
 import com.example.Captone2.respositories.ReviewRepository;
 import com.example.Captone2.service.review_detail_Service;
@@ -12,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 @RestController

@@ -2,7 +2,6 @@ package com.example.Captone2.service;
 
 
 import com.example.Captone2.model.security.model.Class;
-import com.example.Captone2.model.security.models_view.CC;
 import com.example.Captone2.model.security.models_view.ClassAll;
 import com.example.Captone2.respositories.ClassRepository;
 import com.example.Captone2.respositories.UtilityRepository;

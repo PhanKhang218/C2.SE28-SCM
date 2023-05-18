@@ -9,4 +9,7 @@ public interface UserRepository extends JpaRepository<DAOUser, Long> {
 
     @Query("select m from DAOUser m where m.id=:id")
     DAOUser findByDAOUserId(Long id);
+
+    @Query("select m from DAOUser m where m.username=:username")
+    DAOUser getByUsername(String username);
 }

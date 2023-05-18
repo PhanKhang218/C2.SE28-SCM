@@ -25,8 +25,8 @@ public class Member {
 
     @ManyToMany
     @JoinTable(name = "Member_Membership",
-            joinColumns = @JoinColumn(name ="MemberId"),
-            inverseJoinColumns = @JoinColumn(name = "MembershipID"))
+                joinColumns = @JoinColumn(name ="MemberId"),
+                inverseJoinColumns = @JoinColumn(name = "MembershipID"))
     private List<Membership> membershipList = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "Member_Schedule",

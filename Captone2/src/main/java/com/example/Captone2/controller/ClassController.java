@@ -2,21 +2,14 @@ package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
 import com.example.Captone2.model.security.model.Class;
-import com.example.Captone2.model.security.model.Member;
-import com.example.Captone2.model.security.models_view.CC;
 import com.example.Captone2.model.security.models_view.ClassAll;
-import com.example.Captone2.model.security.models_view.MembershipView;
 import com.example.Captone2.respositories.ClassRepository;
-import com.example.Captone2.respositories.MemberRepository;
-import com.example.Captone2.service.ClassAndClup;
 import com.example.Captone2.service.ClassDetail;
-import com.example.Captone2.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController

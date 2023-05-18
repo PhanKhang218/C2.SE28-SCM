@@ -2,8 +2,6 @@ package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
 import com.example.Captone2.model.security.model.EventUser;
-import com.example.Captone2.model.security.model.Member;
-import com.example.Captone2.respositories.ClassRepository;
 import com.example.Captone2.respositories.EventUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

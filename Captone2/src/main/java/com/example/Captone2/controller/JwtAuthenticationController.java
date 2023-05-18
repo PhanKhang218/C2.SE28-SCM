@@ -3,8 +3,6 @@ package com.example.Captone2.controller;
 
 import com.example.Captone2.config.JwtTokenUtil;
 import com.example.Captone2.model.security.*;
-import com.example.Captone2.model.security.model.Class;
-import com.example.Captone2.model.security.model.Member;
 import com.example.Captone2.respositories.UserRepository;
 import com.example.Captone2.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +35,22 @@ public class JwtAuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+
+    private UserDetails userDetails;
+
     @GetMapping("/view/account")
     public ResponseEntity<List<DAOUser>> getList() {
        List user = userRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
                 user
+        );
+    }
+
+    @GetMapping("/view/{username}")
+    public ResponseEntity<DAOUser> getLists(@PathVariable String username) {
+
+        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
+                userRepository.getByUsername(username)
         );
     }
 
@@ -83,6 +92,13 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
+
+    @RequestMapping(value = "/basic/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUserBasic(@RequestBody UserDTO user) throws Exception {
+        return ResponseEntity.ok(userDetailsService.save_basic(user));
+    }
+
+
 
     private void authenticate(String username, String password) throws Exception {
         try {

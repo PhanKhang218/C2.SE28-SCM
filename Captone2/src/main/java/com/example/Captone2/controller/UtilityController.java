@@ -1,7 +1,6 @@
 package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
-import com.example.Captone2.model.security.model.Sport;
 import com.example.Captone2.model.security.model.Utility;
 import com.example.Captone2.respositories.UtilityRepository;
 

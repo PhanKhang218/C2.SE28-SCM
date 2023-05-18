@@ -178,14 +178,14 @@ public class Class {
     public void setTeam(String team) {
         Team = team;
     }
-
-    public Sport getSportC() {
-        return sportC;
-    }
-
-    public void setSportC(Sport sportC) {
-        this.sportC = sportC;
-    }
+//
+//    public Sport getSportC() {
+//        return sportC;
+//    }
+//
+//    public void setSportC(Sport sportC) {
+//        this.sportC = sportC;
+//    }
 
     @Override
     public String toString() {

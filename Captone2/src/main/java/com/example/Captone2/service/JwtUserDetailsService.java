@@ -9,7 +9,6 @@ import com.example.Captone2.model.security.UserDTO;
 import com.example.Captone2.respositories.RoleRepository;
 import com.example.Captone2.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -24,9 +23,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
-	
+
 	@Autowired
 	private UserDao userDao;
+
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -39,7 +39,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		DAOUser user = userDao.findByUsername(username) ;
+		DAOUser user = userDao.findByUsername(username);
 		if (user != null) {
 			//System.out.println("O day khong the Null");
 
@@ -47,11 +47,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 			List<GrantedAuthority> authorities = user.getRoles().stream()
 					.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 					.collect(Collectors.toList());
-			return new User(user.getUsername(),user.getPassword(), authorities);
+			return new User(user.getUsername(), user.getPassword(), authorities);
 		}
-		throw  new UsernameNotFoundException("User not found with username: " + username);
+		throw new UsernameNotFoundException("User not found with username: " + username);
 	}
-	
+
 	public DAOUser save(UserDTO user) {
 
 
@@ -62,17 +62,52 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setConfirmPassword(bcryptEncoder.encode(user.getConfirmPassword()));
 		newUser.setPhone(user.getPhone());
 
+
 		Set<Role> roles = new HashSet<>();
-		Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN);
-		roles.add(userRole);
-		newUser.setRoles(roles);
+
+		List<Role> rl = roleRepository.findAll();
+
+		String roleName = user.getRoleName();
+		if (roleName != null && roleName.equals("ROLE_CUSTOMER")) {
+			Role userRole = roleRepository.findByName(RoleName.ROLE_CUSTOMER);
+			roles.add(userRole);
+			newUser.setRoles(roles);
+		}
+		if (roleName != null && roleName.equals("ROLE_USER")) {
+			Role userRole = roleRepository.findByName(RoleName.ROLE_USER);
+			roles.add(userRole);
+			newUser.setRoles(roles);
+		}
+
+
+
 		return userDao.save(newUser);
+
+
 	}
 
-	public DAOUser viewUser(){
+	public DAOUser save_basic(UserDTO user) {
+
+
+		DAOUser newUser = new DAOUser();
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setEmail(user.getEmail());
+		newUser.setConfirmPassword(bcryptEncoder.encode(user.getConfirmPassword()));
+		newUser.setPhone(user.getPhone());
+
+
+		Set<Role> roles = new HashSet<>();
+
+
+		Role userRole = roleRepository.findByName(RoleName.ROLE_USER);
+		roles.add(userRole);
+		newUser.setRoles(roles);
 
 
 
-		return null;
+		return userDao.save(newUser);
+
+
 	}
 }
