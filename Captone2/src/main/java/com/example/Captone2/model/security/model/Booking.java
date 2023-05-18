@@ -1,58 +1,28 @@
 package com.example.Captone2.model.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Builder;
+
+import javax.persistence.*;
 
 @Entity
+
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long BookingId;
-
-    Long ClassId;
-
-    Long RoomID;
-
-    Long MemberID;
-
     String DateFrom;
     String DateTo;
     String Price;
-
+    @ManyToOne
+    @JoinColumn(name = "ClassId")
+    private Class aClass;
+    @ManyToOne
+    @JoinColumn(name = "RoomId")
+    private Room roomB;
+    @ManyToOne
+    @JoinColumn(name = "MemberId")
+    private Member memberB;
     public Booking(){}
-
-    public Booking(Long classId, Long roomID, Long memberID) {
-
-        ClassId = classId;
-        RoomID = roomID;
-        MemberID = memberID;
-    }
-
-    public Long getClassId() {
-        return ClassId;
-    }
-
-    public void setClassId(Long classId) {
-        ClassId = classId;
-    }
-
-    public Long getRoomID() {
-        return RoomID;
-    }
-
-    public void setRoomID(Long roomID) {
-        RoomID = roomID;
-    }
-
-    public Long getMemberID() {
-        return MemberID;
-    }
-
-    public void setMemberID(Long memberID) {
-        MemberID = memberID;
-    }
 
     public Booking(Long bookingId,Boolean isBooking,String dateFrom,String dateTo,String price){
         BookingId = bookingId;
@@ -60,7 +30,29 @@ public class Booking {
         DateTo = dateTo;
         Price = price;
     }
+    public Class getaClass() {
+        return aClass;
+    }
 
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
+    }
+
+    public Room getRoom() {
+        return roomB;
+    }
+
+    public void setRoom(Room room) {
+        this.roomB = room;
+    }
+
+    public Member getMember() {
+        return memberB;
+    }
+
+    public void setMember(Member member) {
+        this.memberB = member;
+    }
     public Long getBookingId() {
         return BookingId;
     }
@@ -98,9 +90,9 @@ public class Booking {
         // TODO Auto-generated method stub
         return "Booking{" +
                 "BookingID= " + BookingId +
-                "ClassID= " + ClassId +
-                ",RoomID= " + RoomID +
-                ",MemberID=" + MemberID +
+                "ClassID= " + aClass +
+                ",RoomID= " + roomB +
+                ",MemberID=" + memberB +
                 ",DateFrom=  " + DateFrom +
                 ",DateTo= " + DateTo +
                 ",Price=  " + Price +

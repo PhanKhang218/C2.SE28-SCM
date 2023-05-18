@@ -1,9 +1,10 @@
 package com.example.Captone2.model.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Builder;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Membership {
@@ -18,6 +19,9 @@ public class Membership {
     String EndDate;
     String DayOfWeek;
     String ExpireDate;
+
+    @ManyToMany(mappedBy = "membershipList")
+    private List<Member> members = new ArrayList<>();
 
     public Membership(){}
 
@@ -94,6 +98,14 @@ public class Membership {
 
     public void setExpireDate(String expireDate) {
         ExpireDate = expireDate;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 
     @Override

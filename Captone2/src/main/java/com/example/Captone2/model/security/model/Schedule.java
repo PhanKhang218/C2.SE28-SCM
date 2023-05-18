@@ -1,11 +1,13 @@
 package com.example.Captone2.model.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Builder;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +15,22 @@ public class Schedule {
 
     private String DateOfWeek;
     private String Time;
-
+    @ManyToMany(mappedBy = "scheduleList")
+    private List<Member> members = new ArrayList<>();
     public Schedule(){}
 
     public Schedule(long schedule_ID, String dateOfWeek, String time) {
         Schedule_ID = schedule_ID;
         DateOfWeek = dateOfWeek;
         Time = time;
+    }
+
+    public List<Member> getMemberList() {
+        return members;
+    }
+
+    public void setMemberList(List<Member> memberList) {
+        this.members = memberList;
     }
 
     public long getSchedule_ID() {

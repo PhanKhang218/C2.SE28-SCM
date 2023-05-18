@@ -1,9 +1,10 @@
 package com.example.Captone2.model.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Builder;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class EventUser {
@@ -18,6 +19,9 @@ public class EventUser {
     String startTime;
     String doneTime;
     String Decription;
+
+    @ManyToMany(mappedBy = "eventUserList")
+    private List<Member> memberList = new ArrayList<>();
 
     public EventUser(Long evenMembertld, Long memberld, Long employeeld, String evenName, String startTime, String doneTime, String decription) {
         EvenMembertld = evenMembertld;
@@ -89,6 +93,13 @@ public class EventUser {
         Decription = decription;
     }
 
+    public List<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<Member> memberList) {
+        this.memberList = memberList;
+    }
 
     @Override
     public String toString() {

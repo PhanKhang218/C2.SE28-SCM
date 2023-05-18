@@ -1,31 +1,62 @@
 package com.example.Captone2.model.security.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Builder;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long RoomId;
 
-    Long ClassID;
     String RoomName;
     String RoomType;
     Boolean IsBooking;
     String Price;
-
+    @ManyToOne
+    @JoinColumn(name = "ClassId")
+    private Class ClassR;
+    @OneToMany(mappedBy= "roomB")
+    private List<Booking> bookings = new ArrayList<>();
+    @OneToMany(mappedBy= "roomR")
+    private List<Review> reviewList = new ArrayList<>();
     public Room(){}
 
     public Room(Long roomId, Long classID, String roomName, String roomType, Boolean isBooking, String price) {
         RoomId = roomId;
-        ClassID = classID;
         RoomName = roomName;
         RoomType = roomType;
         IsBooking = isBooking;
         Price = price;
+    }
+
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public List<Review> getReviews() {
+        return reviewList;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviewList = reviews;
+    }
+
+    public Class getClassR() {
+        return ClassR;
+    }
+
+    public void setClassR(Class classR) {
+        ClassR = classR;
     }
 
     public Long getRoomId() {
@@ -36,13 +67,6 @@ public class Room {
         RoomId = roomId;
     }
 
-    public Long getClassID() {
-        return ClassID;
-    }
-
-    public void setClassID(Long classID) {
-        ClassID = classID;
-    }
 
     public String getRoomName() {
         return RoomName;
@@ -79,7 +103,6 @@ public class Room {
         // TODO Auto-generated method stub
         return "Room{" +
                 "RoomID= " + RoomId +
-                "ClassID= " + ClassID +
                 ",RoomName= " + RoomName +
                 ",RoomType= " + RoomType +
                 ",IsBooking=  " + IsBooking +
