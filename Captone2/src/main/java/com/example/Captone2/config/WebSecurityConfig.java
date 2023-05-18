@@ -85,9 +85,14 @@ public class WebSecurityConfig
                 // dont authenticate this particular request
                 // không xác thực yêu cầu cụ thể này
                 .authorizeRequests()
-                .antMatchers("/authenticate", "/register","/basic/register").permitAll()
+                .antMatchers("/authenticate","/basic/register").permitAll()
                // .antMatchers("/employee/**").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
-                .antMatchers("/class/**").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
+              //  .antMatchers("/class/**").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
+                .antMatchers("/view/**").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
+                .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
+                .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
+                .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_EMPLOYEE).split("_")[1])
+
 
                 // all other requests need to be authenticated
                 //tất cả các yêu cầu khác cần phải được xác thực

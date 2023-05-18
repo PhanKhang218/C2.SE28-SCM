@@ -46,7 +46,7 @@ public class JwtAuthenticationController {
         );
     }
 
-    @GetMapping("/view/{username}")
+    @GetMapping("/api/{username}")
     public ResponseEntity<DAOUser> getLists(@PathVariable String username) {
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
@@ -88,7 +88,7 @@ public class JwtAuthenticationController {
                 .body(new JwtResponse(token));
 
     }
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/view/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
@@ -110,7 +110,7 @@ public class JwtAuthenticationController {
         }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/view/delete/{id}")
     ResponseEntity<ResponseObject> deleteUser(@PathVariable Long id) {
         boolean exists = userRepository.existsById(id);
         if (exists) {

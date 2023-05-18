@@ -68,8 +68,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		List<Role> rl = roleRepository.findAll();
 
 		String roleName = user.getRoleName();
-		if (roleName != null && roleName.equals("ROLE_CUSTOMER")) {
-			Role userRole = roleRepository.findByName(RoleName.ROLE_CUSTOMER);
+		if (roleName != null && roleName.equals("ROLE_EMPLOYEE")) {
+			Role userRole = roleRepository.findByName(RoleName.ROLE_EMPLOYEE);
 			roles.add(userRole);
 			newUser.setRoles(roles);
 		}
