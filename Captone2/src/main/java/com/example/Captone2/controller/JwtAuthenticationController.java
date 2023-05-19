@@ -1,8 +1,12 @@
 package com.example.Captone2.controller;
 
 
+import com.example.Captone2.common.enums.RoleName;
 import com.example.Captone2.config.JwtTokenUtil;
+import com.example.Captone2.entity.Role;
 import com.example.Captone2.model.security.*;
+import com.example.Captone2.model.security.model.Class;
+import com.example.Captone2.respositories.RoleRepository;
 import com.example.Captone2.respositories.UserRepository;
 import com.example.Captone2.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +20,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -36,7 +42,8 @@ public class JwtAuthenticationController {
     private UserRepository userRepository;
 
 
-    private UserDetails userDetails;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("/view/account")
     public ResponseEntity<List<DAOUser>> getList() {
@@ -93,11 +100,55 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
+
     @RequestMapping(value = "/basic/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUserBasic(@RequestBody UserDTO user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save_basic(user));
     }
 
+
+
+
+    @PutMapping("put/{id}")
+    ResponseEntity<ResponseObject> update(@RequestBody UserDTO newUser, @PathVariable Long id) {
+        DAOUser user = new DAOUser();
+        DAOUser updateUser = userRepository.findById(id)
+                .map(DAOUser -> {
+
+                    //UserDTO.setUsername(newClass.getClassName());
+                    Set<Role> roles = new HashSet<>();
+
+                    //List<Role> rl = roleRepository.findAll();
+
+                    String roleName = newUser.getRoleName();
+                    if (roleName != null && roleName.equals("ROLE_EMPLOYEE")) {
+                        Role userRole = roleRepository.findByName(RoleName.ROLE_EMPLOYEE);
+                        roles.add(userRole);
+                        DAOUser.setRoles(roles);
+                    }
+                    if (roleName != null && roleName.equals("ROLE_USER")) {
+                        Role userRole = roleRepository.findByName(RoleName.ROLE_USER);
+                        roles.add(userRole);
+                        DAOUser.setRoles(roles);
+                    }
+
+                    DAOUser.setPhone(newUser.getPhone());
+                    DAOUser.setEmail(newUser.getEmail());
+                    DAOUser.setPassword(newUser.getPassword());
+                    DAOUser.setConfirmPassword(newUser.getConfirmPassword());
+
+
+
+
+                    return userRepository.save(DAOUser);
+                }).orElseGet(() -> {
+                    user.setId(id);
+                    return userRepository.save(user);
+                });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Class successfully", updateUser)
+        );
+    }
 
 
     private void authenticate(String username, String password) throws Exception {

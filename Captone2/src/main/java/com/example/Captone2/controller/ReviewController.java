@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -85,8 +86,9 @@ public class ReviewController {
 
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertReview (@RequestBody Review newC){
-        Review r = new Review();
-       // r.setTime(new Date().getTime());
+        newC.setTime(String.valueOf(new Date()));
+        newC.setComment(newC.getComment());
+        newC.setRate(newC.getRate());
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
                 new ResponseObject("Ok", "Insert Member successfully", reviewRepository.save(newC))
         );
