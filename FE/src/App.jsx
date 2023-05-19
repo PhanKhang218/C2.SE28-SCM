@@ -22,6 +22,7 @@ import Sport from "./components/Customer/Sport/Sport";
 import Navbar from "./components/NavBar/NavBar";
 import SchedulePage from "./components/Customer/SchedulePage/SchedulePage";
 import Personal from "./components/Personal/Personal";
+import AccountList from "../src/components/Admin/AccountList/AccountList";
 const dataProvider = jsonServerProvider("http://localhost:9000");
 export default function App() {
   const [userData, setUserData] = useState(null);
@@ -46,10 +47,12 @@ export default function App() {
       {/*  */}
       <Route path="/sport" element={<Sport />} />
       <Route path="/schedule" element={<SchedulePage />} />
+
       {/* admin */}
-      <Route path="/member" element={<MemberList />} />
+      <Route path="/admin/member" element={<MemberList />} />
+      <Route path="/admin/account" element={<AccountList />} />
       <Route path="/admin" element={<AdminPage />} />
-      <Route path="/employee" element={<EmployeeList />} />
+      <Route path="/admin/employee" element={<EmployeeList />} />
       <Route path="/football" element={<Football />} />
       <Route path="/time" element={<Time />} />
 
@@ -58,9 +61,3 @@ export default function App() {
     </Routes>
   );
 }
-
-// const AdminLayout = () => (
-//   <Admin dataProvider={dataProvider} authProvider={authProvider}>
-//     <Resource name="member" list={MemberList} />
-//   </Admin>
-// );

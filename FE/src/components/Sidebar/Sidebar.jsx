@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { useAlert } from "react-alert";
 import "./sidebar.css";
 export default function Sidebar() {
+  const alert = useAlert();
   const [closeClass, setCloseClass] = useState("");
   useEffect(() => {
     const body = document.querySelector("body"),
@@ -22,7 +23,13 @@ export default function Sidebar() {
       }
     });
   }, []);
-
+  const handleLogout = () => {
+    const confirmLogout = window.alert("Bạn có chắc chắn muốn thoát?");
+    if (confirmLogout) {
+      navigate("/login");
+      alert.success("Đăng xuất thành công!");
+    }
+  };
   const handleToggle = () => {
     const sidebar = document.querySelector(".sidebar");
     if (sidebar.classList.contains("close")) {
@@ -97,7 +104,7 @@ export default function Sidebar() {
             </div>
             <div className="bottom-content">
               <li id="logout">
-                <a href="#">
+                <a href="/login" onClick={handleLogout}>
                   <i className="bx bx-log-out icon" />
                   <span className="text nav-text">Logout</span>
                 </a>

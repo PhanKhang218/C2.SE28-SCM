@@ -15,7 +15,7 @@ function Gym() {
         const token = localStorage.getItem("token");
         const classList = await getClassList(token);
         const filteredClasses = classList.filter(
-          (classItem) => classItem.sportName === "Gym"
+          (classItem) => classItem.team === "Gym"
         );
         console.log(filteredClasses);
         setFilteredClasses(filteredClasses);

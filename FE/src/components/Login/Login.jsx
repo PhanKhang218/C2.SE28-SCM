@@ -39,14 +39,16 @@ export default function Login({ setUserData }) {
             },
           }
         );
-
+        const userData = userDataResponse.data;
         if (userDataResponse.data) {
-          const userData = userDataResponse.data;
           localStorage.setItem("userData", JSON.stringify(userData));
           setUserData(userData);
         }
-
-        navigate("/");
+        if (userData.username == "admin") {
+          navigate("/admin/account");
+        } else {
+          navigate("/");
+        }
         alert.success("Đăng nhập thành công!");
       } else {
         console.error("Đăng nhập thất bại!");

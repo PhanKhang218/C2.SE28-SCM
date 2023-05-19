@@ -61,12 +61,15 @@ function SchedulePage() {
     <div>
       <Navbar />
       <h2 className="schedule-title">Chọn giờ tập</h2>
-      <div className="datepicker-container">
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          dateFormat="dd/MM/yyyy"
-          placeholderText="Chọn ngày"
+
+      <div className="form-group">
+        <label htmlFor="">Chọn ngày:</label>
+        <input
+          type="date"
+          className="form-control"
+          name="BirthDay"
+          // value={dataUpdate?.BirthDay}
+          // onChange={handleOnChange}
         />
       </div>
       <table className="table">

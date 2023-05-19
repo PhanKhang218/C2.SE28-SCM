@@ -205,7 +205,6 @@ function MemberList() {
     <>
       <AdminPage />
       <div className="member-container">
-        <Sidebar />
         <div className="table-container">
           <table className="table table-bordered table-member">
             <thead>

@@ -11,23 +11,23 @@ export default function AdminPage() {
         </a>
         <ul className="navbar-admin-ul">
           <li className="nav-item">
-            <a className="nav-link" href="/member">
-              Member Management
+            <a className="nav-link" href="/admin/account">
+              Account Management
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/employee">
+            <a className="nav-link" href="/admin/employee">
               Employee Management
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/pricing">
-              Class Management
+            <a className="nav-link" href="/admin/member">
+              Member Management
             </a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/login">
-              Class Management
+              Account Management
             </a>
           </li>
         </ul>
