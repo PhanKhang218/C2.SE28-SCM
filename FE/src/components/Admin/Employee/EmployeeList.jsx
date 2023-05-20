@@ -61,29 +61,6 @@ function EmployeeList() {
     }
   };
 
-  const getEmployeeById = async (employeeId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `http://localhost:9000/employee/${employeeId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.status === 200) {
-        const employee = response.data;
-        console.log("Employee:", employee);
-      } else {
-        console.log("Failed to get employee by ID");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   // Update
   const updateEmployee = async (employeeId) => {
     const selectedEmployee = employees.find(
@@ -95,7 +72,7 @@ function EmployeeList() {
       setCreateModalIsOpen(true);
     }
   };
-
+  // PUT
   const handleUpdateEmployee = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -146,8 +123,9 @@ function EmployeeList() {
     if (response.ok) {
       const data = await response.json();
       setEmployees([...employees, data]);
-      window.location.reload();
       alert.success("Insert Employee successfully!");
+      setCreateModalIsOpen(false);
+      window.location.reload();
     } else {
       console.log("Failed to create Employee");
     }
@@ -205,19 +183,12 @@ function EmployeeList() {
                 <th>SĐT</th>
                 <th>Tuổi</th>
                 <th>Email</th>
-                <th>Bằng cấp</th>
+                <th>Giới tính</th>
                 <th>Hình ảnh</th>
                 <th>ID nhân viên</th>
                 <th>Kinh nghiệm</th>
                 <th>Actions</th>
               </tr>
-              {/* <tr>
-                {employees.length > 0 &&
-                  Object.keys(employees[0]).map((key) => (
-                    <th key={key}>{key}</th>
-                  ))}
-                <th>Actions</th>
-              </tr> */}
             </thead>
             <tbody>
               {employees.map((employee) => (
@@ -226,7 +197,7 @@ function EmployeeList() {
                   <td>{employee.phone}</td>
                   <td>{employee.age}</td>
                   <td>{employee.email}</td>
-                  <td>{employee.degree}</td>
+                  <td>{employee.gender}</td>
                   <td>
                     {<img className="image-member" src={employee.image} />}
                   </td>
@@ -267,52 +238,70 @@ function EmployeeList() {
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Tên: "
                 value={newEmployee?.name}
                 onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
-                name="gender"
-                placeholder="Gender"
-                value={newEmployee?.gender}
-                onChange={handleNewEmployeeInputChange}
-              />
-              <input
-                type="text"
-                name="age"
-                placeholder="Age"
-                value={newEmployee?.age}
-                onChange={handleNewEmployeeInputChange}
-              />
-              <input
-                type="text"
                 name="phone"
-                placeholder="Phone"
+                placeholder="SĐT: "
                 value={newEmployee?.phone}
                 onChange={handleNewEmployeeInputChange}
               />
+
+              <select
+                className="admin-select"
+                name="age"
+                value={newEmployee?.age}
+                onChange={handleNewEmployeeInputChange}
+              >
+                <option value="">Chọn tuổi: </option>
+                {Array.from({ length: 99 }, (_, index) => (
+                  <option key={index} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
-                name="dayOfBirth"
-                placeholder="Day of Birth"
-                value={newEmployee?.dayOfBirth}
+                name="email"
+                placeholder="Email: "
+                value={newEmployee?.email}
+                onChange={handleNewEmployeeInputChange}
+              />
+              <select
+                className="admin-select"
+                name="gender"
+                value={newEmployee?.gender}
+                onChange={handleNewEmployeeInputChange}
+              >
+                <option value="">Chọn giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL: "
+                value={newEmployee?.image}
                 onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
                 name="accountId"
-                placeholder="Account ID"
-                value={newEmployee?.accountId}
+                placeholder="ID tài khoản: "
+                value={newEmployee?.employeeId}
                 onChange={handleNewEmployeeInputChange}
               />
               <input
                 type="text"
-                name="image"
-                placeholder="Image URL"
-                value={newEmployee?.image}
+                name="experience"
+                placeholder="Kinh nghiệm: "
+                value={newEmployee?.experience}
                 onChange={handleNewEmployeeInputChange}
               />
+
               <button onClick={createEmployee}>Create</button>
               <button className="btn-cancel" onClick={closeModal}>
                 Cancel
@@ -331,50 +320,66 @@ function EmployeeList() {
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Tên: "
                 value={selectedEmployeeData?.name}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
-                name="gender"
-                placeholder="Gender"
-                value={selectedEmployeeData?.gender}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="age"
-                placeholder="Age"
-                value={selectedEmployeeData?.age}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
                 name="phone"
-                placeholder="Phone"
+                placeholder="SĐt: "
                 value={selectedEmployeeData?.phone}
                 onChange={handleInputChange}
               />
+              <select
+                className="admin-select"
+                name="age"
+                value={selectedEmployeeData?.age}
+                onChange={handleInputChange}
+              >
+                <option value="">Chọn tuổi</option>
+                {Array.from({ length: 99 }, (_, index) => (
+                  <option key={index} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
-                name="dayOfBirth"
-                placeholder="Day of Birth"
-                value={selectedEmployeeData?.dayOfBirth}
+                name="email"
+                placeholder="Email: "
+                value={selectedEmployeeData?.email}
+                onChange={handleInputChange}
+              />
+              <select
+                className="admin-select"
+                name="gender"
+                value={selectedEmployeeData?.gender}
+                onChange={handleInputChange}
+              >
+                <option value="">Chọn giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL"
+                value={selectedEmployeeData?.image}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
                 name="accountId"
                 placeholder="Account ID"
-                value={selectedEmployeeData?.accountId}
+                value={selectedEmployeeData?.employeeId}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
-                name="image"
-                placeholder="Image URL"
-                value={selectedEmployeeData?.image}
+                name="accountId"
+                placeholder="Kinh nghiệm: "
+                value={selectedEmployeeData?.experience}
                 onChange={handleInputChange}
               />
               <button onClick={handleUpdateEmployee}>Update</button>

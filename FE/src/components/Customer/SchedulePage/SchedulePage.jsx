@@ -3,17 +3,20 @@ import Navbar from "../../NavBar/NavBar";
 import DatePicker from "react-datepicker";
 import { useEffect } from "react";
 import Modal from "react-modal";
-
+import { useAlert } from "react-alert";
 import "react-datepicker/dist/react-datepicker.css";
 import "./SchedulePage.css";
 
 function SchedulePage() {
+  const alert = useAlert();
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedColumn, setSelectedColumn] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [selectedDateError, setSelectedDateError] = useState(false);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -56,6 +59,16 @@ function SchedulePage() {
       );
     });
   };
+  const handleDateChange = (event) => {
+    const selectedDate = new Date(event.target.value);
+    const currentDate = new Date();
+
+    if (selectedDate < currentDate) {
+      setSelectedDateError(true);
+    } else {
+      setSelectedDateError(false);
+    }
+  };
 
   return (
     <div>
@@ -66,12 +79,16 @@ function SchedulePage() {
         <label htmlFor="">Chọn ngày:</label>
         <input
           type="date"
-          className="form-control"
+          className="form-control schedule-input"
           name="BirthDay"
-          // value={dataUpdate?.BirthDay}
-          // onChange={handleOnChange}
+          onChange={handleDateChange}
         />
+        {selectedDateError && (
+          <div className="error-message">Vui lòng chọn ngày hợp lệ!</div>
+        )}
       </div>
+      <label htmlFor="">Chọn giờ:</label>
+
       <table className="table">
         <thead>
           <tr>

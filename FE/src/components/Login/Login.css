@@ -66,11 +66,11 @@
   display: flex;
 }
 .content-left-login {
-  width: 40%;
+  width: 45%;
   background-color: #fff;
 }
 .content-right-login {
-  width: 60%;
+  width: 55%;
   display: flex;
   justify-content: flex-end;
 }

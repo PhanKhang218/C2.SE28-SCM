@@ -30,8 +30,6 @@ export default function Personnal() {
   };
 
   const handleSubmit = async (e) => {
-    // ... Code for handling form submission ...
-
     const newAccount = {
       ...account,
       ...dataUpdate,
@@ -55,7 +53,17 @@ export default function Personnal() {
       setAccount(userData);
     }
   }, []);
-
+  const mapRoleName = (roleName) => {
+    if (roleName === "ROLE_ADMIN") {
+      return "Quản trị viên";
+    } else if (roleName === "ROLE_USER") {
+      return "Người dùng";
+    } else if (roleName === "ROLE_EMPLOYEE") {
+      return "Nhân viên";
+    } else {
+      return roleName;
+    }
+  };
   return (
     <div className="personal-container">
       <NavBar />
@@ -78,7 +86,7 @@ export default function Personnal() {
               <div className="txtcel1">Vai trò:</div>
               <div className="txtcel2">
                 {account?.roles && account.roles.length > 0
-                  ? account.roles[0].name
+                  ? mapRoleName(account.roles[0].name)
                   : ""}
               </div>
             </div>

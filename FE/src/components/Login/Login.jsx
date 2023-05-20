@@ -72,6 +72,9 @@ export default function Login({ setUserData }) {
           <div className="header-right"></div>
         </div>
         <div className="content-login">
+          <div className="content-right-login">
+            <img src="./img/image-login2.avif" alt="#" />
+          </div>
           <div className="content-left-login">
             <form className="form" id="form-1">
               <img src="./img/join.svg" alt="" />
@@ -85,7 +88,7 @@ export default function Login({ setUserData }) {
                   id="username"
                   name="username"
                   type="text"
-                  placeholder="VD: abc@gmail.com"
+                  placeholder="VD: nguyenvana@gmail.com"
                   className="form-control"
                   onChange={handleChange}
                 />
@@ -134,9 +137,6 @@ export default function Login({ setUserData }) {
                 Đăng nhập
               </button>
             </form>
-          </div>
-          <div className="content-right-login">
-            <img src="./img/image-login2.avif" alt="#" />
           </div>
         </div>
         <div className="footer" />

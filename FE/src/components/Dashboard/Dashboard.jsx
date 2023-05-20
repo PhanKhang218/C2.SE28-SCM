@@ -5,11 +5,11 @@ import Footer from "../Footer/Footer";
 // import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 
-export default function Dashboard({ username }) {
+export default function Dashboard() {
   return (
     <div className="Main">
       <div className="dashboard">
-        <NavBar username={username} />
+        <NavBar />
         <div className="container-main">
           <p className="dashboard-description">
             Tập luyện thể dục giúp cải thiện sức khỏe, giảm cân, tăng cơ bắp và

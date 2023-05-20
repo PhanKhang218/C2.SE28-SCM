@@ -86,3 +86,14 @@
 .schedule-btn-cancel {
   background-color: #f1f1f1;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.schedule-input {
+  width: 30%;
+  display: flex;
+  align-items: center;
+}

@@ -68,6 +68,9 @@ const Register = () => {
           <div className="header-right"></div>
         </div>
         <div className="content-login">
+          <div className="content-right-login">
+            <img src="./img/image-login2.avif" alt="#" />
+          </div>
           <div className="content-left-login">
             <form onSubmit={handleRegister} className="form-register">
               <div className="register-title">
@@ -138,9 +141,6 @@ const Register = () => {
                 />
               </div> */}
             </form>
-          </div>
-          <div className="content-right-login">
-            <img src="./img/image-login2.avif" alt="#" />
           </div>
         </div>
         <div className="footer" />

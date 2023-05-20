@@ -28,6 +28,8 @@ export default function App() {
   const [userData, setUserData] = useState(null);
   return (
     <Routes>
+      <Route path="/" element={<Dashboard />} />
+
       <Route
         path="/nav"
         element={
@@ -37,7 +39,6 @@ export default function App() {
       <Route path="/login" element={<Login setUserData={setUserData} />} />
       <Route path="/personal" element={<Personal />} />
 
-      <Route path="/" element={<Dashboard />} />
       <Route path="/gym" element={<Gym />} />
       <Route path="/register" element={<Register />} />
       <Route path="/pricing" element={<Pricing />} />
