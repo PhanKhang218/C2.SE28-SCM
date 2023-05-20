@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { useAlert } from "react-alert";
-import Navbar from "../../NavBar/NavBar";
+import "./Account.css";
 import AdminPage from "../AdminPage/AdminPage";
 
 function AccountList() {
@@ -149,20 +149,34 @@ function AccountList() {
     setSelectedAccountId("");
     setSelectedAccountData({});
   };
-
+  const mapRoleName = (roleName) => {
+    if (roleName === "ROLE_ADMIN") {
+      return "Admin";
+    } else if (roleName === "ROLE_USER") {
+      return "Người dùng";
+    } else if (roleName === "ROLE_EMPLOYEE") {
+      return "Nhân viên";
+    } else {
+      return roleName;
+    }
+  };
   return (
     <>
       <AdminPage />
       <div className="member-container">
         <div className="table-container">
+          <div className="admin-management">QUẢN LÍ TÀI KHOẢN</div>
+          <div className="admin-list">
+            <strong>Tổng số lượng user:</strong> {accounts.length}
+          </div>
           <table className="table table-bordered table-member">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Roles</th>
+                <th>Số điện thoại</th>
+                <th>Vai trò</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -175,14 +189,17 @@ function AccountList() {
                   <td>{account.phone}</td>
                   <td>
                     {account.roles.map((role) => (
-                      <span key={role.id}>{role.name}</span>
+                      <span key={role.id}>{mapRoleName(role.name)}</span>
                     ))}
                   </td>
                   <td>
                     <button onClick={() => updateAccount(account.id)}>
                       Update
                     </button>
-                    <button onClick={() => deleteAccount(account.id)}>
+                    <button
+                      className="btn-delete-admin"
+                      onClick={() => deleteAccount(account.id)}
+                    >
                       Delete
                     </button>
                   </td>

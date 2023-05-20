@@ -16,3 +16,23 @@
   font-weight: bold;
   font-weight: 500;
 }
+
+.caret {
+  vertical-align: middle;
+  padding-left: 10px;
+  font-weight: 500;
+}
+.caret:hover {
+  color: #ff8013;
+}
+.dropdown-toggle:hover {
+  font-weight: 800;
+  color: #fff;
+}
+.dropdown-toggle::after {
+  vertical-align: middle;
+}
+
+.dropdown-menu li:hover a {
+  color: #ff8013;
+}

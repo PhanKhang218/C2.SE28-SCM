@@ -206,6 +206,10 @@ function MemberList() {
       <AdminPage />
       <div className="member-container">
         <div className="table-container">
+          <div className="admin-management">QUẢN LÍ THÀNH VIÊN</div>
+          <div className="admin-list">
+            <strong>Tổng số lượng user:</strong> {members.length}
+          </div>
           <table className="table table-bordered table-member">
             <thead>
               <tr>

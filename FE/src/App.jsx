@@ -51,8 +51,8 @@ export default function App() {
       {/* admin */}
       <Route path="/admin/member" element={<MemberList />} />
       <Route path="/admin/account" element={<AccountList />} />
-      <Route path="/admin" element={<AdminPage />} />
       <Route path="/admin/employee" element={<EmployeeList />} />
+      <Route path="/admin" element={<AdminPage />} />
       <Route path="/football" element={<Football />} />
       <Route path="/time" element={<Time />} />
 

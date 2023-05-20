@@ -4,7 +4,6 @@ import axios from "axios";
 import "./EmployeeList.css";
 import AdminPage from "../AdminPage/AdminPage";
 import { useAlert } from "react-alert";
-import Sidebar from "../../Sidebar/Sidebar";
 
 function EmployeeList() {
   const alert = useAlert();
@@ -23,8 +22,8 @@ function EmployeeList() {
     email: "",
   });
 
-  const [modalIsOpen, setModalIsOpen] = useState(false); // modal for create employee
-  const [createModalIsOpen, setCreateModalIsOpen] = useState(false); // modal for update employee
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState("");
   const [selectedEmployeeData, setSelectedEmployeeData] = useState({});
   const openModal = () => {
@@ -195,44 +194,57 @@ function EmployeeList() {
       <AdminPage />
       <div className="member-container">
         <div className="table-container">
+          <div className="admin-management">QUẢN LÍ NHÂN VIÊN </div>
+          <div className="admin-list">
+            Tổng số lượng nhân viên: {employees.length}
+          </div>
           <table className="table table-bordered table-member">
             <thead>
               <tr>
+                <th>Tên</th>
+                <th>SĐT</th>
+                <th>Tuổi</th>
+                <th>Email</th>
+                <th>Bằng cấp</th>
+                <th>Hình ảnh</th>
+                <th>ID nhân viên</th>
+                <th>Kinh nghiệm</th>
+                <th>Actions</th>
+              </tr>
+              {/* <tr>
                 {employees.length > 0 &&
                   Object.keys(employees[0]).map((key) => (
                     <th key={key}>{key}</th>
                   ))}
                 <th>Actions</th>
-              </tr>
+              </tr> */}
             </thead>
             <tbody>
-              {employees.map((employee, index) => (
-                <tr key={index}>
-                  {Object.entries(employee).map(([key, value], index) => (
-                    <td key={index}>
-                      {key === "image" ? (
-                        <img
-                          src={value}
-                          className="image-member"
-                          // alt="Hình ảnh"
-                        />
-                      ) : (
-                        value
-                      )}
-                    </td>
-                  ))}
+              {employees.map((employee) => (
+                <tr key={employee.employeeId}>
+                  <td>{employee.name}</td>
+                  <td>{employee.phone}</td>
+                  <td>{employee.age}</td>
+                  <td>{employee.email}</td>
+                  <td>{employee.degree}</td>
                   <td>
-                    <button onClick={() => updateEmployee(employee.employeeId)}>
-                      Update
-                    </button>
-                    <button onClick={() => deleteEmployee(employee.employeeId)}>
-                      Delete
-                    </button>
-                    <button
-                      onClick={() => getEmployeeById(employee.employeeId)}
-                    >
-                      View
-                    </button>
+                    {<img className="image-member" src={employee.image} />}
+                  </td>
+                  <td>{employee?.employeeId}</td>
+                  <td>{employee?.experience}</td>
+                  <td>
+                    <div style={{ display: "flex" }}>
+                      <button
+                        onClick={() => updateEmployee(employee.employeeId)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => deleteEmployee(employee.employeeId)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

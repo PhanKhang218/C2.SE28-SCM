@@ -48,11 +48,11 @@ export default function Sidebar() {
           <header>
             <div className="image-text">
               <span className="image">
-                <img src="./img/logo.svg" alt="#" />
+                <img src="https://raw.githubusercontent.com/tan-creator/capstoneProject-IPTC/master/FE/public/img/logo.svg" />
               </span>
               <div className="text logo-text">
                 <span className="name">C2SE.28</span>
-                <span className="profession">Booking Sports</span>
+                {/* <span className="profession">Booking Sports</span> */}
               </div>
             </div>
             <i className="bx bx-chevron-right toggle" onClick={handleToggle} />
@@ -71,18 +71,25 @@ export default function Sidebar() {
                   </a>
                 </li>
                 <li className="nav-link">
-                  <a href="/member">
+                  <a href="/admin/member">
                     <i className="bx bx-bar-chart-alt-2 icon" />
                     <span className="text nav-text">Member</span>
                   </a>
                 </li>
                 <li className="nav-link">
-                  <a href="/employee">
+                  <a href="/admin/account">
+                    <i className="bx bx-user icon"></i>
+                    <span className="text nav-text">Account</span>
+                  </a>
+                </li>
+
+                <li className="nav-link">
+                  <a href="/admin/employee">
                     <i className="bx bx-bell icon" />
                     <span className="text nav-text">Employee</span>
                   </a>
                 </li>
-                <li className="nav-link">
+                {/* <li className="nav-link">
                   <a href="#">
                     <i className="bx bx-pie-chart-alt icon" />
                     <span className="text nav-text">Analytics</span>
@@ -99,7 +106,7 @@ export default function Sidebar() {
                     <i className="bx bx-wallet icon" />
                     <span className="text nav-text">Wallets</span>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="bottom-content">
