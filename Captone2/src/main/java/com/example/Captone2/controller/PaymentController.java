@@ -6,10 +6,7 @@ import com.example.Captone2.DTO.TransactionStatusDTO;
 import com.example.Captone2.config.Config;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -44,7 +41,8 @@ public class PaymentController {
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
         vnp_Params.put("vnp_Locale", "vn");
-        //vnp_Params.put("vnp_Returnurl",Config.vnp_Returnurl);
+        vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
+
 
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -93,16 +91,20 @@ public class PaymentController {
 
     }
 
-    @GetMapping("/payment_infor")
+    @PostMapping("/payment_infor")
     public ResponseEntity<?> transaction(
-            @RequestParam(value = "vnp_Amount") String amount,
-            @RequestParam(value = "vnp_BackCode") String backCode,
-            @RequestParam(value = "vnp_OrderInfo") String order,
+            @RequestParam(value = "vnp_Amount") Long amount,
+            @RequestParam(value = "vnp_BankCode") String backCode,
             @RequestParam(value = "vnp_ResponseCode") String responseCode
     ){
         TransactionStatusDTO transactionStatusDTO = new TransactionStatusDTO();
         if(responseCode.equals("00")){
             transactionStatusDTO.setStatus("ok");
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            String time = formatter.format(date);
+
             transactionStatusDTO.setMessage("Successfully");
             transactionStatusDTO.setData("");
         }else{

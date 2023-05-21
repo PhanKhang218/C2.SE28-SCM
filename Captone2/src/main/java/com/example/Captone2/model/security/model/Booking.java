@@ -22,6 +22,8 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "MemberId")
     private Member memberB;
+
+
     public Booking(){}
 
     public Booking(Long bookingId,Boolean isBooking,String dateFrom,String dateTo,String price){
