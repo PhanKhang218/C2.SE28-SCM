@@ -24,6 +24,8 @@ public class UserDTO {
 
 	private String roleName;
 
+	private String passwordNew;
+
 
 
 }
