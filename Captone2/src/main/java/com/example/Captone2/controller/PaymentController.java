@@ -1,9 +1,15 @@
 package com.example.Captone2.controller;
 
 
+import com.example.Captone2.DTO.AmountDTO;
 import com.example.Captone2.DTO.PaymentResDTO;
 import com.example.Captone2.DTO.TransactionStatusDTO;
 import com.example.Captone2.config.Config;
+import com.example.Captone2.model.security.DAOUser;
+import com.example.Captone2.model.security.UserDTO;
+import com.example.Captone2.model.security.model.Payment;
+import com.example.Captone2.respositories.PaymentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +24,17 @@ import java.util.*;
 @RequestMapping("api/payment")
 public class PaymentController {
 
-    @GetMapping("/create_payment")
-    public ResponseEntity<?> createPayment() throws UnsupportedEncodingException {
+    @Autowired
+    PaymentRepository paymentRepository;
+
+    @PostMapping("/create_payment")
+    public ResponseEntity<?> createPayment(@RequestBody AmountDTO amountDTO) throws UnsupportedEncodingException {
 
 //        String orderType = req.getParameter("ordertype");
 //        long amount = Integer.parseInt(req.getParameter("amount"))*100;
 //        String bankCode = req.getParameter("bankCode");
 
-        long amount = 1000000;
+        long amount = amountDTO.getAmount()*100;
 
         String vnp_TxnRef = Config.getRandomNumber(8);
 //        String vnp_IpAddr = Config.getIpAddress(req);
@@ -95,8 +104,12 @@ public class PaymentController {
     public ResponseEntity<?> transaction(
             @RequestParam(value = "vnp_Amount") Long amount,
             @RequestParam(value = "vnp_BankCode") String backCode,
-            @RequestParam(value = "vnp_ResponseCode") String responseCode
+            @RequestParam(value = "vnp_ResponseCode") String responseCode,
+            @RequestParam(value = "vnp_OrderInfo") String info,
+            @RequestBody DAOUser user
+
     ){
+        Payment newPayment = new Payment();
         TransactionStatusDTO transactionStatusDTO = new TransactionStatusDTO();
         if(responseCode.equals("00")){
             transactionStatusDTO.setStatus("ok");
@@ -104,9 +117,17 @@ public class PaymentController {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
             String time = formatter.format(date);
-
             transactionStatusDTO.setMessage("Successfully");
-            transactionStatusDTO.setData("");
+
+            newPayment.setTime(time);
+            newPayment.setPrice(amount);
+            newPayment.setDecription(info);
+
+
+
+            transactionStatusDTO.setData( paymentRepository.save(newPayment));
+
+
         }else{
             transactionStatusDTO.setStatus("No");
             transactionStatusDTO.setMessage("Failed");

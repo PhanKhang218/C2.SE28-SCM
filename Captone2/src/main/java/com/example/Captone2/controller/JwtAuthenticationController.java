@@ -18,6 +18,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,7 @@ public class JwtAuthenticationController {
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
+
 
     @GetMapping("/view/account")
     public ResponseEntity<List<DAOUser>> getList() {
@@ -157,13 +159,12 @@ public class JwtAuthenticationController {
     @PutMapping("/put/pass/{id}")
     ResponseEntity<ResponseObject> updatePassword(@RequestBody UserDTO newUser, @PathVariable Long id) {
         DAOUser user = new DAOUser();
+
         DAOUser updateUser = userRepository.findById(id)
                 .map(DAOUser -> {
 
                     String currentPassword = DAOUser.getPassword();
-
                     String newPassword = newUser.getPassword();
-
 
                     if(newPassword != null && currentPassword.equals(newPassword)){
                         DAOUser.setPassword(bcryptEncoder.encode(newUser.getPasswordNew()));
@@ -178,7 +179,7 @@ public class JwtAuthenticationController {
                     return userRepository.save(user);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok", "Change password successfully"  , "")
+                new ResponseObject("ok", "Change password aaa"  , "")
         );
     }
 

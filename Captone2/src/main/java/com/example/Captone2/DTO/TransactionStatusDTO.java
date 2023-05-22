@@ -10,5 +10,5 @@ public class TransactionStatusDTO {
 
     private String status;
     private String message;
-    private String data;
+    private Object data;
 }

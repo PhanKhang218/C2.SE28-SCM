@@ -21,13 +21,13 @@ public class Payment {
 
     String time;
     String name;
-    String price;
+    Long price;
 
     String decription;
 
     public Payment(){}
 
-    public Payment(Long paymentId, String time, String name, String price, String decription) {
+    public Payment(Long paymentId, String time, String name, Long price, String decription) {
         this.paymentId = paymentId;
         this.time = time;
         this.name = name;

@@ -99,12 +99,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		Set<Role> roles = new HashSet<>();
 
-
 		Role userRole = roleRepository.findByName(RoleName.ROLE_USER);
 		roles.add(userRole);
 		newUser.setRoles(roles);
-
-
 
 		return userDao.save(newUser);
 
