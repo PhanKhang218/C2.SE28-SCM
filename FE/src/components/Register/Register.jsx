@@ -16,12 +16,6 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
 
-  const ROLES = {
-    ADMIN: "ROLE_Admin",
-    CUSTOMER: "ROLE_Customer",
-    EMPLOYEE: "ROLE_Employee",
-  };
-
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -30,11 +24,10 @@ const Register = () => {
         email: email,
         password: password,
         confirmPassword: confirmPassword,
-        role: ROLES.CUSTOMER,
         phone: phone,
       };
       const registerResponse = await axios.post(
-        "http://localhost:9000/register",
+        "http://localhost:9000/basic/register",
         registerData
       );
       console.log(registerResponse.data);

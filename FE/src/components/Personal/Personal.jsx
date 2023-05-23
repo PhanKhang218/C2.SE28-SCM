@@ -67,7 +67,6 @@ export default function Personnal() {
   return (
     <div className="personal-container">
       <NavBar />
-      <Sidebar />
       <div className="Personnal">
         <div className="func-title-user">
           <span>THÔNG TIN CÁ NHÂN</span>

@@ -92,6 +92,7 @@ function MemberList() {
   const handleUpdateMember = async () => {
     try {
       const token = localStorage.getItem("token");
+
       const response = await axios.put(
         `http://localhost:9000/member/put/${selectedMemberId}`,
         selectedMemberData,
@@ -180,7 +181,13 @@ function MemberList() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setSelectedMemberData({ ...selectedMemberData, [name]: value }); // Thay đổi thành setSelectedMemberData
+    if (name === "dayOfBirth") {
+      const selectedDate = new Date(value);
+      const formattedDate = selectedDate.toLocaleDateString("en-GB"); // Định dạng ngày theo dd/mm/yyyy
+      setSelectedMemberData({ ...selectedMemberData, [name]: formattedDate });
+    } else {
+      setSelectedMemberData({ ...selectedMemberData, [name]: value });
+    }
   };
   const handleInputCreateMember = (event) => {
     const { name, value } = event.target;
@@ -208,43 +215,39 @@ function MemberList() {
         <div className="table-container">
           <div className="admin-management">QUẢN LÍ THÀNH VIÊN</div>
           <div className="admin-list">
-            <strong>Tổng số lượng user:</strong> {members.length}
+            <strong>Tổng số lượng thành viên:</strong> {members.length}
           </div>
           <table className="table table-bordered table-member">
             <thead>
               <tr>
-                {members.length > 0 &&
-                  Object.keys(members[0]).map((key) => (
-                    <th key={key}>{renderNameCol(key)}</th>
-                  ))}
+                <th>Tên</th>
+                <th>SĐT</th>
+                <th>Tuổi</th>
+                <th>Giới tính</th>
+                <th>Hình ảnh</th>
+                <th>Ngày sinh</th>
+                <th>ID Tài khoản</th>
+                <th>ID nhân viên</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {members.map((row, index) => (
-                <tr key={index}>
-                  {Object.entries(row).map(([key, value], index) => (
-                    <td key={index}>
-                      {key === "image" ? (
-                        <img
-                          src={value}
-                          className="image-member"
-                          alt="Hình ảnh"
-                        />
-                      ) : (
-                        value
-                      )}
-                    </td>
-                  ))}
+              {members.map((member) => (
+                <tr key={member.memberId}>
+                  <td>{member.name}</td>
+                  <td>{member.phone}</td>
+                  <td>{member.age}</td>
+                  <td>{member.gender}</td>
+                  <td>{<img className="image-member" src={member.image} />}</td>
+                  <td>{member?.dayOfBirth}</td>
+                  <td>{member?.accountId}</td>
+                  <td>{member?.memberId}</td>
                   <td>
-                    <button onClick={() => updateMember(row.memberId)}>
+                    <button onClick={() => updateMember(member.memberId)}>
                       Update
                     </button>
-                    <button onClick={() => deleteMember(row.memberId)}>
+                    <button onClick={() => deleteMember(member.memberId)}>
                       Delete
-                    </button>
-                    <button onClick={() => getMemberById(row.memberId)}>
-                      View
                     </button>
                   </td>
                 </tr>
@@ -263,12 +266,50 @@ function MemberList() {
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Tên: "
                 value={selectedMemberData.name}
                 onChange={handleInputChange}
               />
               <input
                 type="text"
+                name="phone"
+                placeholder="SĐT: "
+                value={selectedMemberData.phone}
+                onChange={handleInputChange}
+              />
+              <select
+                className="admin-select"
+                name="age"
+                value={selectedMemberData?.age}
+                onChange={handleInputChange}
+              >
+                <option value="">Chọn tuổi</option>
+                {Array.from({ length: 99 }, (_, index) => (
+                  <option key={index} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="admin-select"
+                name="gender"
+                value={selectedMemberData?.gender}
+                onChange={handleInputChange}
+              >
+                <option value="">Chọn giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+
+              <input
+                type="text"
+                name="image"
+                placeholder="Image URL: "
+                value={selectedMemberData.image}
+                onChange={handleInputChange}
+              />
+              <input
+                type="date"
                 name="dayOfBirth"
                 placeholder="Day of Birth"
                 value={selectedMemberData.dayOfBirth}
@@ -288,34 +329,7 @@ function MemberList() {
                 value={selectedMemberData.memberId}
                 onChange={handleInputChange}
               />
-              <input
-                type="text"
-                name="image"
-                placeholder="Image URL"
-                value={selectedMemberData.image}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone"
-                value={selectedMemberData.phone}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="age"
-                placeholder="Age"
-                value={selectedMemberData.age}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="gender"
-                placeholder="Gender"
-                value={selectedMemberData.gender}
-                onChange={handleInputChange}
-              />
+
               <button onClick={handleUpdateMember}>Update</button>
               <button className="btn-cancel" onClick={closeModal}>
                 Cancel

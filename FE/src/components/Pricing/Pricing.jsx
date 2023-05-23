@@ -1,6 +1,7 @@
 import React from "react";
 import "./Pricing.css";
 import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 export default function Pricing() {
   return (
     <div>
@@ -67,6 +68,7 @@ export default function Pricing() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

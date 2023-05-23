@@ -5,7 +5,7 @@ import Navbar from "../NavBar/NavBar";
 import "./Payment.css";
 function Payment() {
   const location = useLocation();
-  const selectedDateTime = location.state.selectedDateTime;
+  const selectedDateTime = location.state?.selectedDateTime;
   const [paymentInfo, setPaymentInfo] = useState({});
 
   const handleOnChange = (e) => {
@@ -28,7 +28,7 @@ function Payment() {
             You have selected the following date and time:
           </p>
           <p style={{ marginTop: "20px" }}>
-            {selectedDateTime.toLocaleString()}
+            {selectedDateTime?.toLocaleString()}
           </p>
         </div>
         <form onSubmit={handleOnSubmit} className="payment-form">

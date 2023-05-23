@@ -23,12 +23,15 @@ import Navbar from "./components/NavBar/NavBar";
 import SchedulePage from "./components/Customer/SchedulePage/SchedulePage";
 import Personal from "./components/Personal/Personal";
 import AccountList from "../src/components/Admin/AccountList/AccountList";
+import Detail from "../src/components/Customer/Booking/Detail";
+
 const dataProvider = jsonServerProvider("http://localhost:9000");
 export default function App() {
   const [userData, setUserData] = useState(null);
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
+      <Route path="/detail" element={<Detail />} />
 
       <Route
         path="/nav"
