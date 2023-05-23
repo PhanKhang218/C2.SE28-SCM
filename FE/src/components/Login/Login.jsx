@@ -3,7 +3,7 @@ import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
-
+import jwt_decode from "jwt-decode";
 export default function Login({ setUserData }) {
   const [account, setAccount] = useState({
     username: "",
@@ -25,11 +25,14 @@ export default function Login({ setUserData }) {
         "http://localhost:9000/authenticate",
         account
       );
-
       if (loginResponse.data.token) {
         const token = loginResponse.data.token;
         localStorage.setItem("token", token);
 
+        const decodedToken = jwt_decode(token);
+        const username = decodedToken.user;
+        console.log(username);
+        // console.log(decodedToken);
         // Get user data
         const userDataResponse = await axios.get(
           `http://localhost:9000/api/${account.username}`,

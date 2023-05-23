@@ -1,27 +1,24 @@
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../Buttons";
 import { DaySlots, TimeSlots, DisplayBooking, IconLoading } from "../../Card";
 import Layout from "../../Layout";
-import { errorMessage, successMessage } from "../../../functions/Alert";
 import Swal from "sweetalert2";
 import Navbar from "../../NavBar/NavBar";
 import "./Detail.css";
+
 export default function Venue() {
-  const params = useParams();
   const [venues, setVenues] = useState([]);
-  const [operational, setOperational] = useState([]);
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
-  const [facilities, setFacilities] = useState([]);
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
+  const price = 1000000;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [skeleton] = useState([1, 2, 3, 4]);
-  // const role = statusRole();
-  document.title = `Hobiku | ${venues.name}`;
+  document.title = `SCM | ${venues.name}`;
+
   const [selectedDay, setSelectedDay] = useState({
     day: moment().format("dddd"),
     date: moment().format("LL"),
@@ -32,73 +29,7 @@ export default function Venue() {
   const dayFormat = `${selectedDay.day}, ${moment(selectedDay.date).format(
     "DD MMMM YYYY"
   )}`;
-  const [userId, setUserId] = useState("");
-  const [creatorVenue, setCreatorVenue] = useState("");
 
-  const bookNow = async (e) => {
-    e.preventDefault();
-    if (selectedTime === "00:00") {
-      Swal.fire({ title: "Please select a day and time" });
-    } else if (localStorage.getItem("user-info")) {
-      const token = statusLogin();
-      const startTime = moment(selectedTime, "HH:mm").clone();
-      const endTime = moment(selectedTime, "HH:mm").clone().add(1, "hours");
-      const booking = {
-        venue_id: venues.id,
-        total_price: price,
-        day: dayFormat,
-        start_date: startTime,
-        end_date: endTime,
-      };
-      await axios
-        .post(`${API}/booking`, booking, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data.code === 200) {
-            window.open(res.data.data.payment_url, "_blank");
-            successMessage(res);
-          } else {
-            successMessage(res);
-          }
-        })
-        .catch((err) => {
-          errorMessage(err);
-        });
-    } else {
-      Swal.fire({ title: "Login", text: "Please login first" });
-      navigate("/login");
-    }
-  };
-  const handleEdit = async () => {
-    const venue_id = venues.id;
-    localStorage.setItem("venue_id", venue_id);
-    navigate(`/owner/edit/${venue_id}`);
-  };
-  const handleDelete = async (e) => {
-    const copyId = localStorage.getItem("venue_id");
-    e.preventDefault();
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel!",
-      cancelButtonColor: "#d33",
-    }).then((result) => {
-      if (result.value) {
-        deleteVenue(copyId);
-        navigate("/");
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire("Cancelled", "Your venue is safe :)", "error");
-      }
-    });
-  };
   //
   const [selectedMonth, setSelectedMonth] = useState(moment().month());
   const [selectedYear, setSelectedYear] = useState(moment().year());
@@ -110,9 +41,44 @@ export default function Venue() {
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
   };
+
+  const handleBookNow = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token not found");
+        return;
+      }
+
+      const createPaymentResponse = await axios.post(
+        "http://localhost:9000/api/payment/create_payment",
+        {
+          amount: price,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (createPaymentResponse.data.status === "ok") {
+        const paymentUrl = createPaymentResponse.data.url;
+
+        window.location.href = paymentUrl;
+      } else {
+        console.error("Failed to create payment");
+      }
+    } catch (error) {
+      console.error("Error creating payment", error);
+    }
+  };
+
   return (
     <Layout>
       <Navbar />
+
       <div className="w-full my-5">
         <div className="my-3 space-y-5">
           <div className="booking-container space-y-2">
@@ -184,14 +150,7 @@ export default function Venue() {
           className="flex justify-center"
           style={{ display: "flex", justifyContent: "center" }}
         >
-          <Button
-            variant="solid"
-            id="booking-button"
-            className="text-center"
-            onClick={(e) => bookNow(e)}
-          >
-            Book Now
-          </Button>
+          <Button onClick={handleBookNow}>Book Now</Button>
         </div>
       </div>
     </Layout>

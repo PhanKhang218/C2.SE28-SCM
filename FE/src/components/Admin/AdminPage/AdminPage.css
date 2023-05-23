@@ -36,3 +36,10 @@
 .dropdown-menu li:hover a {
   color: #ff8013;
 }
+
+/*  */
+
+.table td {
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -105,8 +105,8 @@ public class PaymentController {
             @RequestParam(value = "vnp_Amount") Long amount,
             @RequestParam(value = "vnp_BankCode") String backCode,
             @RequestParam(value = "vnp_ResponseCode") String responseCode,
-            @RequestParam(value = "vnp_OrderInfo") String info,
-            @RequestBody DAOUser user
+            @RequestParam(value = "vnp_OrderInfo") String info
+            //@RequestBody DAOUser user
 
     ){
         Payment newPayment = new Payment();
