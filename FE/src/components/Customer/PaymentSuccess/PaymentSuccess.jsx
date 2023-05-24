@@ -1,15 +1,31 @@
 import React from "react";
+import moment from "moment";
 import paymentSuccessImg from "./payment-success.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
+import Navbar from "../../NavBar/NavBar";
+import Footer from "../../Footer/Footer";
+
 export default function PaymentSuccess() {
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = queryString.parse(location.search);
+  // format date
+  const payDate = moment(queryParams.vnp_PayDate, "YYYYMMDDHHmmss");
+  const formattedPayDate = payDate.format("DD/MM/YYYY - HH:mm:ss");
+  // format amount - 00
+  const amount = queryParams.vnp_Amount;
+  const formattedAmount = amount.slice(0, -2);
 
-  // Use the queryParams object to access the query parameters
   console.log(queryParams);
+  console.log(formattedPayDate);
+
+  const handleNavigateHome = () => {
+    navigate("/");
+  };
   return (
     <div>
+      <Navbar />
       <div
         style={{
           maxWidth: 680,
@@ -25,7 +41,7 @@ export default function PaymentSuccess() {
           color: "#434343",
         }}
       >
-        <main>
+        <div>
           <div
             style={{
               margin: 0,
@@ -37,7 +53,10 @@ export default function PaymentSuccess() {
           >
             <div
               className="image-success"
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
               <img
                 src={paymentSuccessImg}
@@ -125,7 +144,7 @@ export default function PaymentSuccess() {
                       fontWeight: 500,
                     }}
                   >
-                    123456u677
+                    {queryParams.vnp_TmnCode}
                   </td>
                   <td
                     style={{
@@ -134,143 +153,53 @@ export default function PaymentSuccess() {
                       fontWeight: 500,
                     }}
                   >
-                    12 November 2021
+                    {formattedPayDate}
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p
-              style={{
-                margin: 0,
-                marginTop: 43,
-                fontWeight: 500,
-                textAlign: "center",
-              }}
-            >
-              Here’s what you ordered:
-            </p>
-            <table
-              style={{
-                width: "100%",
-                paddingBottom: 20,
-                marginTop: 43,
-                fontSize: 16,
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <tbody>
-                <tr>
-                  <th style={{ textAlign: "left" }}>Item</th>
-                  <th style={{ textAlign: "right" }}>Price</th>
-                </tr>
-              </tbody>
-            </table>
-            <table
-              style={{
-                width: "100%",
-                paddingTop: 20,
-                paddingBottom: 20,
-                borderSpacing: 0,
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <tbody>
-                <tr>
-                  <td
-                    style={{
-                      paddingBottom: 16,
-                      color: "#1f1f1f",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Product Name
-                  </td>
-                  <td
-                    style={{
-                      paddingBottom: 16,
-                      textAlign: "right",
-                      fontWeight: 600,
-                      color: "#499fb6",
-                    }}
-                  >
-                    $86.00
-                  </td>
-                </tr>
-                <tr style={{ marginTop: 20 }}>
-                  <td style={{ color: "#1f1f1f", fontWeight: 600 }}>
-                    Product Name
-                  </td>
-                  <td
-                    style={{
-                      textAlign: "right",
-                      fontWeight: 600,
-                      color: "#499fb6",
-                    }}
-                  >
-                    $86.00
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table
-              style={{
-                width: "100%",
-                marginTop: 15,
-                paddingTop: 15,
-                borderTop: "1px solid #499fb6",
-              }}
-            >
-              <tbody>
-                <tr>
-                  <th
-                    style={{
-                      textAlign: "left",
-                      fontSize: 16,
-                      color: "#ba3d4f",
-                    }}
-                  >
-                    Total :
-                  </th>
-                  <th
-                    style={{
-                      textAlign: "right",
-                      fontSize: 16,
-                      color: "#ba3d4f",
-                    }}
-                  >
-                    $17.02
-                  </th>
-                </tr>
-              </tbody>
-            </table>
+            <div className="infor-payment">
+              <div
+                className="infor-payment-success"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "50px",
+                }}
+              >
+                <h2 style={{ fontWeight: "bold" }}>Tên ngân hàng:</h2>
+                <h2>{queryParams.vnp_BankCode}</h2>
+              </div>
+              <div
+                className="infor-payment-success"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <h2 style={{ fontWeight: "bold" }}>Mã giao dịch:</h2>
+                <h2>{queryParams.vnp_BankTranNo}</h2>
+              </div>
+              <div
+                className="infor-payment-success"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <h2 style={{ fontWeight: "bold" }}>Thông tin đơn hàng:</h2>
+                <h2>{queryParams.vnp_OrderInfo}</h2>
+              </div>
+              <div
+                className="infor-payment-success"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <h2 style={{ fontWeight: "bold" }}>Số tiền:</h2>
+                <h2>
+                  {formattedAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                    " VNĐ"}
+                </h2>
+              </div>
+            </div>
           </div>
-          <p
-            style={{
-              maxWidth: 410,
-              margin: "0 auto",
-              marginTop: 90,
-              textAlign: "center",
-              fontWeight: 500,
-              color: "#8c8c8c",
-            }}
-          >
-            Need help? Ask at
-            <a
-              href="mailto:archisketch@gmail.com"
-              style={{ color: "#499fb6", textDecoration: "none" }}
-            >
-              archisketch@gmail.com
-            </a>
-            or visit our
-            <a
-              href=""
-              target="_blank"
-              style={{ color: "#499fb6", textDecoration: "none" }}
-            >
-              Help Center
-            </a>
-          </p>
-        </main>
+        </div>
+        <div className="button-container">
+          <button onClick={handleNavigateHome}>Về trang chủ</button>
+        </div>
         <footer
           style={{
             width: "100%",
@@ -289,10 +218,10 @@ export default function PaymentSuccess() {
               color: "#434343",
             }}
           >
-            Archisketch Company
+            C2SE.28 - SCM
           </p>
           <p style={{ margin: 0, marginTop: 8, color: "#434343" }}>
-            Address 540, City, State.
+            254 Nguyen Van Linh, Quan Thanh Khe, TP. Da Nang
           </p>
           <div style={{ margin: 0, marginTop: 16 }}>
             <a href="" target="_blank" style={{ display: "inline-block" }}>
@@ -336,11 +265,9 @@ export default function PaymentSuccess() {
               />
             </a>
           </div>
-          <p style={{ margin: 0, marginTop: 16, color: "#434343" }}>
-            Copyright © 2022 Company. All rights reserved.
-          </p>
         </footer>
       </div>
+      <Footer />
     </div>
   );
 }
