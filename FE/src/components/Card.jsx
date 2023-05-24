@@ -168,7 +168,9 @@ export function DisplayBooking({ selectedDay, selectedTime, price }) {
             </h4>
             <h4 className="">
               <strong>Giá:</strong>{" "}
-              {selectedTime !== "00:00" ? `${price.toLocaleString()}.000` : ""}
+              {selectedTime !== "00:00"
+                ? `${price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VNĐ`
+                : ""}
             </h4>
           </div>
         </div>

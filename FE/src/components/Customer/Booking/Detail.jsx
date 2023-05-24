@@ -1,9 +1,8 @@
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Button } from "../../Buttons";
 import { DaySlots, TimeSlots, DisplayBooking, IconLoading } from "../../Card";
 import Layout from "../../Layout";
@@ -12,18 +11,22 @@ import Navbar from "../../NavBar/NavBar";
 import "./Detail.css";
 export default function Venue() {
   const [showAlert, setShowAlert] = useState(false);
-  const [venues, setVenues] = useState([]);
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
   const [time, setTime] = useState("");
   const [timeStore, setTimeStore] = useState({});
   const params = useParams();
   const type = decodeURIComponent(params.type);
+  //
   // const [price, setPrice] = useState(0);
-  const price = 3000000;
+  // const price = 3000000;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const price = searchParams.get("price");
+  console.log(price);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  document.title = `SCM | ${venues.name}`;
+  document.title = `SCM`;
 
   const [selectedDay, setSelectedDay] = useState({
     day: moment().format("dddd"),
