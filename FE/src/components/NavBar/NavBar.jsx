@@ -38,8 +38,8 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#about-us">
-              Thông báo
+            <a className="nav-link" href="/body">
+              Hướng dẫn
             </a>
           </li>
           <li className="nav-item">
