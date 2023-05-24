@@ -191,11 +191,10 @@ export default function Venue() {
             />
           )}
         </div>
-        <div
-          className="flex justify-center"
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          <Button onClick={handleBookNow}>Book Now</Button>
+        <div className="flex justify-center btn-payment">
+          <Button className="btn-thanh-toan" onClick={handleBookNow}>
+            Thanh toán
+          </Button>
         </div>
       </div>
     </Layout>

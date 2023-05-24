@@ -67,7 +67,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <MuscleBody />
       <Footer />
     </div>
   );

@@ -2,7 +2,7 @@
   background-image: url("../../../public/img/banner2.jpg");
 }
 
-svg {
+.muscle-body svg {
   width: 700px;
   height: 500px;
 }
@@ -16,7 +16,6 @@ svg {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   overflow: hidden;
-  /* border-top: 0.75rem solid #00bcd4; */
   background-image: url("../../../public/img/banner-container-second.png");
   background-position: center;
 }
@@ -44,7 +43,6 @@ svg {
 
 .muscle-groups label {
   z-index: 0;
-  /* width: 50px; */
   display: block;
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -73,8 +71,6 @@ svg {
   position: absolute;
   right: 10px;
   bottom: 10rem;
-  /* height: 350px; */
-  /* z-index: 100; */
 }
 .muscle-groups svg g[id] path {
   opacity: 0.2;

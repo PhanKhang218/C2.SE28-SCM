@@ -28,7 +28,7 @@ export default function Navbar() {
     <div className="navbar">
       <div className="navbar-container">
         <a href="" className="logo">
-          <img src="./img/logo.svg" alt="#" />
+          <img src="https://raw.githubusercontent.com/tan-creator/capstoneProject-IPTC/master/FE/public/img/logo.svg" />
           <span className="nav-title">SCM</span>
         </a>
         <ul className="navbar-ul">
@@ -37,11 +37,14 @@ export default function Navbar() {
               Trang chủ
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/body">
-              Hướng dẫn
-            </a>
-          </li>
+          {isLoggedIn && (
+            <li className="nav-item">
+              <a className="nav-link" href="/body">
+                Hướng dẫn
+              </a>
+            </li>
+          )}
+
           <li className="nav-item">
             <a className="nav-link" href="/pricing">
               Gói tập

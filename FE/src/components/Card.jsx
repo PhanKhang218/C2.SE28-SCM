@@ -96,14 +96,14 @@ export function TimeSlots({
           timeStore[type] &&
           timeStore[type].some((t) => {
             const { month, day } = t;
-            console.log(
-              month,
-              selectedMonth,
-              day,
-              selectedDay.date,
-              t.time,
-              `${time.format("LT")} - ${extraTime.format("LT")}`
-            );
+            // console.log(
+            //   month,
+            //   selectedMonth,
+            //   day,
+            //   selectedDay.date,
+            //   t.time,
+            //   `${time.format("LT")} - ${extraTime.format("LT")}`
+            // );
 
             return (
               month == selectedMonth &&
