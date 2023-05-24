@@ -1,6 +1,8 @@
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../Buttons";
 import { DaySlots, TimeSlots, DisplayBooking, IconLoading } from "../../Card";
@@ -10,6 +12,7 @@ import Navbar from "../../NavBar/NavBar";
 import "./Detail.css";
 
 export default function Venue() {
+  const [showAlert, setShowAlert] = useState(false);
   const [venues, setVenues] = useState([]);
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
@@ -43,6 +46,13 @@ export default function Venue() {
   };
 
   const handleBookNow = async () => {
+    const selectedDate = moment(selectedDay.date, "LL");
+    const currentDate = moment().startOf("day");
+
+    if (selectedDate.isBefore(currentDate)) {
+      setShowAlert(true); // Kích hoạt hiển thị thông báo
+      return;
+    }
     try {
       const token = localStorage.getItem("token");
 
@@ -75,6 +85,12 @@ export default function Venue() {
     }
   };
 
+  useEffect(() => {
+    if (showAlert) {
+      Swal.fire("Vui lòng chọn ngày hợp lệ");
+      setShowAlert(false); // Đặt lại trạng thái hiển thị thông báo
+    }
+  }, [showAlert]);
   return (
     <Layout>
       <Navbar />

@@ -1,6 +1,13 @@
 import React from "react";
 import paymentSuccessImg from "./payment-success.png";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 export default function PaymentSuccess() {
+  const location = useLocation();
+  const queryParams = queryString.parse(location.search);
+
+  // Use the queryParams object to access the query parameters
+  console.log(queryParams);
   return (
     <div>
       <div

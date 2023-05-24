@@ -9,7 +9,10 @@ function Sport() {
 
   const [clubs, setClubs] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("Group classes");
-
+  const sports = {
+    sportImage: "",
+    sportName: "",
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {

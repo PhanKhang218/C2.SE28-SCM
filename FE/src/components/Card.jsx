@@ -8,41 +8,47 @@ export function DaySlots({ selectedDay, setSelectedDay, month, year }) {
   const lastDayOfMonth = moment(firstDayOfMonth).endOf("month");
   const lastDayOfWeek = moment(lastDayOfMonth).endOf("week");
 
+  const currentDate = moment();
+
+  const daysToRender = [];
+  let currentDay = moment(firstDayOfWeek);
+
+  while (currentDay.isSameOrBefore(lastDayOfWeek)) {
+    if (
+      currentDay.isSameOrAfter(firstDayOfMonth) &&
+      currentDay.isSameOrBefore(lastDayOfMonth) &&
+      currentDay.isSameOrAfter(currentDate)
+    ) {
+      daysToRender.push(currentDay);
+    }
+    currentDay = currentDay.clone().add(1, "day");
+  }
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-4">
-      {[...Array(lastDayOfWeek.diff(firstDayOfWeek, "days") + 1)].map(
-        (_, i) => {
-          const day = moment(firstDayOfWeek).add(i, "days");
-          if (day.isBefore(firstDayOfMonth) || day.isAfter(lastDayOfMonth)) {
-            return null;
-          }
-          return (
-            <button
-              id={`day-${i + 1}`}
-              className={`text-center border py-5 rounded-lg lg:shadow-md button-abc ${
-                selectedDay.date === day.format("LL")
-                  ? "bg-teal-500 text-white"
-                  : "bg-white"
-              }`}
-              key={i}
-              onClick={() => {
-                setSelectedDay({
-                  day: day.format("dddd"),
-                  date: day.format("LL"),
-                });
-              }}
-            >
-              <h6 className="font-semibold md:text-lg uppercase title">
-                {day.format("dddd")}
-              </h6>
-              <h3 className="font-bold text-4xl day">{day.format("D")}</h3>
-              <h5 className="text-xl font-semibold month">
-                {day.format("MMMM")}
-              </h5>
-            </button>
-          );
-        }
-      )}
+      {daysToRender.map((day, index) => (
+        <button
+          id={`day-${index + 1}`}
+          className={`text-center border py-5 rounded-lg lg:shadow-md button-abc ${
+            selectedDay.date === day.format("LL")
+              ? "bg-teal-500 text-white"
+              : "bg-white"
+          }`}
+          key={index}
+          onClick={() => {
+            setSelectedDay({
+              day: day.format("dddd"),
+              date: day.format("LL"),
+            });
+          }}
+        >
+          <h6 className="font-semibold md:text-lg uppercase title">
+            {day.format("dddd")}
+          </h6>
+          <h3 className="font-bold text-4xl day">{day.format("D")}</h3>
+          <h5 className="text-xl font-semibold month">{day.format("MMMM")}</h5>
+        </button>
+      ))}
     </div>
   );
 }

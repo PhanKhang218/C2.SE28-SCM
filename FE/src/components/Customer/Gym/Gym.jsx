@@ -102,7 +102,7 @@ function Gym() {
                   fontSize: "13px",
                 }}
               >
-                Số người: {classItem.capacity}
+                Diện tích: {classItem.capacity}
               </p>
             </div>
             <div className="address-fb">

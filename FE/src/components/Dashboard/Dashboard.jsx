@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 // import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
+import MuscleBody from "../Customer/MuscleBody/MuscleBody";
 
 export default function Dashboard() {
   return (
@@ -66,6 +67,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <MuscleBody />
       <Footer />
     </div>
   );

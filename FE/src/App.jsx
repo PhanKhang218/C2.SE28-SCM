@@ -17,6 +17,8 @@ import Personnal from "./components/Personal/Personal";
 import Sport from "./components/Customer/Sport/Sport";
 import PaymentInformation from "./components/Customer/PaymentInformation/PaymentInformation";
 import PaymentSuccess from "./components/Customer/PaymentSuccess/PaymentSuccess";
+import Pricing from "./components/Pricing/Pricing";
+import MuscleBody from "./components/Customer/MuscleBody/MuscleBody";
 
 const checkRole = (roles, requiredRole) => {
   return roles.includes(requiredRole);
@@ -77,8 +79,15 @@ const App = () => {
       {checkRole(userRole, "ROLE_USER") && (
         <Route path="/payment_information" element={<PaymentInformation />} />
       )}
+
       {checkRole(userRole, "ROLE_USER") && (
-        <Route path="/payment_success" element={<PaymentSuccess />} />
+        <Route path="/pricing" element={<Pricing />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/api/payment/payment_infor" element={<PaymentSuccess />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/body" element={<MuscleBody />} />
       )}
     </Routes>
   );
