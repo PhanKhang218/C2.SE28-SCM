@@ -1,4 +1,6 @@
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./Card.css";
 
 export function DaySlots({ selectedDay, setSelectedDay, month, year }) {
@@ -7,12 +9,18 @@ export function DaySlots({ selectedDay, setSelectedDay, month, year }) {
   const firstDayOfWeek = moment(firstDayOfMonth).startOf("week");
   const lastDayOfMonth = moment(firstDayOfMonth).endOf("month");
   const lastDayOfWeek = moment(lastDayOfMonth).endOf("week");
+  const [booked, setBooked] = useState([]);
+  const [timeStore, setTimeStore] = useState({});
+  useEffect(() => {
+    const booked = localStorage.getItem("booked")
+      ? JSON.parse(localStorage.getItem("booked"))
+      : [];
 
+    setBooked([...booked]);
+  }, []);
   const currentDate = moment();
-
   const daysToRender = [];
   let currentDay = moment(firstDayOfWeek);
-
   while (currentDay.isSameOrBefore(lastDayOfWeek)) {
     if (
       currentDay.isSameOrAfter(firstDayOfMonth) &&
@@ -23,42 +31,58 @@ export function DaySlots({ selectedDay, setSelectedDay, month, year }) {
     }
     currentDay = currentDay.clone().add(1, "day");
   }
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-4">
-      {daysToRender.map((day, index) => (
-        <button
-          id={`day-${index + 1}`}
-          className={`text-center border py-5 rounded-lg lg:shadow-md button-abc ${
-            selectedDay.date === day.format("LL")
-              ? "bg-teal-500 text-white"
-              : "bg-white"
-          }`}
-          key={index}
-          onClick={() => {
-            setSelectedDay({
-              day: day.format("dddd"),
-              date: day.format("LL"),
-            });
-          }}
-        >
-          <h6 className="font-semibold md:text-lg uppercase title">
-            {day.format("dddd")}
-          </h6>
-          <h3 className="font-bold text-4xl day">{day.format("D")}</h3>
-          <h5 className="text-xl font-semibold month">{day.format("MMMM")}</h5>
-        </button>
-      ))}
+      {daysToRender.map((day, index) => {
+        return (
+          <button
+            id={`day-${index + 1}`}
+            className={`text-center border py-5 rounded-lg lg:shadow-md button-abc ${
+              selectedDay.date === day.format("LL")
+                ? "bg-teal-500 text-white"
+                : "bg-white"
+            }`}
+            disabled={booked.includes(day.date())}
+            key={index}
+            onClick={() => {
+              setSelectedDay({
+                day: day.format("dddd"),
+                date: day.format("LL"),
+              });
+            }}
+          >
+            {/* <h1>{selectedDay.day === "Saturday" ? "hehe" : ""}</h1> */}
+            <h6 className="font-semibold md:text-lg uppercase title">
+              {day.format("dddd")}
+            </h6>
+            <h3 className="font-bold text-4xl day">{day.format("D")}</h3>
+            <h5 className="text-xl font-semibold month">
+              {day.format("MMMM")}
+            </h5>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
 export function TimeSlots({
   selectedTime,
+  selectedMonth,
+  selectedDay,
   setSelectedTime,
   open_hour,
   close_hour,
+  setTime,
+  timeStore,
 }) {
+  const params = useParams();
+  const type = decodeURIComponent(params.type);
+  const handleSelect = (timeSelect, time) => {
+    setSelectedTime(timeSelect); // user active select time
+    setTime(time); // dua time ra detail
+  };
+
   moment.locale("id");
   const startTime = moment().startOf("day").add(open_hour, "hours");
   const endTime = moment().startOf("day").add(close_hour, "hours");
@@ -67,6 +91,26 @@ export function TimeSlots({
       {[...Array(endTime.diff(startTime, "hours"))].map((_, i) => {
         const time = moment(startTime).add(i, "hours");
         const extraTime = moment(startTime).add(i + 1, "hours");
+
+        const isDisabled =
+          timeStore[type] &&
+          timeStore[type].some((t) => {
+            const { month, day } = t;
+            console.log(
+              month,
+              selectedMonth,
+              day,
+              selectedDay.date,
+              t.time,
+              `${time.format("LT")} - ${extraTime.format("LT")}`
+            );
+
+            return (
+              month == selectedMonth &&
+              day == selectedDay.date &&
+              t.time == `${time.format("LT")} - ${extraTime.format("LT")}`
+            );
+          });
         return (
           <button
             id={`time-${time.format("HH:mm")}`}
@@ -76,7 +120,13 @@ export function TimeSlots({
                 : "bg-white"
             }`}
             key={i}
-            onClick={() => setSelectedTime(time.format("LT"))}
+            disabled={isDisabled}
+            onClick={() =>
+              handleSelect(
+                time.format("LT"),
+                `${time.format("LT")} - ${extraTime.format("LT")}`
+              )
+            }
           >
             {/* <h5 className="font-semibold text-lg xl:hidden">
               {time.format("LT")}

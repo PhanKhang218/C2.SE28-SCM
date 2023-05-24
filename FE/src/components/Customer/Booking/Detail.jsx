@@ -3,21 +3,24 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../Buttons";
 import { DaySlots, TimeSlots, DisplayBooking, IconLoading } from "../../Card";
 import Layout from "../../Layout";
 import Swal from "sweetalert2";
 import Navbar from "../../NavBar/NavBar";
 import "./Detail.css";
-
 export default function Venue() {
   const [showAlert, setShowAlert] = useState(false);
   const [venues, setVenues] = useState([]);
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
+  const [time, setTime] = useState("");
+  const [timeStore, setTimeStore] = useState({});
+  const params = useParams();
+  const type = decodeURIComponent(params.type);
   // const [price, setPrice] = useState(0);
-  const price = 1000000;
+  const price = 3000000;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   document.title = `SCM | ${venues.name}`;
@@ -32,11 +35,9 @@ export default function Venue() {
   const dayFormat = `${selectedDay.day}, ${moment(selectedDay.date).format(
     "DD MMMM YYYY"
   )}`;
-
-  //
   const [selectedMonth, setSelectedMonth] = useState(moment().month());
-  const [selectedYear, setSelectedYear] = useState(moment().year());
 
+  const [selectedYear, setSelectedYear] = useState(moment().year());
   const handleMonthChange = (e) => {
     setSelectedMonth(parseInt(e.target.value));
   };
@@ -44,15 +45,38 @@ export default function Venue() {
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
   };
-
+  useEffect(() => {
+    const nextDay = moment(selectedDay.date).add(1, "day");
+    setSelectedDay({
+      day: nextDay.format("dddd"),
+      date: nextDay.format("LL"),
+    });
+  }, []);
+  console.log("day", selectedDay);
+  useEffect(() => {
+    const timeStore = localStorage.getItem("time")
+      ? JSON.parse(localStorage.getItem("time"))
+      : {};
+    setTimeStore({ ...timeStore });
+  }, [selectedDay, selectedMonth, selectedTime]);
+  //
   const handleBookNow = async () => {
-    const selectedDate = moment(selectedDay.date, "LL");
-    const currentDate = moment().startOf("day");
-
-    if (selectedDate.isBefore(currentDate)) {
-      setShowAlert(true); // Kích hoạt hiển thị thông báo
-      return;
+    const schedules = {
+      month: selectedMonth,
+      day: selectedDay.date,
+      time: time,
+    };
+    // gym
+    const timeStore = localStorage.getItem("time")
+      ? JSON.parse(localStorage.getItem("time"))
+      : {};
+    if (timeStore[type]) {
+      timeStore[type].push(schedules);
+    } else {
+      timeStore[type] = [schedules];
     }
+    localStorage.setItem("time", JSON.stringify(timeStore));
+
     try {
       const token = localStorage.getItem("token");
 
@@ -77,6 +101,7 @@ export default function Venue() {
         const paymentUrl = createPaymentResponse.data.url;
 
         window.location.href = paymentUrl;
+        localStorage.setItem("booked", JSON.stringify(booked));
       } else {
         console.error("Failed to create payment");
       }
@@ -148,10 +173,14 @@ export default function Venue() {
           <div className="border-y-2 py-5">
             <div className="desc-timeslot">SELECT TIME: </div>
             <TimeSlots
+              timeStore={timeStore}
+              selectedMonth={selectedMonth}
               selectedTime={selectedTime}
+              selectedDay={selectedDay}
               setSelectedTime={setSelectedTime}
               open_hour={open ? parseInt(open) : 6}
               close_hour={close ? parseInt(close) : 21}
+              setTime={setTime}
             />
           </div>
           {selectedDay && selectedTime && (

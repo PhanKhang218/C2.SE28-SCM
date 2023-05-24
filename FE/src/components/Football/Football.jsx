@@ -13,7 +13,7 @@ import {
 import Footer from "../Footer/Footer";
 
 library.add(faWifi, faRestroom, faSquareParking, faGamepad);
-function Football() {
+function Football111() {
   let navigate = useNavigate();
 
   const [clubs, setClubs] = useState([
@@ -246,4 +246,4 @@ function Football() {
   );
 }
 
-export default Football;
+export default Football111;

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
-import "./Gym.css";
 import Footer from "../../Footer/Footer";
 import { getClassList } from "../../../api/apiClient";
-
-function Gym() {
+import "./Football.css";
+function Football() {
   const navigate = useNavigate();
   const [filteredClasses, setFilteredClasses] = useState([]);
 
@@ -15,7 +14,7 @@ function Gym() {
         const token = localStorage.getItem("token");
         const classList = await getClassList(token);
         const filteredClasses = classList.filter(
-          (classItem) => classItem.team === "Gym"
+          (classItem) => classItem.team === "Football"
         );
         console.log(filteredClasses);
         setFilteredClasses(filteredClasses);
@@ -120,4 +119,4 @@ function Gym() {
   );
 }
 
-export default Gym;
+export default Football;

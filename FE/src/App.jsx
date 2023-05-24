@@ -10,7 +10,7 @@ import EmployeeList from "./components/Admin/Employee/EmployeeList";
 import Detail from "./components/Customer/Booking/Detail";
 import Login from "./components/Login/Login";
 import Gym from "./components/Customer/Gym/Gym";
-import Football from "./components/Football/Football";
+import Football from "./components/Customer/Football/Football";
 import Blog from "./components/Blog/Blog";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import Personnal from "./components/Personal/Personal";
@@ -61,7 +61,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
       )}
       {checkRole(userRole, "ROLE_USER") && (
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/:type/detail" element={<Detail />} />
       )}
 
       {checkRole(userRole, "ROLE_USER") && (
