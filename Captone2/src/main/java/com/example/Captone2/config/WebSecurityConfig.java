@@ -92,6 +92,7 @@ public class WebSecurityConfig
                 .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
                 .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_USER).split("_")[1])
                 .antMatchers("/api").hasAnyRole(String.valueOf(RoleName.ROLE_EMPLOYEE).split("_")[1])
+                .antMatchers("/admin").hasAnyRole(String.valueOf(RoleName.ROLE_ADMIN).split("_")[1])
 
 
                 // all other requests need to be authenticated

@@ -28,7 +28,7 @@ public class Review {
     private Member memberR;
     @ManyToOne
     @JoinColumn(name = "RoomId")
-    private Member roomR;
+    private Room roomR;
     public Review(){}
 
     public Review(Long idReview, Long rate, String comment, String time) {
@@ -38,53 +38,7 @@ public class Review {
         Time = time;
     }
 
-    public Member getRoomR() {
-        return roomR;
-    }
 
-    public void setRoomR(Member roomR) {
-        this.roomR = roomR;
-    }
-
-    public Long getIdReview() {
-        return IdReview;
-    }
-
-    public void setIdReview(Long idReview) {
-        IdReview = idReview;
-    }
-
-    public Long getRate() {
-        return Rate;
-    }
-
-    public void setRate(Long rate) {
-        Rate = rate;
-    }
-
-    public String getComment() {
-        return Comment;
-    }
-
-    public void setComment(String comment) {
-        Comment = comment;
-    }
-
-    public String getTime() {
-        return Time;
-    }
-
-    public void setTime(String time) {
-        Time = time;
-    }
-
-    public Member getMemberR() {
-        return memberR;
-    }
-
-    public void setMemberR(Member memberR) {
-        this.memberR = memberR;
-    }
 
     @Override
     public String toString() {

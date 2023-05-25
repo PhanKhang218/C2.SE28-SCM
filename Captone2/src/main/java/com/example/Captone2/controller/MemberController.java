@@ -1,14 +1,8 @@
 package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
-import com.example.Captone2.model.security.model.Booking;
-import com.example.Captone2.model.security.model.Member;
-import com.example.Captone2.model.security.model.Membership;
-import com.example.Captone2.model.security.model.Schedule;
-import com.example.Captone2.response.BookingResponse;
-import com.example.Captone2.response.MemberResponse;
-import com.example.Captone2.response.MemberShipResponse;
-import com.example.Captone2.response.ScheduleResponse;
+import com.example.Captone2.model.security.model.*;
+import com.example.Captone2.response.*;
 import com.example.Captone2.respositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -92,11 +86,54 @@ public class MemberController {
 
             }
 
+            List<Review> reviews = member.getReviews();
+            List<ReviewsReponse> reviewsReponses =new ArrayList<>();
+
+            for (Review review : reviews) {
+                ReviewsReponse reviewsReponse = new ReviewsReponse();
+
+                reviewsReponse.setIdReview(review.getIdReview());
+                reviewsReponse.setRate(review.getRate());
+                reviewsReponse.setComment(review.getComment());
+                reviewsReponse.setTime(review.getTime());
+
+
+                reviewsReponses.add(reviewsReponse);
+
+            }
+
+
+            List<EventUser> eventUsers = member.getEventUserList();
+            List<EventResponse> eventResponses =new ArrayList<>();
+
+            for (EventUser eventUser : eventUsers) {
+                EventResponse eventResponse = new EventResponse();
+
+                eventResponse.setMemberld(eventUser.getMemberld());
+                eventResponse.setDecription(eventUser.getDecription());
+                eventResponse.setEvenMembertld(eventUser.getEvenMembertld());
+                eventResponse.setEvenName(eventUser.getEvenName());
+                eventResponse.setDoneTime(eventUser.getDoneTime());
+                eventResponse.setStartTime(eventUser.getStartTime());
+                eventResponse.setImage(eventUser.getImage());
+
+
+
+                eventResponses.add(eventResponse);
+
+            }
+
+
+
+
+
 
 
             memberResponse.setScheduleResponses(scheduleResponses);
             memberResponse.setMemberShipResponses(memberShipResponses);
             memberResponse.setBookingResponses(bookingResponses);
+            memberResponse.setReviewsReponses(reviewsReponses);
+            memberResponse.setEventResponses(eventResponses);
             memberResponses.add(memberResponse);
 
 

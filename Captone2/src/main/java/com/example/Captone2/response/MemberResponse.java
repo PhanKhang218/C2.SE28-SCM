@@ -24,4 +24,8 @@ public class MemberResponse {
     List<ScheduleResponse> scheduleResponses;
 
     List<BookingResponse> bookingResponses;
+
+    List<ReviewsReponse> reviewsReponses;
+
+    List<EventResponse> eventResponses;
 }

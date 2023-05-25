@@ -21,9 +21,9 @@ public class Room {
     @JoinColumn(name = "ClassId")
     private Class ClassR;
     @OneToMany(mappedBy= "roomB")
-    private List<Booking> bookings = new ArrayList<>();
+    private List<Booking> bookings ;
     @OneToMany(mappedBy= "roomR")
-    private List<Review> reviewList = new ArrayList<>();
+    private List<Review> reviewList;
     public Room(){}
 
     public Room(Long roomId, Long classID, String roomName, String roomType, Boolean isBooking, String price) {

@@ -196,7 +196,10 @@ public class JwtAuthenticationController {
     @DeleteMapping("/view/delete/{id}")
     ResponseEntity<ResponseObject> deleteUser(@PathVariable Long id) {
         boolean exists = userRepository.existsById(id);
-        if (exists) {
+
+
+
+        if (exists   ) {
             userRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Delete product successfully", "")

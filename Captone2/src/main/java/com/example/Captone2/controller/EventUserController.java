@@ -37,12 +37,13 @@ public class EventUserController {
         EventUser updateEventUser = eventUserRepository.findById(id)
                 .map(EventUser -> {
                     EventUser.setEvenMembertld(newEventUser.getEvenMembertld());
-                    EventUser.setEmployeeld(newEventUser.getEmployeeld());
+                   // EventUser.setEmployeeld(newEventUser.getEmployeeld());
                     EventUser.setMemberld(newEventUser.getMemberld());
                     EventUser.setEvenName(newEventUser.getEvenName());
                     EventUser.setStartTime(newEventUser.getStartTime());
                     EventUser.setDoneTime(newEventUser.getDoneTime());
                     EventUser.setDecription(newEventUser.getDecription());
+                    EventUser.setImage(newEventUser.getImage());
 
                     return eventUserRepository.save(EventUser);
                 }).orElseGet(() -> {
