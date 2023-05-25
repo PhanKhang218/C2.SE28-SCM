@@ -11,7 +11,9 @@ import Detail from "./components/Customer/Booking/Detail";
 import Login from "./components/Login/Login";
 import Gym from "./components/Customer/Gym/Gym";
 import Football from "./components/Customer/Football/Football";
-import Blog from "./components/Blog1/Blog";
+import Blog1 from "./components/Blog1/Blog";
+import Blog2 from "./components/Blog2/Blog2";
+import Blog3 from "./components/Blog3/Blog3";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import Personnal from "./components/Personal/Personal";
 import Sport from "./components/Customer/Sport/Sport";
@@ -21,6 +23,7 @@ import MuscleBody from "./components/Customer/MuscleBody/MuscleBody";
 import ClassList from "./components/Admin/ClassList/ClassList";
 import SportList from "./components/Admin/SportList/SportList";
 import Basketball from "./components/Customer/Basketball/Basketball";
+import Blog from "./components/Blog3/Blog3";
 
 const checkRole = (roles, requiredRole) => {
   return roles.includes(requiredRole);
@@ -79,7 +82,13 @@ const App = () => {
         <Route path="/football" element={<Football />} />
       )}
       {checkRole(userRole, "ROLE_USER") && (
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog1" element={<Blog1 />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/blog2" element={<Blog2 />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/blog3" element={<Blog />} />
       )}
       {checkRole(userRole, "ROLE_USER") && (
         <Route path="/sport" element={<Sport />} />

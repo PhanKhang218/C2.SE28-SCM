@@ -1,8 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
-import { UserList } from "./user";
-import authProvider from "./authProvider";
 import { useState } from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Gym from "./components/Customer/Gym/Gym";

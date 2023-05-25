@@ -41,7 +41,7 @@ export default function Dashboard() {
         <div className="container-second-1 col">
           <div className="caption">DIET</div>
           <div className="info">
-            <a href="/blog" style={{ color: "#999" }}>
+            <a href="/blog1" style={{ color: "#999" }}>
               <div className="title">
                 16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
               </div>
@@ -52,18 +52,22 @@ export default function Dashboard() {
         <div className="container-second-2 col">
           <div className="caption">DIET</div>
           <div className="info">
-            <div className="title">
-              The Best Bulking Leg Workouts: 10 Must-Do Exercises
-            </div>
+            <a href="/blog2" style={{ color: "#999" }}>
+              <div className="title">
+                The Best Bulking Leg Workouts: 10 Must-Do Exercises
+              </div>
+            </a>
           </div>
         </div>
         {/* 3 */}
         <div className="container-second-3 col">
           <div className="caption">DIET</div>
           <div className="info">
-            <div className="title">
-              16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
-            </div>
+            <a href="/blog3" style={{ color: "#999" }}>
+              <div className="title">
+                16 Healthy Bulking Foods For Hard Gainers (With Meal Plan)
+              </div>
+            </a>
           </div>
         </div>
       </div>
