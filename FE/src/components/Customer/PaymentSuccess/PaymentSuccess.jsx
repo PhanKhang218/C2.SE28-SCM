@@ -23,6 +23,7 @@ export default function PaymentSuccess() {
   const handleNavigateHome = () => {
     navigate("/");
   };
+
   return (
     <div>
       <Navbar />
@@ -200,6 +201,7 @@ export default function PaymentSuccess() {
         <div className="button-container">
           <button onClick={handleNavigateHome}>Về trang chủ</button>
         </div>
+
         <footer
           style={{
             width: "100%",

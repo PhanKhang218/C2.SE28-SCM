@@ -279,7 +279,7 @@ function ClassList() {
               <input
                 type="text"
                 name="team"
-                placeholder="Team"
+                placeholder="Môn"
                 value={newClass.team}
                 onChange={handleNewClassInputChange}
               />

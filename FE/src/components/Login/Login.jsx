@@ -85,7 +85,7 @@ export default function Login({ setUserData }) {
               <div className="spacer" />
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
-                  Email
+                  Tên đăng nhập
                 </label>
                 <input
                   id="username"
