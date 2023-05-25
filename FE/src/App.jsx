@@ -18,6 +18,7 @@ import Sport from "./components/Customer/Sport/Sport";
 import PaymentSuccess from "./components/Customer/PaymentSuccess/PaymentSuccess";
 import Pricing from "./components/Pricing/Pricing";
 import MuscleBody from "./components/Customer/MuscleBody/MuscleBody";
+import ClassList from "./components/Admin/ClassList/ClassList";
 
 const checkRole = (roles, requiredRole) => {
   return roles.includes(requiredRole);
@@ -54,7 +55,9 @@ const App = () => {
       {checkRole(userRole, "ROLE_ADMIN") && (
         <Route path="/admin/employee" element={<EmployeeList />} />
       )}
-
+      {checkRole(userRole, "ROLE_ADMIN") && (
+        <Route path="/admin/class" element={<ClassList />} />
+      )}
       {/* USER */}
       {checkRole(userRole, "ROLE_USER") && (
         <Route path="/" element={<Dashboard />} />

@@ -26,8 +26,8 @@ function Football() {
     fetchClassList();
   }, []);
 
-  const handleOnclickToRegister = (className) => {
-    navigate(`/${className}/detail`);
+  const handleOnclickToRegister = (className, price) => {
+    navigate(`/${className}/detail?price=${price}`);
   };
 
   const renderStars = (star) => {
@@ -77,7 +77,7 @@ function Football() {
                 fontSize: "13px",
               }}
             >
-              {classItem.price + " VNĐ"}
+              {classItem.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ"}
             </p>
             <div
               className="abc"
@@ -107,7 +107,9 @@ function Football() {
               <strong>Địa chỉ:</strong> {classItem.classAddress}
             </div>
             <button
-              onClick={() => handleOnclickToRegister(classItem.className)}
+              onClick={() =>
+                handleOnclickToRegister(classItem.className, classItem.price)
+              }
             >
               Đặt lịch
             </button>
