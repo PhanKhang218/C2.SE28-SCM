@@ -166,7 +166,7 @@ public class JwtAuthenticationController {
                     String currentPassword = DAOUser.getPassword();
                     String newPassword = newUser.getPassword();
 
-                    if(newPassword != null && currentPassword.equals(newPassword)){
+                    if(newPassword != null && bcryptEncoder.matches(newPassword,(currentPassword))){
                         DAOUser.setPassword(bcryptEncoder.encode(newUser.getPasswordNew()));
                         DAOUser.setConfirmPassword(bcryptEncoder.encode(newUser.getPasswordNew()));
 

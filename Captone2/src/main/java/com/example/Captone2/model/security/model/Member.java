@@ -1,14 +1,16 @@
 package com.example.Captone2.model.security.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 
-public class Member {
+public class Member implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long MemberId;
@@ -23,25 +25,30 @@ public class Member {
 
     Long AccountId;
 
+   // @JsonIgnore
     @ManyToMany
     @JoinTable(name = "Member_Membership",
                 joinColumns = @JoinColumn(name ="MemberId"),
                 inverseJoinColumns = @JoinColumn(name = "MembershipID"))
-    private List<Membership> membershipList = new ArrayList<>();
+    private List<Membership> membershipList ;
+
+
     @ManyToMany
     @JoinTable(name = "Member_Schedule",
             joinColumns = @JoinColumn(name ="MemberId"),
             inverseJoinColumns = @JoinColumn(name = "Schedule_ID"))
-    private List<Schedule> scheduleList = new ArrayList<>();
+    private List<Schedule> scheduleList ;
     @ManyToMany
     @JoinTable(name = "Member_EventUser",
             joinColumns = @JoinColumn(name ="MemberId"),
             inverseJoinColumns = @JoinColumn(name = "EvenMembertld"))
-    private List<EventUser> eventUserList = new ArrayList<>();
+    private List<EventUser> eventUserList ;
+
+
     @OneToMany(mappedBy= "memberB")
-    private List<Booking> bookingList = new ArrayList<>();
+    private List<Booking> bookingList ;
     @OneToMany(mappedBy= "memberR")
-    private List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews ;
 
 
     public Member(){}

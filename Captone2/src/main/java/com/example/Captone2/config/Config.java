@@ -17,6 +17,7 @@ import java.util.*;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    //public static String vnp_Returnurl = "http://localhost:9000/api/payment/payment_infor";
     public static String vnp_Returnurl = "http://127.0.0.1:5173/api/payment/payment_infor";
 //public static String vnp_Returnurl = "https://localhost:8080/return_url?vnp_Amount=1000000&vnp_BetankCode=NCB&vnp_BankTranNo=20170829152730&vnp_CardType=ATM&vnp_OrderInfo=Thanh+toan+don+hang+thoi+gian%3A+2017-08-29+15%3A27%3A02&vnp_PayDate=20170829153052&vnp_ResponseCode=00&vnp_TmnCode=ZNDSO0KD&vnp_TransactionNo=12996460&vnp_TxnRef=23597&vnp_SecureHashType=SHA256&vnp_SecureHash=20081f0ee1cc6b524e273b6d4050fefd";
     public static String vnp_TmnCode = "ZNDSO0KD";

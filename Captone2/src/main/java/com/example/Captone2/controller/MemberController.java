@@ -1,12 +1,21 @@
 package com.example.Captone2.controller;
 
 import com.example.Captone2.model.security.ResponseObject;
+import com.example.Captone2.model.security.model.Booking;
 import com.example.Captone2.model.security.model.Member;
+import com.example.Captone2.model.security.model.Membership;
+import com.example.Captone2.model.security.model.Schedule;
+import com.example.Captone2.response.BookingResponse;
+import com.example.Captone2.response.MemberResponse;
+import com.example.Captone2.response.MemberShipResponse;
+import com.example.Captone2.response.ScheduleResponse;
 import com.example.Captone2.respositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,10 +26,86 @@ public class MemberController {
     private MemberRepository memberRepository;
 
     @GetMapping("")
-    public ResponseEntity<List<Member>> getMember() {
+    public ResponseEntity<List<MemberResponse>> getMember() {
+        List<Member> members = memberRepository.findAll();
+        List<MemberResponse> memberResponses = new ArrayList<>();
+
+        members.forEach(member ->
+        {
+            MemberResponse memberResponse = new MemberResponse();
+            memberResponse.setName(member.getName());
+            memberResponse.setMemberId(member.getMemberId());
+            memberResponse.setAge(member.getAge());
+            memberResponse.setImage(member.getImage());
+            memberResponse.setPhone(member.getPhone());
+            memberResponse.setAccountId(member.getAccountId());
+            memberResponse.setDayOfBirth(member.getDayOfBirth());
+            memberResponse.setGender(member.getGender());
+
+            List<Membership> memberships = member.getMembershipList();
+            List<MemberShipResponse> memberShipResponses =new ArrayList<>();
+            for (Membership membership : memberships) {
+                MemberShipResponse memberShipResponse = new MemberShipResponse();
+
+                memberShipResponse.setMembershipName(membership.getMembershipName());
+                memberShipResponse.setEndDate(membership.getEndDate());
+                memberShipResponse.setClassAddress(membership.getClassAddress());
+                memberShipResponse.setClassID(membership.getClassID());
+                memberShipResponse.setExpireDate(membership.getExpireDate());
+                memberShipResponse.setMembershipID(membership.getMembershipID());
+                memberShipResponse.setRegisterDate(membership.getRegisterDate());
+                memberShipResponse.setDayOfWeek(membership.getDayOfWeek());
+
+
+                memberShipResponses.add(memberShipResponse);
+
+            }
+
+            List<Schedule> schedules = member.getScheduleList();
+            List<ScheduleResponse> scheduleResponses =new ArrayList<>();
+
+            for (Schedule schedule : schedules) {
+                ScheduleResponse scheduleResponse = new ScheduleResponse();
+
+                scheduleResponse.setSchedule_ID(schedule.getSchedule_ID());
+                scheduleResponse.setTime(schedule.getTime());
+                scheduleResponse.setDateOfWeek(schedule.getDateOfWeek());
+
+
+                scheduleResponses.add(scheduleResponse);
+
+            }
+
+            List<Booking> bookings = member.getBookingList();
+            List<BookingResponse> bookingResponses =new ArrayList<>();
+
+            for (Booking booking : bookings) {
+                BookingResponse bookingResponse = new BookingResponse();
+
+                bookingResponse.setBookingId(booking.getBookingId());
+                bookingResponse.setPrice(booking.getPrice());
+                bookingResponse.setDateFrom(booking.getDateFrom());
+                bookingResponse.setDateTo(booking.getDateTo());
+
+
+                bookingResponses.add(bookingResponse);
+
+            }
+
+
+
+            memberResponse.setScheduleResponses(scheduleResponses);
+            memberResponse.setMemberShipResponses(memberShipResponses);
+            memberResponse.setBookingResponses(bookingResponses);
+            memberResponses.add(memberResponse);
+
+
+
+        });
+
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin","*").body(
-                memberRepository.findAll()
+                memberResponses
         );
     }
 

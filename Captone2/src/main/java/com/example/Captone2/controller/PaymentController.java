@@ -119,6 +119,9 @@ public class PaymentController {
             String time = formatter.format(date);
             transactionStatusDTO.setMessage("Successfully");
 
+
+            // Chỗ này ta get dữ liệu ra
+
             newPayment.setTime(time);
             newPayment.setPrice(amount);
             newPayment.setDecription(info);
