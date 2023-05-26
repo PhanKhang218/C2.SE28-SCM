@@ -18,6 +18,15 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert.error("Mật khẩu không khớp");
+      return;
+    }
+
+    if (!/^\d+$/.test(phone)) {
+      alert.error("Vui lòng nhập số điện thoại hợp lệ");
+      return;
+    }
     try {
       const registerData = {
         username: username,
@@ -78,30 +87,35 @@ const Register = () => {
                 </div>
               </div>
               <input
+                className="input-register"
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <input
+                className="input-register"
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
+                className="input-register"
                 type="text"
                 placeholder="Phone Number "
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
               <input
+                className="input-register"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input
+                className="input-register"
                 type="password"
                 id="confirm-password"
                 placeholder="Confirm Password"
@@ -112,27 +126,6 @@ const Register = () => {
               <button className="button-submit" type="submit">
                 Register
               </button>
-              {/* <div className="register-fb">
-                <FacebookLogin
-                  className="register-social"
-                  appId="1088597931155576"
-                  autoLoad={false}
-                  fields="name,email,picture"
-                  callback={responseFacebook}
-                  cssClass="my-facebook-button-class"
-                  icon="fa-facebook"
-                  style={{ width: "100%" }}
-                />
-
-                <GoogleLogin
-                  className="register-social"
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                  buttonText="Login with google"
-                  onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
-                  cookiePolicy={"single_host_origin"}
-                />
-              </div> */}
             </form>
           </div>
         </div>

@@ -1,7 +1,6 @@
 .table-container {
-  margin: 20px;
-  width: 80%;
-  float: right;
+  margin-left: 250px;
+  /* float: right; */
   overflow-x: auto;
   box-sizing: border-box;
 }

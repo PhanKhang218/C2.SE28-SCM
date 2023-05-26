@@ -14,6 +14,7 @@ export default function Venue() {
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
   const [time, setTime] = useState("");
+  const [countMonth, setCountMonth] = useState(1);
   const [timeStore, setTimeStore] = useState({});
   const params = useParams();
   const type = decodeURIComponent(params.type);
@@ -91,7 +92,7 @@ export default function Venue() {
       const createPaymentResponse = await axios.post(
         "http://localhost:9000/api/payment/create_payment",
         {
-          amount: price,
+          amount: price * countMonth,
         },
         {
           headers: {
@@ -164,6 +165,30 @@ export default function Venue() {
                 )
               )}
             </select>
+            {type.includes("Fitness") && (
+              <>
+                <label htmlFor="year" className="select-label-year">
+                  Choose number of months:
+                </label>
+                <input
+                  type="number"
+                  name=""
+                  id="input"
+                  title=""
+                  style={{
+                    fontSize: "17px",
+                    width: "50px",
+                    textAlign: "center",
+                  }}
+                  value={countMonth}
+                  onChange={(e) => {
+                    if (e.target.value > 0) {
+                      return setCountMonth(e.target.value);
+                    }
+                  }}
+                />
+              </>
+            )}
           </div>
           <div className="desc-timeslot">SELECT DAY: </div>
 
@@ -173,24 +198,29 @@ export default function Venue() {
             month={selectedMonth}
             year={selectedYear}
           />
-          <div className="border-y-2 py-5">
-            <div className="desc-timeslot">SELECT TIME: </div>
-            <TimeSlots
-              timeStore={timeStore}
-              selectedMonth={selectedMonth}
-              selectedTime={selectedTime}
-              selectedDay={selectedDay}
-              setSelectedTime={setSelectedTime}
-              open_hour={open ? parseInt(open) : 6}
-              close_hour={close ? parseInt(close) : 21}
-              setTime={setTime}
-            />
-          </div>
+          {!type.includes("Fitness") && (
+            <div className="border-y-2 py-5">
+              <div className="desc-timeslot">SELECT TIME: </div>
+              <TimeSlots
+                timeStore={timeStore}
+                selectedMonth={selectedMonth}
+                selectedTime={selectedTime}
+                selectedDay={selectedDay}
+                setSelectedTime={setSelectedTime}
+                open_hour={open ? parseInt(open) : 6}
+                close_hour={close ? parseInt(close) : 21}
+                setTime={setTime}
+              />
+            </div>
+          )}
+
           {selectedDay && selectedTime && (
             <DisplayBooking
               selectedDay={selectedDay}
               selectedTime={selectedTime}
               price={price ? price : 0}
+              type={type}
+              countMonth={countMonth}
             />
           )}
         </div>

@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import Footer from "../../Footer/Footer";
 import Navbar from "../../NavBar/NavBar";
 import "./MuscleBody.css";
+import { useNavigate } from "react-router-dom";
 export default function MuscleBody() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate("/suggest");
+  };
   const [videos, setVideos] = useState({
     deltoids: "EMmDB2pEY3w",
     forearms: "fiFj_qD1sFU",
@@ -127,7 +133,6 @@ export default function MuscleBody() {
           >
             Ngực
           </label>
-
           <h2>CHÂN</h2>
           <input
             type="checkbox"
@@ -353,6 +358,17 @@ export default function MuscleBody() {
               style={{ fill: "none", stroke: "#000", strokeWidth: 1 }}
             />
           </svg>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "20px",
+              fontSize: "14px",
+            }}
+          >
+            <button onClick={handleGoBack}>Quay lại</button>
+          </div>
         </div>
       </main>
       <Footer />

@@ -154,13 +154,13 @@ function AccountList() {
         const data = response.data;
         setAccounts([...accounts, data]);
         alert.success("Insert account successfully!");
-        setCreateModalIsOpen(false);
+        closeModal(true);
       } else {
         console.log("Failed to create account");
       }
     } catch (error) {
       console.error("Error creating account:", error);
-      alert.error("Tên đăng nhập đã tồn tại!");
+      alert.error("Error creating account:");
     }
   };
 

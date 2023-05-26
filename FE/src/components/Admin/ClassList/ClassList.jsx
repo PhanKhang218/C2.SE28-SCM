@@ -174,7 +174,9 @@ function ClassList() {
       <div className="class-container">
         <div className="table-container">
           <div className="admin-management">QUẢN LÍ CÁC CÂU LẠC BỘ</div>
-          <div className="admin-list">Tổng số lớp: {classList.length}</div>
+          <div className="admin-list">
+            Tổng số câu lạc bộ: {classList.length}
+          </div>
           <table className="table table-bordered table-member">
             <thead>
               <tr>
@@ -184,10 +186,7 @@ function ClassList() {
                 <th>Giá</th>
                 <th>Star</th>
                 <th>Môn</th>
-                <th>Mô tả</th>
                 <th>Địa chỉ</th>
-                <th>Giờ mở cửa</th>
-                <th>Giờ đóng cửa</th>
                 <th>Diện tích</th>
                 <th>Ảnh CLB</th>
                 <th>Actions</th>
@@ -202,10 +201,7 @@ function ClassList() {
                   <td>{item.price}</td>
                   <td>{item.star}</td>
                   <td>{item.team}</td>
-                  <td style={{ textAlign: "justify" }}>{item.description}</td>
                   <td>{item.classAddress}</td>
-                  <td>{item.openTime}</td>
-                  <td>{item.closeTime}</td>
                   <td>{item.capacity}</td>
                   <td>
                     <img
@@ -283,31 +279,12 @@ function ClassList() {
                 value={newClass.team}
                 onChange={handleNewClassInputChange}
               />
-              <input
-                name="description"
-                placeholder="Mô tả"
-                value={newClass.description}
-                onChange={handleNewClassInputChange}
-              ></input>
+
               <input
                 type="text"
                 name="classAddress"
                 placeholder="Địa chỉ"
                 value={newClass.classAddress}
-                onChange={handleNewClassInputChange}
-              />
-              <input
-                type="text"
-                name="openTime"
-                placeholder="Giờ mở cửa"
-                value={newClass.openTime}
-                onChange={handleNewClassInputChange}
-              />
-              <input
-                type="text"
-                name="closeTime"
-                placeholder="Giờ đóng cửa"
-                value={newClass.closeTime}
                 onChange={handleNewClassInputChange}
               />
 
@@ -382,12 +359,7 @@ function ClassList() {
                 value={selectedClassData.team}
                 onChange={handleInputChange}
               />
-              <input
-                name="description"
-                placeholder="Mô tả"
-                value={selectedClassData.description}
-                onChange={handleInputChange}
-              ></input>
+
               <input
                 type="text"
                 name="classAddress"
@@ -395,20 +367,7 @@ function ClassList() {
                 value={selectedClassData.classAddress}
                 onChange={handleInputChange}
               />
-              <input
-                type="text"
-                name="closeTime"
-                placeholder="Giờ đóng cửa"
-                value={selectedClassData.closeTime}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="openTime"
-                placeholder="Giờ mở cửa"
-                value={selectedClassData.openTime}
-                onChange={handleInputChange}
-              />
+
               <input
                 type="text"
                 name="capacity"

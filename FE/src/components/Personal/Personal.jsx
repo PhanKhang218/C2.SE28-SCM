@@ -5,13 +5,11 @@ import { useAlert } from "react-alert";
 import axios from "axios";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Personal.css";
+
 export default function Personnal() {
   const alert = useAlert();
   const [account, setAccount] = useState({});
-  const [dataUpdate, setDataUpdate] = useState({
-    Names: "",
-    BirthDay: "",
-    Phone: "",
+  const [passwordUpdate, setPasswordUpdate] = useState({
     oldPassword: "",
     newPassword: "",
     verifyPassword: "",
@@ -21,7 +19,7 @@ export default function Personnal() {
     const name = e.target.name;
     const value = e.target.value;
 
-    setDataUpdate((prevState) => {
+    setPasswordUpdate((prevState) => {
       return {
         ...prevState,
         [name]: value,
@@ -30,20 +28,50 @@ export default function Personnal() {
   };
 
   const handleSubmit = async (e) => {
-    const newAccount = {
-      ...account,
-      ...dataUpdate,
-    };
+    e.preventDefault();
 
-    localStorage.setItem("userData", JSON.stringify(newAccount));
-    setAccount(newAccount);
+    if (passwordUpdate.newPassword !== passwordUpdate.verifyPassword) {
+      alert.error("Mật khẩu mới không khớp.");
+      return;
+    }
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.put(
+        `http://localhost:9000/put/pass/${account?.id}`,
+        {
+          password: passwordUpdate.oldPassword,
+          passwordNew: passwordUpdate.newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const { status, message } = response.data;
+      if (status === "ok") {
+        alert.success("Cập nhật mật khẩu thành công");
+      } else {
+        alert.error(message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert.error("An error occurred while updating the password.");
+    }
+
+    setPasswordUpdate({
+      oldPassword: "",
+      newPassword: "",
+      verifyPassword: "",
+    });
   };
 
   const handleUpdate = () => {
-    setDataUpdate({
-      Names: account?.Names,
-      BirthDay: account?.BirthDay,
-      Phone: account?.Phone,
+    setPasswordUpdate({
+      oldPassword: "",
+      newPassword: "",
+      verifyPassword: "",
     });
   };
 
@@ -53,6 +81,7 @@ export default function Personnal() {
       setAccount(userData);
     }
   }, []);
+
   const mapRoleName = (roleName) => {
     if (roleName === "ROLE_ADMIN") {
       return "Quản trị viên";
@@ -64,6 +93,7 @@ export default function Personnal() {
       return roleName;
     }
   };
+
   return (
     <div className="personal-container">
       <NavBar />
@@ -95,7 +125,6 @@ export default function Personnal() {
               <div className="txtcel2">{account.phone}</div>
             </div>
 
-            {/*  */}
             <div className="info-basic">
               <div className="info">
                 <button
@@ -126,39 +155,7 @@ export default function Personnal() {
                   <div className="modal-dialog" role="document">
                     <div className="modal-content">
                       <div className="modal-body">
-                        <form action="" method="PUT" role="form">
-                          <div className="form-group">
-                            <label htmlFor="">Tên</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="Names"
-                              placeholder="Nhập tên của bạn"
-                              value={dataUpdate?.Names}
-                              onChange={handleOnChange}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="">Ngày sinh</label>
-                            <input
-                              type="date"
-                              className="form-control"
-                              name="BirthDay"
-                              value={dataUpdate?.BirthDay}
-                              onChange={handleOnChange}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label htmlFor="">Số điện thoại</label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              name="Phone"
-                              placeholder="Nhập số điện thoại của bạn"
-                              value={dataUpdate?.Phone}
-                              onChange={handleOnChange}
-                            />
-                          </div>
+                        <form onSubmit={handleSubmit} role="form">
                           <div className="form-group">
                             <label htmlFor="">Mật khẩu cũ</label>
                             <input
@@ -189,26 +186,25 @@ export default function Personnal() {
                               onChange={handleOnChange}
                             />
                           </div>
+                          <div className="modal-footer">
+                            <button
+                              style={{ fontSize: 14 }}
+                              type="button"
+                              className="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Đóng
+                            </button>
+                            <button
+                              style={{ fontSize: 14 }}
+                              type="submit"
+                              className="btn btn-primary"
+                              value={account.UserName}
+                            >
+                              Cập nhập
+                            </button>
+                          </div>
                         </form>
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          style={{ fontSize: 14 }}
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Đóng
-                        </button>
-                        <button
-                          style={{ fontSize: 14 }}
-                          type="button"
-                          className="btn btn-primary"
-                          value={account.UserName}
-                          onClick={handleSubmit}
-                        >
-                          Cập nhập
-                        </button>
                       </div>
                     </div>
                   </div>

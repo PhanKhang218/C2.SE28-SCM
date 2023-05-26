@@ -39,7 +39,7 @@ export default function Navbar() {
           </li>
           {isLoggedIn && (
             <li className="nav-item">
-              <a className="nav-link" href="/body">
+              <a className="nav-link" href="/suggest">
                 Hướng dẫn
               </a>
             </li>
@@ -84,9 +84,6 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a href="/personal">Thông tin cá nhân</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
                 </li>
                 <li>
                   <a href="/login" onClick={handleLogout}>

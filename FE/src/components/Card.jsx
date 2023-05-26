@@ -141,7 +141,14 @@ export function TimeSlots({
   );
 }
 
-export function DisplayBooking({ selectedDay, selectedTime, price }) {
+export function DisplayBooking({
+  selectedDay,
+  selectedTime,
+  price,
+  type,
+  countMonth,
+}) {
+  price = (price * parseInt(countMonth)).toString();
   moment.locale("en");
   return (
     <>
@@ -162,10 +169,13 @@ export function DisplayBooking({ selectedDay, selectedTime, price }) {
                 "DD MMMM YYYY"
               )}`}
             </h4>
-            <h4 className="">
-              <strong>Giờ:</strong>{" "}
-              {selectedTime !== "00:00" ? `${selectedTime} (1 hour)` : ""}
-            </h4>
+            {!type.includes("Fitness") && (
+              <h4 className="">
+                <strong>Giờ:</strong>{" "}
+                {selectedTime !== "00:00" ? `${selectedTime} (1 hour)` : ""}
+              </h4>
+            )}
+
             <h4 className="">
               <strong>Giá:</strong>{" "}
               {selectedTime !== "00:00"

@@ -64,12 +64,12 @@ export default function Sidebar() {
                 <input type="text" placeholder="Search..." />
               </li>
               <ul className="menu-links">
-                <li id="dashboard" className="nav-link">
-                  <a href="#">
-                    <i className="bx bx-home-alt icon" />
+                {/* <li id="dashboard" className="nav-link">
+                  <a href="/admin/dashboard">
+                  <i className="bx bx-home-alt icon" />
                     <span className="text nav-text">Dashboard</span>
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-link">
                   <a href="/admin/account">
                     <i className="bx bx-user icon"></i>
@@ -84,7 +84,7 @@ export default function Sidebar() {
                 </li>
                 <li className="nav-link">
                   <a href="/admin/class">
-                    <i className="bx bx-heart icon" />
+                    <i className="bx bx-home-alt icon" />
                     <span className="text nav-text">Club</span>
                   </a>
                 </li>
@@ -94,43 +94,13 @@ export default function Sidebar() {
                     <span className="text nav-text">Employee</span>
                   </a>
                 </li>
-                <li className="nav-link">
-                  <a href="/admin/account">
-                    <i className="bx bx-user icon"></i>
-                    <span className="text nav-text">Account</span>
-                  </a>
-                </li>
+
                 <li className="nav-link">
                   <a href="/admin/member">
                     <i className="bx bx-bar-chart-alt-2 icon" />
                     <span className="text nav-text">Member</span>
                   </a>
                 </li>
-                <li className="nav-link">
-                  <a href="/admin/account">
-                    <i className="bx bx-user icon"></i>
-                    <span className="text nav-text">Account</span>
-                  </a>
-                </li>
-
-                {/* <li className="nav-link">
-                  <a href="#">
-                    <i className="bx bx-pie-chart-alt icon" />
-                    <span className="text nav-text">Analytics</span>
-                  </a>
-                </li>
-                <li className="nav-link">
-                  <a href="#">
-                    <i className="bx bx-heart icon" />
-                    <span className="text nav-text">Likes</span>
-                  </a>
-                </li>
-                <li className="nav-link">
-                  <a href="#">
-                    <i className="bx bx-wallet icon" />
-                    <span className="text nav-text">Wallets</span>
-                  </a>
-                </li> */}
               </ul>
             </div>
             <div className="bottom-content">

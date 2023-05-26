@@ -2,7 +2,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 import jwt_decode from "jwt-decode";
-import Dashboard from "./components/Dashboard/Dashboard";
 import AccountList from "./components/Admin/AccountList/AccountList";
 import MemberList from "./components/Admin/Member/MemberList";
 import EmployeeList from "./components/Admin/Employee/EmployeeList";
@@ -24,6 +23,11 @@ import ClassList from "./components/Admin/ClassList/ClassList";
 import SportList from "./components/Admin/SportList/SportList";
 import Basketball from "./components/Customer/Basketball/Basketball";
 import Blog from "./components/Blog3/Blog3";
+import DashboardAdmin from "./components/Admin/Dashboard/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
+import SuggestFootball from "./components/Customer/SuggestFootball/SuggestFootball";
+import Suggest from "./components/Customer/Suggest/Suggest";
+import Register from "./components/Register/Register";
 
 const checkRole = (roles, requiredRole) => {
   return roles.includes(requiredRole);
@@ -45,11 +49,16 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/personal" element={<Personnal />} />
+
+      <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login setUserData={setUserData} />} />
 
       {/* ADMIN */}
       {checkRole(userRole, "ROLE_ADMIN") && (
         <Route path="/admin" element={<AdminPage />} />
+      )}
+      {checkRole(userRole, "ROLE_ADMIN") && (
+        <Route path="/admin/dashboard" element={<DashboardAdmin />} />
       )}
       {checkRole(userRole, "ROLE_ADMIN") && (
         <Route path="/admin/account" element={<AccountList />} />
@@ -105,6 +114,12 @@ const App = () => {
       )}
       {checkRole(userRole, "ROLE_USER") && (
         <Route path="/basketball" element={<Basketball />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/suggestFootball" element={<SuggestFootball />} />
+      )}
+      {checkRole(userRole, "ROLE_USER") && (
+        <Route path="/suggest" element={<Suggest />} />
       )}
     </Routes>
   );
