@@ -44,24 +44,12 @@ Libraries used in the project(Front-End):
 react, react-alert, react-router-dom, react-router, antd,  axios, chart.js, date-and-time, framer-motion, is-valid-birthdate
 ```
 
-## Run source code in localHost:
 
-Go to /capstoneProject-IPTC by terminal and run:
-
-```bash
-php artisan serve
-```
-
-Go to /capstoneProject-IPTC/FE by terminal and run:
-
-```bash
-npm run dev
-```
 ## Authenticate
 
 
 For Admin </br>
 UserName: admin</br>
-PassWord: admin
+PassWord: admin</br>
 For User </br>
 you need to create account in UI.
